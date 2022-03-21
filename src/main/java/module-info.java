@@ -10,6 +10,8 @@ module hse.btf.pdfeditor {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
 
+    requires jlatexmath;
+
     opens hse.btf.pdfeditor to javafx.fxml;
     exports hse.btf.pdfeditor;
 }
