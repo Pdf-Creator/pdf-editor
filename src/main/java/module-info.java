@@ -20,7 +20,6 @@ module hse.btf.pdfeditor {
     requires barcodes;
     requires font.asian;
     requires hyph;
-    requires bcprov.jdk16;
 
     opens hse.btf.pdfeditor to javafx.fxml;
     exports hse.btf.pdfeditor;
