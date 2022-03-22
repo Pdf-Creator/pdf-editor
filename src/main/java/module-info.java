@@ -11,7 +11,15 @@ module hse.btf.pdfeditor {
     requires eu.hansolo.tilesfx;
 
     requires jlatexmath;
-    requires itextpdf;
+    requires kernel;
+    requires io;
+    requires layout;
+    requires forms;
+    requires pdfa;
+    requires sign;
+    requires barcodes;
+    requires font.asian;
+    requires hyph;
     requires bcprov.jdk16;
 
     opens hse.btf.pdfeditor to javafx.fxml;
