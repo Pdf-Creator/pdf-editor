@@ -3,7 +3,7 @@ package hse.btf.pdfeditor;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class PdfEditorController {
     @FXML
     private Label welcomeText;
 
