@@ -127,7 +127,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>hse.btf.pdfeditor/hse.btf.pdfeditor.HelloApplication</mainClass>
+                            <mainClass>hse.btf.pdfeditor/hse.btf.pdfeditor.PdfEditorApplication</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
