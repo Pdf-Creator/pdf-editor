@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="hse.btf.pdfeditor.PdfEditorController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+
+<AnchorPane minHeight="200.0" minWidth="300.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hse.btf.pdfeditor.PdfEditorController">
+   <children>
+      <AnchorPane prefHeight="60.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <TextField layoutX="14.0" layoutY="18.0" prefHeight="25.0" prefWidth="420.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="165.0" />
+            <Button layoutX="523.0" layoutY="18.0" mnemonicParsing="false" text="Open" AnchorPane.rightAnchor="25.0" />
+            <Button fx:id="createButton" layoutX="456.0" layoutY="18.0" mnemonicParsing="false" onAction="#createProjectButton" text="Create" />
+         </children>
+      </AnchorPane>
+      <ListView layoutY="62.0" prefHeight="340.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
+   </children>
+</AnchorPane>
