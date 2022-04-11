@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.input.MouseEvent;
+import com.gluonhq.charm.glisten.control.TextField;
+import com.gluonhq.charm.glisten.control.ExpansionPanel;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.Window;

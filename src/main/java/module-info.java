@@ -13,6 +13,7 @@ module hse.btf.pdfeditor {
     requires jlatexmath;
     requires itextpdf;
     requires bcprov.jdk16;
+    requires com.gluonhq.charm.glisten;
 
     opens hse.btf.pdfeditor to javafx.fxml;
     exports hse.btf.pdfeditor;
