@@ -27,6 +27,7 @@ public class PdfWorkWindowController {
     @FXML
     private MenuBar stageControlBar;
 
+    // right bar buttons
     @FXML
     private Button textButton;
     @FXML

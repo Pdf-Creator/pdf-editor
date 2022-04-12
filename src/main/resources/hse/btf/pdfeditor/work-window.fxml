@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.charm.glisten.control.TextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -37,6 +38,7 @@
       <Button id="imageButton" fx:id="imageButton" layoutX="756.0" layoutY="332.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="217.0" style="-fx-background-color: lightblue;" text="Image" textAlignment="CENTER" />
       <Button id="headingButton" fx:id="headingButton" layoutX="756.0" layoutY="412.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="217.0" style="-fx-background-color: lightblue;" text="Heading" textAlignment="CENTER" />
       <Button id="listButton" fx:id="listButton" layoutX="756.0" layoutY="492.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="217.0" style="-fx-background-color: lightblue;" text="List" textAlignment="CENTER" />
-      <Rectangle id="paperRectangle" fx:id="paperRectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbfdff" height="546.0" layoutX="236.0" layoutY="64.0" stroke="BLACK" strokeType="INSIDE" width="417.0" />
+      <Rectangle id="paperRectangle" fx:id="paperRectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbfdff" height="546.0" layoutX="262.0" layoutY="62.0" stroke="BLACK" strokeType="INSIDE" width="417.0" />
+      <TextField layoutX="53.0" layoutY="97.0" />
     </children>
 </AnchorPane>
