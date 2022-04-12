@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -15,36 +16,29 @@ public class PdfWorkWindowController {
 
     @FXML
     private Button closeButton;
-
     @FXML
     private Button hideButton;
-
     @FXML
     private Button minButton;
 
     @FXML
     private MenuBar stageControlBar;
 
-//    @FXML
-//    private ExpansionPanel expansionPanel;
-
     @FXML
     private Button textButton;
-
     @FXML
     private Button formulaButton;
-
-    @FXML
-    private Button tableButton;
-
     @FXML
     private Button imageButton;
-
+    @FXML
+    private Button tableButton;
     @FXML
     private Button headingButton;
-
     @FXML
     private Button listButton;
+
+    @FXML
+    private Rectangle paperRectangle;
 
     @FXML
     void stagedDragged(MouseEvent event) {
