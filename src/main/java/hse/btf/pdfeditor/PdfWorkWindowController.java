@@ -9,6 +9,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PdfWorkWindowController {
     private double lastDraggedX = -1;
     private double lastDraggedY = -1;
@@ -39,6 +42,33 @@ public class PdfWorkWindowController {
 
     @FXML
     private Rectangle paperRectangle;
+
+    private List<? extends RectangleField> paperObjectsList = new ArrayList<>();
+
+    @FXML
+    void createTextField(MouseEvent event){
+
+    }
+
+    @FXML
+    void createFormulaField(MouseEvent event){
+
+    }
+
+    @FXML
+    void createTableField(MouseEvent event){
+
+    }
+
+    @FXML
+    void createHeadingField(MouseEvent event){
+
+    }
+
+    @FXML
+    void createListField(MouseEvent event){
+
+    }
 
     @FXML
     void stagedDragged(MouseEvent event) {
