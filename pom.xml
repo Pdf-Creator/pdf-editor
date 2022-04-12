@@ -15,20 +15,17 @@
             <name>gluon repo</name>
             <url>https://nexus.gluonhq.com/nexus/content/repositories/releases/</url>
         </repository>
-    </repositories>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junit.version>5.8.1</junit.version>
-    </properties>
-
-    <repositories>
         <repository>
             <id>itext</id>
             <name>iText Repository - releases</name>
             <url>https://repo.itextsupport.com/releases</url>
         </repository>
     </repositories>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <junit.version>5.8.1</junit.version>
+    </properties>
 
     <dependencies>
         <dependency>
