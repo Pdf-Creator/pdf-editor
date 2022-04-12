@@ -46,28 +46,78 @@ public class PdfWorkWindowController {
     private List<? extends RectangleField> paperObjectsList = new ArrayList<>();
 
     @FXML
-    void createTextField(MouseEvent event){
+    void deleteLeftBarButtons() {
 
     }
 
     @FXML
-    void createFormulaField(MouseEvent event){
-
+    void changeLeftBarToTextButtons() {
+        deleteLeftBarButtons();
+        // задать свои кнопки в левой панели
     }
 
     @FXML
-    void createTableField(MouseEvent event){
-
+    void changeLeftBarToFormulaButtons() {
+        deleteLeftBarButtons();
+        // задать свои кнопки в левой панели
     }
 
     @FXML
-    void createHeadingField(MouseEvent event){
-
+    void changeLeftBarToTableButtons() {
+        deleteLeftBarButtons();
+        // задать свои кнопки в левой панели
     }
 
     @FXML
-    void createListField(MouseEvent event){
+    void changeLeftBarToHeadingButtons() {
+        deleteLeftBarButtons();
+        // задать свои кнопки в левой панели
+    }
 
+    @FXML
+    void changeLeftBarToListButtons() {
+        deleteLeftBarButtons();
+        // задать свои кнопки в левой панели
+    }
+
+    @FXML
+    void createTextField(MouseEvent event) {
+        // изменить кнопки в левой панели
+        changeLeftBarToTextButtons();
+
+        // создать в центре paper'а прямоугольник с возможностью добавления текста
+    }
+
+    @FXML
+    void createFormulaField(MouseEvent event) {
+        // изменить кнопки в левой панели
+        changeLeftBarToFormulaButtons();
+
+        // создать в центре paper'а прямоугольник с возможностью добавления текста
+    }
+
+    @FXML
+    void createTableField(MouseEvent event) {
+        // изменить кнопки в левой панели
+        changeLeftBarToTableButtons();
+
+        // создать в центре paper'а прямоугольник с возможностью добавления текста
+    }
+
+    @FXML
+    void createHeadingField(MouseEvent event) {
+        // изменить кнопки в левой панели
+        changeLeftBarToHeadingButtons();
+
+        // создать в центре paper'а прямоугольник с возможностью добавления текста
+    }
+
+    @FXML
+    void createListField(MouseEvent event) {
+        // изменить кнопки в левой панели
+        changeLeftBarToListButtons();
+
+        // создать в центре paper'а прямоугольник с возможностью добавления текста
     }
 
     @FXML
