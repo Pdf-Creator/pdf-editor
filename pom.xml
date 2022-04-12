@@ -78,6 +78,13 @@
             <version>5.5.13.3</version>
         </dependency>
         <dependency>
+            <groupId>com.gluonhq</groupId>
+            <artifactId>charm-glisten</artifactId>
+            <version>6.1.0</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/src/libs/charm-glisten-6.1.0.jar</systemPath>
+        </dependency>
+        <dependency>
             <groupId>bouncycastle</groupId>
             <artifactId>bcprov-jdk16</artifactId>
             <version>140</version>
