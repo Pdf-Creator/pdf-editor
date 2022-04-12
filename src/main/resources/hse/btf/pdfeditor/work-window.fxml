@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.ExpansionPanel?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -31,12 +30,11 @@
       <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeWindow" text="Close" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Button fx:id="hideButton" mnemonicParsing="false" onAction="#hideWindow" text="Hide" AnchorPane.rightAnchor="85.0" />
       <Button fx:id="minButton" mnemonicParsing="false" onAction="#minWindow" text="Min" AnchorPane.rightAnchor="47.0" />
-      <ExpansionPanel layoutX="232.0" layoutY="38.0" prefHeight="575.0" prefWidth="449.0" />
-      <Button layoutX="715.0" layoutY="84.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="268.0" style="-fx-background-color: lightblue;" text="Text field" textAlignment="CENTER" />
-      <Button layoutX="715.0" layoutY="169.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="268.0" style="-fx-background-color: lightblue;" text="Formula" />
-      <Button layoutX="715.0" layoutY="252.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="268.0" style="-fx-background-color: lightblue;" text="Table" />
-      <Button layoutX="718.0" layoutY="333.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="268.0" style="-fx-background-color: lightblue;" text="Imagine" />
-      <Button layoutX="717.0" layoutY="413.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="268.0" style="-fx-background-color: lightblue;" text="Heading" />
-      <Button layoutX="720.0" layoutY="493.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="268.0" style="-fx-background-color: lightblue;" text="List" />
+      <Button fx:id="textButton" layoutX="715.0" layoutY="84.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="268.0" style="-fx-background-color: lightblue;" text="Text field" textAlignment="CENTER" />
+      <Button fx:id="formulaButton" layoutX="715.0" layoutY="169.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="268.0" style="-fx-background-color: lightblue;" text="Formula" />
+      <Button fx:id="tableButton" layoutX="715.0" layoutY="252.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="268.0" style="-fx-background-color: lightblue;" text="Table" />
+      <Button fx:id="imageButton" layoutX="718.0" layoutY="333.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="268.0" style="-fx-background-color: lightblue;" text="Image" />
+      <Button fx:id="headingButton" layoutX="717.0" layoutY="413.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="268.0" style="-fx-background-color: lightblue;" text="Heading" />
+      <Button fx:id="listButton" layoutX="720.0" layoutY="493.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="268.0" style="-fx-background-color: lightblue;" text="List" />
    </children>
 </AnchorPane>

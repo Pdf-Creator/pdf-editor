@@ -5,9 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.input.MouseEvent;
-import com.gluonhq.charm.glisten.control.TextField;
-import com.gluonhq.charm.glisten.control.ExpansionPanel;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -28,6 +25,27 @@ public class PdfWorkWindowController {
     @FXML
     private MenuBar stageControlBar;
 
+//    @FXML
+//    private ExpansionPanel expansionPanel;
+
+    @FXML
+    private Button textButton;
+
+    @FXML
+    private Button formulaButton;
+
+    @FXML
+    private Button tableButton;
+
+    @FXML
+    private Button imageButton;
+
+    @FXML
+    private Button headingButton;
+
+    @FXML
+    private Button listButton;
+
     @FXML
     void stagedDragged(MouseEvent event) {
         var dx = event.getScreenX() - lastDraggedX;
@@ -42,26 +60,26 @@ public class PdfWorkWindowController {
             lastDraggedX = event.getScreenX();
             lastDraggedY = event.getScreenY();
 
-            Stage thisStage = (Stage)thisWindow;
+            Stage thisStage = (Stage) thisWindow;
             thisStage.setMaximized(false);
         }
     }
 
     @FXML
     void closeWindow(ActionEvent event) {
-        Stage thisStage = (Stage)closeButton.getScene().getWindow();
+        Stage thisStage = (Stage) closeButton.getScene().getWindow();
         thisStage.close();
     }
 
     @FXML
     void hideWindow(ActionEvent event) {
-        Stage thisStage = (Stage)hideButton.getScene().getWindow();
+        Stage thisStage = (Stage) hideButton.getScene().getWindow();
         thisStage.hide();
     }
 
     @FXML
     void minWindow(ActionEvent event) {
-        Stage thisStage = (Stage)hideButton.getScene().getWindow();
+        Stage thisStage = (Stage) hideButton.getScene().getWindow();
         MAXIMIZED = !MAXIMIZED;
         thisStage.setMaximized(MAXIMIZED);
     }
