@@ -30,8 +30,8 @@ public class PdfEditorController {
         var stage = new Stage();
         stage.setTitle("Working Window");
         stage.setScene(new Scene(fxmlLoader.load()));
-        stage.setMaximized(true);
-        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setMaximized(false);
+        stage.initStyle(StageStyle.DECORATED);
         stage.show();
     }
 
