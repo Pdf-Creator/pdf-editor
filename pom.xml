@@ -90,6 +90,12 @@
             <artifactId>jlatexmath</artifactId>
             <version>1.0.7</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.proudapes/jlatexmathfx -->
+        <dependency>
+            <groupId>com.proudapes</groupId>
+            <artifactId>jlatexmathfx</artifactId>
+            <version>0.3.2</version>
+        </dependency>
         <dependency>
             <groupId>com.itextpdf</groupId>
             <artifactId>kernel</artifactId>
