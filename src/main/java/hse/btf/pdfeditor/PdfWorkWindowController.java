@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -16,6 +17,14 @@ public class PdfWorkWindowController {
     private double lastDraggedX = -1;
     private double lastDraggedY = -1;
     private boolean MAXIMIZED = true;
+
+    // field center
+    private static final int centerX = 388;
+    private static final int centerY = 272;
+
+    // rectangle
+    private static final int defaultRecWidth = 166;
+    private static final int defaultRecHeight = 119;
 
     @FXML
     private Button closeButton;
@@ -41,6 +50,9 @@ public class PdfWorkWindowController {
     @FXML
     private Button listButton;
 
+    // left bar buttons
+    private List<Button> leftBarButtons;
+
     @FXML
     private Rectangle paperRectangle;
 
@@ -48,7 +60,11 @@ public class PdfWorkWindowController {
 
     @FXML
     void deleteLeftBarButtons() {
-
+        for (Button button : leftBarButtons) {
+            // removing
+            // private HBOx projectlist;
+            // projectList.getChildren().remove(button);
+        }
     }
 
     @FXML
@@ -82,47 +98,76 @@ public class PdfWorkWindowController {
     }
 
     @FXML
+    Rectangle createRectangle() {
+        // center
+        Rectangle rectangle = new Rectangle();
+        rectangle.setX(centerX);
+        rectangle.setY(centerY);
+
+        // setting the Scene
+
+        return rectangle;
+    }
+
+    @FXML
     void createTextField(MouseEvent event) {
         // изменить кнопки в левой панели
         changeLeftBarToTextButtons();
 
         // создать в центре paper'а прямоугольник с возможностью добавления текста
+        createRectangle();
     }
 
     @FXML
     void createFormulaField(MouseEvent event) {
-        // изменить кнопки в левой панели
         changeLeftBarToFormulaButtons();
 
-        // создать в центре paper'а прямоугольник с возможностью добавления текста
+        Rectangle workingRec = createRectangle();
     }
 
     @FXML
     void createTableField(MouseEvent event) {
-        // изменить кнопки в левой панели
         changeLeftBarToTableButtons();
 
-        // создать в центре paper'а прямоугольник с возможностью добавления текста
+        Rectangle workingRec = createRectangle();
     }
 
     @FXML
     void createHeadingField(MouseEvent event) {
-        // изменить кнопки в левой панели
         changeLeftBarToHeadingButtons();
 
-        // создать в центре paper'а прямоугольник с возможностью добавления текста
+        Rectangle workingRec = createRectangle();
     }
 
     @FXML
     void createListField(MouseEvent event) {
-        // изменить кнопки в левой панели
         changeLeftBarToListButtons();
 
-        // создать в центре paper'а прямоугольник с возможностью добавления текста
+        Rectangle workingRec = createRectangle();
+    }
+
+    Button createRightBarButton(String buttonName, int number) {
+        Button button = new Button();
+
+        // поработать над изменением внешнего вида кнопок -- css
+        Font buttonFont = Font.font("Arial", 13);
+        button.setText(buttonName);
+        button.setFont(buttonFont);
+
+        return button;
+    }
+
+    void createRightBarButtons() {
+        textButton = createRightBarButton("Text", 1);
+        formulaButton = createRightBarButton("Formula", 2);
+        imageButton = createRightBarButton("Image", 3);
+        tableButton = createRightBarButton("Table", 4);
+        headingButton = createRightBarButton("Heading", 5);
+        listButton = createRightBarButton("List", 6);
     }
 
     @FXML
-    void stagedDragged(MouseEvent event) {
+    public void stagedDragged(MouseEvent event) {
         var dx = event.getScreenX() - lastDraggedX;
         var dy = event.getScreenY() - lastDraggedY;
         Window thisWindow = stageControlBar.getScene().getWindow();
@@ -141,19 +186,19 @@ public class PdfWorkWindowController {
     }
 
     @FXML
-    void closeWindow(ActionEvent event) {
+    public void closeWindow(ActionEvent event) {
         Stage thisStage = (Stage) closeButton.getScene().getWindow();
         thisStage.close();
     }
 
     @FXML
-    void hideWindow(ActionEvent event) {
+    public void hideWindow(ActionEvent event) {
         Stage thisStage = (Stage) hideButton.getScene().getWindow();
         thisStage.hide();
     }
 
     @FXML
-    void minWindow(ActionEvent event) {
+    public void minWindow(ActionEvent event) {
         Stage thisStage = (Stage) hideButton.getScene().getWindow();
         MAXIMIZED = !MAXIMIZED;
         thisStage.setMaximized(MAXIMIZED);

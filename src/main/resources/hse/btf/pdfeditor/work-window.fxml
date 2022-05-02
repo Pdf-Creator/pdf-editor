@@ -32,12 +32,12 @@
         <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeWindow" text="Close" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
         <Button fx:id="hideButton" mnemonicParsing="false" onAction="#hideWindow" text="Hide" AnchorPane.rightAnchor="85.0" />
         <Button fx:id="minButton" mnemonicParsing="false" onAction="#minWindow" text="Min" AnchorPane.rightAnchor="47.0" />
-        <Button fx:id="textButton" layoutX="756.0" layoutY="94.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="217.0" style="-fx-background-color: lightblue;" text="Text" textAlignment="CENTER" />
-      <Button id="formulaButton" fx:id="formulaButton" layoutX="756.0" layoutY="174.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="217.0" style="-fx-background-color: lightblue;" text="Fornula" textAlignment="CENTER" />
-      <Button id="tableButton" fx:id="tableButton" layoutX="756.0" layoutY="253.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="217.0" style="-fx-background-color: lightblue;" text="Table" textAlignment="CENTER" />
+        <Button fx:id="textButton" layoutX="756.0" layoutY="94.0" mnemonicParsing="false" onAction="#createTextField" prefHeight="64.0" prefWidth="217.0" style="-fx-background-color: lightblue;" text="Text" textAlignment="CENTER" />
+      <Button id="formulaButton" fx:id="formulaButton" layoutX="756.0" layoutY="174.0" mnemonicParsing="false" onAction="#createFormulaField" prefHeight="64.0" prefWidth="217.0" style="-fx-background-color: lightblue;" text="Fornula" textAlignment="CENTER" />
+      <Button id="tableButton" fx:id="tableButton" layoutX="756.0" layoutY="253.0" mnemonicParsing="false" onAction="#createTableField" prefHeight="64.0" prefWidth="217.0" style="-fx-background-color: lightblue;" text="Table" textAlignment="CENTER" />
       <Button id="imageButton" fx:id="imageButton" layoutX="756.0" layoutY="332.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="217.0" style="-fx-background-color: lightblue;" text="Image" textAlignment="CENTER" />
-      <Button id="headingButton" fx:id="headingButton" layoutX="756.0" layoutY="412.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="217.0" style="-fx-background-color: lightblue;" text="Heading" textAlignment="CENTER" />
-      <Button id="listButton" fx:id="listButton" layoutX="756.0" layoutY="492.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="217.0" style="-fx-background-color: lightblue;" text="List" textAlignment="CENTER" />
+      <Button id="headingButton" fx:id="headingButton" layoutX="756.0" layoutY="412.0" mnemonicParsing="false" onAction="#createHeadingField" prefHeight="64.0" prefWidth="217.0" style="-fx-background-color: lightblue;" text="Heading" textAlignment="CENTER" />
+      <Button id="listButton" fx:id="listButton" layoutX="756.0" layoutY="492.0" mnemonicParsing="false" onAction="#createListField" prefHeight="64.0" prefWidth="217.0" style="-fx-background-color: lightblue;" text="List" textAlignment="CENTER" />
       <Rectangle id="paperRectangle" fx:id="paperRectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbfdff" height="546.0" layoutX="262.0" layoutY="62.0" stroke="BLACK" strokeType="INSIDE" width="417.0" />
       <TextField layoutX="53.0" layoutY="97.0" />
     </children>
