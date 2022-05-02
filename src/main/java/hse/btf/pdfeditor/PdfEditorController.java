@@ -7,7 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -27,26 +27,30 @@ public class PdfEditorController {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("work-window.fxml"));
 
-//         scene
-        StackPane layout = new StackPane();
-        layout.getChildren().add(fxmlLoader.load());
-        Scene scene = new Scene(layout);
+        Pane layout = new Pane();
+
+        // synchronizing
         observableList.addListener((ListChangeListener<Node>) c -> {
             while (c.next()) {
                 if (c.wasPermutated()) {
                 } else if (c.wasUpdated()) {
                     //update item
                 } else {
-                    for (Node remitem : c.getRemoved()) {
-                        layout.getChildren().remove(remitem);
+                    for (Node remItem : c.getRemoved()) {
+                        layout.getChildren().remove(remItem);
                     }
-                    for (Node additem : c.getAddedSubList()) {
-                        layout.getChildren().add(additem);
+                    for (Node addItem : c.getAddedSubList()) {
+                        layout.getChildren().add(addItem);
                     }
                 }
             }
         });
-//        Scene scene = new Scene(fxmlLoader.load());
+
+        layout.getChildren().add(fxmlLoader.load());
+
+        Scene scene = new Scene(layout);
+        // Scene scene = new Scene(fxmlLoader.load());
+
         // styling
         //String css = Sample.class.getResource("main.css").toExternalForm();
         //scene.getStylesheets().add(css);
@@ -60,6 +64,5 @@ public class PdfEditorController {
         stage.setTitle("Working Window");
         stage.setScene(scene);
         stage.show();
-//        layout.getChildren().add(new Button());
     }
 }

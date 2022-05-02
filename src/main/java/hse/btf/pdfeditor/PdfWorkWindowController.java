@@ -1,11 +1,11 @@
 package hse.btf.pdfeditor;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -64,11 +64,14 @@ public class PdfWorkWindowController {
     private List<? extends RectangleField> paperObjectsList = new ArrayList<>();
 
     @FXML
+    public void initialize() {
+        createRightBarButtons();
+    }
+
+    @FXML
     void deleteLeftBarButtons() {
         for (Button button : leftBarButtons) {
-            // removing
-            // private HBOx projectlist;
-            // projectList.getChildren().remove(button);
+            observableList.remove(button);
         }
         leftBarButtons.clear();
     }
@@ -121,65 +124,77 @@ public class PdfWorkWindowController {
         //changeLeftBarToTextButtons();
 
         // создать в центре paper'а прямоугольник с возможностью добавления текста
-        createRightBarButtons();
+        //createRightBarButtons();
     }
 
     @FXML
-    void createFormulaField(MouseEvent event) {
+    public void createFormulaField(ActionEvent event) {
         //changeLeftBarToFormulaButtons();
 
         //Rectangle workingRec = createRectangle();
     }
 
     @FXML
-    void createTableField(MouseEvent event) {
+    public void createImageField(ActionEvent event) {
+        //changeLeftBarToFormulaButtons();
+
+        //Rectangle workingRec = createRectangle();
+    }
+
+    @FXML
+    void createTableField(ActionEvent event) {
         changeLeftBarToTableButtons();
 
         Rectangle workingRec = createRectangle();
     }
 
     @FXML
-    void createHeadingField(MouseEvent event) {
+    void createHeadingField(ActionEvent event) {
         changeLeftBarToHeadingButtons();
 
         Rectangle workingRec = createRectangle();
     }
 
     @FXML
-    void createListField(MouseEvent event) {
+    void createListField(ActionEvent event) {
         changeLeftBarToListButtons();
 
         Rectangle workingRec = createRectangle();
     }
 
-    Button createRightBarButton(String buttonName, int number) {
-        Button button = new Button();
+    Button createRightBarButton(String buttonName, int number, EventHandler<ActionEvent> eventHandler) {
+        Button button = new Button(buttonName);
 
         // поработать над изменением внешнего вида кнопок -- css
-//        Font buttonFont = Font.font("Arial", 13);
-//        button.setText(buttonName);
-//        button.setFont(buttonFont);
+        Font buttonFont = Font.font("Arial", 13);
+        button.setText(buttonName);
+        button.setFont(buttonFont);
 
         // position
-        //button.setLayoutX(756);
-        button.setLayoutX(100);
+        button.setLayoutX(756);
         button.setLayoutY(94 + 80 * number);
+
+        button.setPrefWidth(217);
+        button.setPrefHeight(64);
+
+        // event handler
+        button.setOnAction(eventHandler);
 
         // adding to list
         rightBarButtons.add(button);
 
-//        observableList.add(button);
+        // adding to layout
+        observableList.add(button);
         return button;
     }
 
-    void createRightBarButtons() {
-        textButton = createRightBarButton("Text", 1);
-        observableList.add(textButton);
-//        formulaButton = createRightBarButton("Formula", 2);
-//        imageButton = createRightBarButton("Image", 3);
-//        tableButton = createRightBarButton("Table", 4);
-//        headingButton = createRightBarButton("Heading", 5);
-//        listButton = createRightBarButton("List", 6);
+    public void createRightBarButtons() {
+        textButton = createRightBarButton("Text", 0, this::createTextField);
+        formulaButton = createRightBarButton("Formula", 1, this::createFormulaField);
+        imageButton = createRightBarButton("Image", 2, this::createImageField);
+        tableButton = createRightBarButton("Table", 3, this::createTableField);
+        headingButton = createRightBarButton("Heading", 4, this::createHeadingField);
+        listButton = createRightBarButton("List", 5, this::createListField);
     }
 
     @FXML
