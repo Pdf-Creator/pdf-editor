@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -12,6 +13,8 @@ import javafx.stage.Window;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static hse.btf.pdfeditor.Singleton.observableList;
 
 public class PdfWorkWindowController {
     private double lastDraggedX = -1;
@@ -26,6 +29,7 @@ public class PdfWorkWindowController {
     private static final int defaultRecWidth = 166;
     private static final int defaultRecHeight = 119;
 
+    // window buttons
     @FXML
     private Button closeButton;
     @FXML
@@ -51,7 +55,8 @@ public class PdfWorkWindowController {
     private Button listButton;
 
     // left bar buttons
-    private List<Button> leftBarButtons;
+    private List<Button> leftBarButtons = new ArrayList<>();
+    private List<Button> rightBarButtons = new ArrayList<>();
 
     @FXML
     private Rectangle paperRectangle;
@@ -65,6 +70,7 @@ public class PdfWorkWindowController {
             // private HBOx projectlist;
             // projectList.getChildren().remove(button);
         }
+        leftBarButtons.clear();
     }
 
     @FXML
@@ -104,25 +110,25 @@ public class PdfWorkWindowController {
         rectangle.setX(centerX);
         rectangle.setY(centerY);
 
-        // setting the Scene
+        // adding to the Scene
 
         return rectangle;
     }
 
     @FXML
-    void createTextField(MouseEvent event) {
+    public void createTextField(ActionEvent event) {
         // изменить кнопки в левой панели
-        changeLeftBarToTextButtons();
+        //changeLeftBarToTextButtons();
 
         // создать в центре paper'а прямоугольник с возможностью добавления текста
-        createRectangle();
+        createRightBarButtons();
     }
 
     @FXML
     void createFormulaField(MouseEvent event) {
-        changeLeftBarToFormulaButtons();
+        //changeLeftBarToFormulaButtons();
 
-        Rectangle workingRec = createRectangle();
+        //Rectangle workingRec = createRectangle();
     }
 
     @FXML
@@ -150,20 +156,30 @@ public class PdfWorkWindowController {
         Button button = new Button();
 
         // поработать над изменением внешнего вида кнопок -- css
-        Font buttonFont = Font.font("Arial", 13);
-        button.setText(buttonName);
-        button.setFont(buttonFont);
+//        Font buttonFont = Font.font("Arial", 13);
+//        button.setText(buttonName);
+//        button.setFont(buttonFont);
 
+        // position
+        //button.setLayoutX(756);
+        button.setLayoutX(100);
+        button.setLayoutY(94 + 80 * number);
+
+        // adding to list
+        rightBarButtons.add(button);
+
+//        observableList.add(button);
         return button;
     }
 
     void createRightBarButtons() {
         textButton = createRightBarButton("Text", 1);
-        formulaButton = createRightBarButton("Formula", 2);
-        imageButton = createRightBarButton("Image", 3);
-        tableButton = createRightBarButton("Table", 4);
-        headingButton = createRightBarButton("Heading", 5);
-        listButton = createRightBarButton("List", 6);
+        observableList.add(textButton);
+//        formulaButton = createRightBarButton("Formula", 2);
+//        imageButton = createRightBarButton("Image", 3);
+//        tableButton = createRightBarButton("Table", 4);
+//        headingButton = createRightBarButton("Heading", 5);
+//        listButton = createRightBarButton("List", 6);
     }
 
     @FXML
