@@ -30,6 +30,9 @@ public class PdfWorkWindowController {
     private static final int defaultRecWidth = 166;
     private static final int defaultRecHeight = 119;
 
+    @FXML
+    private Pane layout;
+
     // window buttons
     @FXML
     private Button closeButton;
@@ -38,6 +41,7 @@ public class PdfWorkWindowController {
     @FXML
     private Button minButton;
 
+    // upper bar
     @FXML
     private MenuBar stageControlBar;
 
@@ -59,8 +63,6 @@ public class PdfWorkWindowController {
     private List<Button> leftBarButtons = new ArrayList<>();
     private List<Button> rightBarButtons = new ArrayList<>();
 
-    private Pane layout = new Pane();
-
     @FXML
     private Rectangle paperRectangle;
 
@@ -69,10 +71,6 @@ public class PdfWorkWindowController {
     @FXML
     public void initialize() {
         createRightBarButtons();
-    }
-
-    public Pane getLayout(){
-        return layout;
     }
 
     @FXML
@@ -232,6 +230,7 @@ public class PdfWorkWindowController {
 
     @FXML
     public void closeWindow(ActionEvent event) {
+        // Мб лучше хранить сцену как поле?
         Stage thisStage = (Stage) closeButton.getScene().getWindow();
         thisStage.close();
     }

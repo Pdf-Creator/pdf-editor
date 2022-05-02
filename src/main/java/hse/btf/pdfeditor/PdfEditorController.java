@@ -3,9 +3,9 @@ package hse.btf.pdfeditor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -23,11 +23,8 @@ public class PdfEditorController {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("work-window.fxml"));
 
-        Parent root = fxmlLoader.load();
-        PdfWorkWindowController controller = fxmlLoader.getController();
-
-        Scene scene = new Scene(controller.getLayout());
-        //Scene scene = new Scene(fxmlLoader.load());
+        AnchorPane root = fxmlLoader.load();
+        Scene scene = new Scene(root);
 
         // styling
         //String css = Sample.class.getResource("main.css").toExternalForm();

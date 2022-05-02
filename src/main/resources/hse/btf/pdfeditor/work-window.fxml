@@ -5,10 +5,12 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 
 <AnchorPane prefHeight="634.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hse.btf.pdfeditor.PdfWorkWindowController">
     <children>
+      <Pane id="layoutID" fx:id="layout" prefHeight="635.0" prefWidth="1000.0" />
         <MenuBar fx:id="stageControlBar" layoutY="2.0" onMouseDragged="#stagedDragged" prefHeight="25.0" prefWidth="1048.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
