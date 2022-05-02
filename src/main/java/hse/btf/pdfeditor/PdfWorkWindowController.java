@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -58,6 +59,8 @@ public class PdfWorkWindowController {
     private List<Button> leftBarButtons = new ArrayList<>();
     private List<Button> rightBarButtons = new ArrayList<>();
 
+    private Pane layout = new Pane();
+
     @FXML
     private Rectangle paperRectangle;
 
@@ -66,6 +69,10 @@ public class PdfWorkWindowController {
     @FXML
     public void initialize() {
         createRightBarButtons();
+    }
+
+    public Pane getLayout(){
+        return layout;
     }
 
     @FXML
@@ -108,12 +115,17 @@ public class PdfWorkWindowController {
 
     @FXML
     Rectangle createRectangle() {
-        // center
         Rectangle rectangle = new Rectangle();
+
         rectangle.setX(centerX);
         rectangle.setY(centerY);
 
-        // adding to the Scene
+        rectangle.setWidth(defaultRecWidth);
+        rectangle.setHeight(defaultRecHeight);
+
+        // adding to the layout
+        //observableList.add(rectangle);
+        layout.getChildren().add(rectangle);
 
         return rectangle;
     }
@@ -124,7 +136,7 @@ public class PdfWorkWindowController {
         //changeLeftBarToTextButtons();
 
         // создать в центре paper'а прямоугольник с возможностью добавления текста
-        //createRightBarButtons();
+        Rectangle workingRec = createRectangle();
     }
 
     @FXML
@@ -184,7 +196,9 @@ public class PdfWorkWindowController {
         rightBarButtons.add(button);
 
         // adding to layout
-        observableList.add(button);
+        //observableList.add(button);
+
+        layout.getChildren().add(button);
         return button;
     }
 

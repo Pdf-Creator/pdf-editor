@@ -1,19 +1,15 @@
 package hse.btf.pdfeditor;
 
-import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-
-import static hse.btf.pdfeditor.Singleton.observableList;
 
 public class PdfEditorController {
     @FXML
@@ -27,29 +23,11 @@ public class PdfEditorController {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("work-window.fxml"));
 
-        Pane layout = new Pane();
+        Parent root = fxmlLoader.load();
+        PdfWorkWindowController controller = fxmlLoader.getController();
 
-        // synchronizing
-        observableList.addListener((ListChangeListener<Node>) c -> {
-            while (c.next()) {
-                if (c.wasPermutated()) {
-                } else if (c.wasUpdated()) {
-                    //update item
-                } else {
-                    for (Node remItem : c.getRemoved()) {
-                        layout.getChildren().remove(remItem);
-                    }
-                    for (Node addItem : c.getAddedSubList()) {
-                        layout.getChildren().add(addItem);
-                    }
-                }
-            }
-        });
-
-        layout.getChildren().add(fxmlLoader.load());
-
-        Scene scene = new Scene(layout);
-        // Scene scene = new Scene(fxmlLoader.load());
+        Scene scene = new Scene(controller.getLayout());
+        //Scene scene = new Scene(fxmlLoader.load());
 
         // styling
         //String css = Sample.class.getResource("main.css").toExternalForm();
