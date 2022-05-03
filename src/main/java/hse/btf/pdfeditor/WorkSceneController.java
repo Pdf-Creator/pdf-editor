@@ -1,5 +1,6 @@
 package hse.btf.pdfeditor;
 
+import hse.btf.pdfeditor.models.Item;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -17,7 +18,7 @@ import java.util.List;
 
 import static hse.btf.pdfeditor.Singleton.observableList;
 
-public class PdfWorkWindowController {
+public class WorkSceneController {
     private double lastDraggedX = -1;
     private double lastDraggedY = -1;
     private boolean MAXIMIZED = true;
@@ -59,6 +60,12 @@ public class PdfWorkWindowController {
     @FXML
     private Button listButton;
 
+    // pdf buttons
+    @FXML
+    private Button saveChangesButton;
+    @FXML
+    private Button convertToPdfButton;
+
     // left bar buttons
     private List<Button> leftBarButtons = new ArrayList<>();
     private List<Button> rightBarButtons = new ArrayList<>();
@@ -66,11 +73,12 @@ public class PdfWorkWindowController {
     @FXML
     private Rectangle paperRectangle;
 
-    private List<? extends RectangleField> paperObjectsList = new ArrayList<>();
+    private List<? extends Item> paperObjectsList = new ArrayList<>();
 
     @FXML
     public void initialize() {
         createRightBarButtons();
+        createPdfButtons();
     }
 
     @FXML
@@ -180,12 +188,18 @@ public class PdfWorkWindowController {
         button.setText(buttonName);
         button.setFont(buttonFont);
 
-        // position
-        button.setLayoutX(756);
-        button.setLayoutY(94 + 80 * number);
+        double buttonsX = 756;
+        double buttonsY = 50;
+        double buttonsW = 218;
+        double buttonsH = 64;
+        double buttonsDelta = 30;
 
-        button.setPrefWidth(217);
-        button.setPrefHeight(64);
+        // position
+        button.setLayoutX(number <= 6 ? buttonsX : buttonsX + (buttonsW - buttonsDelta) / 2 + buttonsDelta);
+        button.setLayoutY(number <= 6 ? buttonsY + 80 * number : buttonsY + 80 * 6);
+
+        button.setPrefWidth(number <= 5 ? buttonsW : (buttonsW - buttonsDelta) / 2);
+        button.setPrefHeight(buttonsH);
 
         // event handler
         button.setOnAction(eventHandler);
@@ -200,13 +214,18 @@ public class PdfWorkWindowController {
         return button;
     }
 
-    public void createRightBarButtons() {
+    private void createRightBarButtons() {
         textButton = createRightBarButton("Text", 0, this::createTextField);
         formulaButton = createRightBarButton("Formula", 1, this::createFormulaField);
         imageButton = createRightBarButton("Image", 2, this::createImageField);
         tableButton = createRightBarButton("Table", 3, this::createTableField);
         headingButton = createRightBarButton("Heading", 4, this::createHeadingField);
         listButton = createRightBarButton("List", 5, this::createListField);
+    }
+
+    private void createPdfButtons(){
+        convertToPdfButton = createRightBarButton("Save", 6, null);
+        saveChangesButton = createRightBarButton("Create Pdf", 7, null);
     }
 
     @FXML

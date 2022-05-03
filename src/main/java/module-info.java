@@ -16,4 +16,6 @@ module hse.btf.pdfeditor {
 
     opens hse.btf.pdfeditor to javafx.fxml;
     exports hse.btf.pdfeditor;
+    exports hse.btf.pdfeditor.models;
+    opens hse.btf.pdfeditor.models to javafx.fxml;
 }

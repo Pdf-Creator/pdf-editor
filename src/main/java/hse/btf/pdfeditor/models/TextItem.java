@@ -1,8 +1,8 @@
-package hse.btf.pdfeditor;
+package hse.btf.pdfeditor.models;
 
 import java.util.List;
 
-public class TextField extends RectangleField {
+public class TextItem extends Item {
     List<TextLine> textLines;
 
     void addTextLine(TextLine textLine) {
