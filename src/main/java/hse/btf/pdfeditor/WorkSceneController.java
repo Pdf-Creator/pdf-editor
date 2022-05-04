@@ -1,6 +1,7 @@
 package hse.btf.pdfeditor;
 
 import hse.btf.pdfeditor.models.Item;
+import hse.btf.pdfeditor.models.itemsjava.TextItem;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,7 +17,7 @@ import javafx.stage.Window;
 import java.util.ArrayList;
 import java.util.List;
 
-import static hse.btf.pdfeditor.Singleton.observableList;
+import static hse.btf.pdfeditor.Singleton.itemsHolder;
 
 public class WorkSceneController {
     private double lastDraggedX = -1;
@@ -32,7 +33,11 @@ public class WorkSceneController {
     private static final int defaultRecHeight = 119;
 
     @FXML
-    private Pane layout;
+    private Pane layoutElements;
+    @FXML
+    private Pane layoutButtons;
+
+    private PdfEditorView pdfEditorView;
 
     // window buttons
     @FXML
@@ -79,12 +84,13 @@ public class WorkSceneController {
     public void initialize() {
         createRightBarButtons();
         createPdfButtons();
+        pdfEditorView = new PdfEditorView(layoutElements);
     }
 
     @FXML
     void deleteLeftBarButtons() {
         for (Button button : leftBarButtons) {
-            observableList.remove(button);
+            //observableList.remove(button);
         }
         leftBarButtons.clear();
     }
@@ -122,17 +128,17 @@ public class WorkSceneController {
     @FXML
     Rectangle createRectangle() {
         Rectangle rectangle = new Rectangle();
-
-        rectangle.setX(centerX);
-        rectangle.setY(centerY);
-
-        rectangle.setWidth(defaultRecWidth);
-        rectangle.setHeight(defaultRecHeight);
-
-        // adding to the layout
-        //observableList.add(rectangle);
-        layout.getChildren().add(rectangle);
-
+//
+//        rectangle.setX(centerX);
+//        rectangle.setY(centerY);
+//
+//        rectangle.setWidth(defaultRecWidth);
+//        rectangle.setHeight(defaultRecHeight);
+//
+//        // adding to the layout
+//        //observableList.add(rectangle);
+//        layout.getChildren().add(rectangle);
+//
         return rectangle;
     }
 
@@ -141,14 +147,15 @@ public class WorkSceneController {
         // изменить кнопки в левой панели
         //changeLeftBarToTextButtons();
 
-        // создать в центре paper'а прямоугольник с возможностью добавления текста
-        Rectangle workingRec = createRectangle();
+        // add basic element to list
+        itemsHolder.observableItemsList.add(new TextItem());
     }
 
     @FXML
     public void createFormulaField(ActionEvent event) {
         //changeLeftBarToFormulaButtons();
 
+        // создать в центре paper'а прямоугольник с возможностью добавления текста
         //Rectangle workingRec = createRectangle();
     }
 
@@ -210,7 +217,7 @@ public class WorkSceneController {
         // adding to layout
         //observableList.add(button);
 
-        layout.getChildren().add(button);
+        layoutButtons.getChildren().add(button);
         return button;
     }
 
@@ -223,7 +230,7 @@ public class WorkSceneController {
         listButton = createRightBarButton("List", 5, this::createListField);
     }
 
-    private void createPdfButtons(){
+    private void createPdfButtons() {
         convertToPdfButton = createRightBarButton("Save", 6, null);
         saveChangesButton = createRightBarButton("Create Pdf", 7, null);
     }

@@ -1,5 +1,10 @@
 package hse.btf.pdfeditor.models;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableIntegerValue;
+import javafx.beans.value.ObservableStringValue;
+
 // внешний прямоугольник, в который обрамлен контент
 public abstract class Item {
     // default width and height
@@ -16,9 +21,9 @@ public abstract class Item {
      * потому что контент внутри не позволяет этого сделать
      **/
 
-    private int x = centerX;
-    private int y = centerY;
-    private int w = defaultWidth;
-    private int h = defaultHeight;
-    private String color = "white";
+    private ObservableIntegerValue x = new SimpleIntegerProperty(centerX);
+    private ObservableIntegerValue y = new SimpleIntegerProperty(centerY);
+    private ObservableIntegerValue w = new SimpleIntegerProperty(defaultWidth);
+    private ObservableIntegerValue h = new SimpleIntegerProperty(defaultHeight);
+    private ObservableStringValue color = new SimpleStringProperty("white");
 }

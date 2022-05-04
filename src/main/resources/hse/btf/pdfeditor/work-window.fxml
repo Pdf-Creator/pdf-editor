@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="634.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hse.btf.pdfeditor.WorkSceneController">
     <children>
-      <Pane id="layoutID" fx:id="layout" prefHeight="635.0" prefWidth="1000.0" />
+      <Pane id="layoutID" fx:id="layoutButtons" prefHeight="635.0" prefWidth="1000.0" />
         <MenuBar fx:id="stageControlBar" layoutY="2.0" onMouseDragged="#stagedDragged" prefHeight="25.0" prefWidth="1048.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
@@ -34,5 +34,6 @@
         <Button fx:id="hideButton" mnemonicParsing="false" onAction="#hideWindow" text="Hide" AnchorPane.rightAnchor="85.0" />
         <Button fx:id="minButton" mnemonicParsing="false" onAction="#minWindow" text="Min" AnchorPane.rightAnchor="47.0" />
       <Rectangle id="paperRectangle" fx:id="paperRectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbfdff" height="551.0" layoutX="262.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="417.0" />
+      <Pane fx:id="layoutElements" layoutX="262.0" layoutY="51.0" prefHeight="548.0" prefWidth="415.0" />
     </children>
 </AnchorPane>

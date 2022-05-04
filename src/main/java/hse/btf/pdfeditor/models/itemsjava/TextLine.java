@@ -1,4 +1,4 @@
-package hse.btf.pdfeditor.models;
+package hse.btf.pdfeditor.models.itemsjava;
 
 public class TextLine {
     String textString;
