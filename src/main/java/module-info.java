@@ -16,11 +16,12 @@ module hse.btf.pdfeditor {
 
     opens hse.btf.pdfeditor to javafx.fxml;
     exports hse.btf.pdfeditor;
-    exports hse.btf.pdfeditor.models;
-    opens hse.btf.pdfeditor.models to javafx.fxml;
-    exports hse.btf.pdfeditor.models.itemsjava;
-    opens hse.btf.pdfeditor.models.itemsjava to javafx.fxml;
+    exports hse.btf.pdfeditor.models.itemsfxml;
+    opens hse.btf.pdfeditor.models.itemsfxml to javafx.fxml;
+    exports hse.btf.pdfeditor.models.itemsstand;
+    opens hse.btf.pdfeditor.models.itemsstand to javafx.fxml;
 
     requires tornadofx;
     requires kotlin.stdlib;
+    requires kotlinx.serialization.core;
 }

@@ -1,10 +1,8 @@
 package hse.btf.pdfeditor
 
 import hse.btf.pdfeditor.Singleton.itemsHolder
-import hse.btf.pdfeditor.models.itemsfxml.ItemFxml
 import hse.btf.pdfeditor.models.itemsfxml.TextItemFxml
-import hse.btf.pdfeditor.models.itemsjava.TextItem
-import javafx.collections.FXCollections
+import hse.btf.pdfeditor.models.itemsstand.TextItem
 import javafx.scene.layout.Pane
 import tornadofx.bind
 

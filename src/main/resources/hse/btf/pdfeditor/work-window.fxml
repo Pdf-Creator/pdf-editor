@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -37,7 +36,7 @@
       <Rectangle id="paperRectangle" fx:id="paperRectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbfdff" height="551.0" layoutX="262.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="417.0" />
       <Pane fx:id="layoutElements" layoutX="260.0" layoutY="51.0" prefHeight="548.0" prefWidth="417.0">
          <children>
-            <ChoiceBox fx:id="choiceBox" layoutX="165.0" layoutY="239.0" prefWidth="150.0" />
+            <Button layoutX="215.0" layoutY="219.0" mnemonicParsing="false" text="Button" />
          </children></Pane>
     </children>
 </AnchorPane>

@@ -1,7 +1,7 @@
 package hse.btf.pdfeditor;
 
-import hse.btf.pdfeditor.models.Item;
-import hse.btf.pdfeditor.models.itemsjava.TextItem;
+import hse.btf.pdfeditor.models.itemsstand.Item;
+import hse.btf.pdfeditor.models.itemsstand.TextItem;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -132,7 +132,7 @@ public class WorkSceneController {
         //changeLeftBarToTextButtons();
 
         // add basic element to list
-        itemsHolder.observableItemsList.add(new TextItem());
+        itemsHolder.getObservableItemsList().add(new TextItem());
     }
 
     @FXML
