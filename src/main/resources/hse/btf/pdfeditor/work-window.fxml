@@ -56,17 +56,17 @@
         </MenuBar>
         <SplitPane dividerPositions="0.025612472160356347, 0.8340757238307349" focusTraversable="true" prefHeight="565.0" prefWidth="900.0" VBox.vgrow="ALWAYS">
             <items>
-            <AnchorPane fx:id="leftPanel" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="20.0">
+            <AnchorPane fx:id="leftPanel" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="164.0">
                <children>
-              <AnchorPane fx:id="formulaPane" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <AnchorPane fx:id="formulaPane" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="144.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Button layoutX="6.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Text" textFill="#9e3636" textOverrun="CLIP" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="5.0" />
+                        <Button fx:id="textItemButton" layoutX="6.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Text" textFill="#9e3636" textOverrun="CLIP" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="5.0" />
                         <Button layoutX="54.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" AnchorPane.leftAnchor="52.0" AnchorPane.topAnchor="5.0" />
                         <Button layoutX="102.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" AnchorPane.leftAnchor="98.0" AnchorPane.topAnchor="5.0" />
-                        <Button layoutX="6.0" layoutY="51.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Text" textFill="#9e3636" textOverrun="CLIP" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="52.0" />
+                        <Button layoutX="6.0" layoutY="51.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" textOverrun="CLIP" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="52.0" />
                         <Button layoutX="52.0" layoutY="51.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" AnchorPane.leftAnchor="52.0" AnchorPane.topAnchor="52.0" />
                         <Button layoutX="98.0" layoutY="51.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" AnchorPane.leftAnchor="98.0" AnchorPane.topAnchor="52.0" />
-                        <Button layoutX="6.0" layoutY="97.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Text" textFill="#9e3636" textOverrun="CLIP" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="98.0" />
+                        <Button layoutX="6.0" layoutY="97.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" textOverrun="CLIP" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="98.0" />
                         <Button layoutX="52.0" layoutY="97.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" AnchorPane.leftAnchor="52.0" AnchorPane.topAnchor="98.0" />
                         <Button layoutX="98.0" layoutY="97.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" AnchorPane.leftAnchor="98.0" AnchorPane.topAnchor="98.0" />
                      </children>
@@ -103,7 +103,7 @@
             </AnchorPane>
                 <ScrollPane prefHeight="554.0" prefWidth="562.0">
                     <content>
-                        <AnchorPane id="Content" fx:id="paperBackground" minHeight="-1.0" minWidth="-1.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="1208.0" prefWidth="10000.0" style="-fx-background-color: #EEEEEE;">
+                        <AnchorPane id="Content" fx:id="paperBackground" nodeOrientation="LEFT_TO_RIGHT" prefHeight="1208.0" prefWidth="10000.0" style="-fx-background-color: #EEEEEE;">
                      <children>
                         <AnchorPane fx:id="paper" layoutX="14.0" layoutY="21.0" prefHeight="1188.0" prefWidth="840.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="21.0" />
                      </children>

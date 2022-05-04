@@ -1,5 +1,6 @@
 package hse.btf.pdfeditor;
 
+import hse.btf.pdfeditor.models.itemsjava.TextItem;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,6 +12,8 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
 
+import static hse.btf.pdfeditor.Singleton.itemsHolder;
+
 public class PdfWorkWindowController implements Initializable {
 
     @Override
@@ -18,9 +21,31 @@ public class PdfWorkWindowController implements Initializable {
         paperSize = 100;
         originalPaperWidth = paper.getPrefWidth();
         originalPaperHeight = paper.getPrefHeight();
+        leftPanel.setPrefWidth(20);
+        formulaPane.setPrefWidth(0);
+
+        //initFormulaPane();
+
+        textItemButton.setOnMouseClicked(ev -> {
+            TextItem textField = new TextItem();
+
+            itemsHolder.observableItemsList.add(new TextItem());
+            System.out.println("Wow, you pressed me!");
+        });
+
         addLeftButtonClicker(leftFormulaButton, formulaPane);
         addLeftButtonClicker(leftOthersButton, othersPane);
+        pdfEditorView = new PdfEditorView(paper);
     }
+
+/*
+    TODO : ultimate way to add handlers
+    private void initFormulaPane() {
+        formulaPane.getChildren().forEach(node -> {
+            node.setOnMouseClicked();
+        });
+    }
+*/
 
     private void addLeftButtonClicker(Button button, AnchorPane panel) {
         button.setOnMouseClicked(ev -> {
@@ -71,6 +96,8 @@ public class PdfWorkWindowController implements Initializable {
     @FXML
     public Button leftOthersButton;
 
+    @FXML
+    public Button textItemButton;
 
     @FXML
     public AnchorPane leftPanel;
@@ -98,6 +125,8 @@ public class PdfWorkWindowController implements Initializable {
 
     @FXML
     private Label sizeLabel;
+
+    private PdfEditorView pdfEditorView;
 
     private double originalPaperWidth;
 
