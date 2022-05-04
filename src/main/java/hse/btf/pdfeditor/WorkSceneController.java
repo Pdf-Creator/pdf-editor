@@ -5,7 +5,9 @@ import hse.btf.pdfeditor.models.itemsjava.TextItem;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.MenuBar;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -23,14 +25,6 @@ public class WorkSceneController {
     private double lastDraggedX = -1;
     private double lastDraggedY = -1;
     private boolean MAXIMIZED = true;
-
-    // field center
-    private static final int centerX = 388;
-    private static final int centerY = 272;
-
-    // rectangle
-    private static final int defaultRecWidth = 166;
-    private static final int defaultRecHeight = 119;
 
     @FXML
     private Pane layoutElements;
@@ -71,9 +65,12 @@ public class WorkSceneController {
     @FXML
     private Button convertToPdfButton;
 
-    // left bar buttons
-    private List<Button> leftBarButtons = new ArrayList<>();
-    private List<Button> rightBarButtons = new ArrayList<>();
+    // left text buttons
+    @FXML
+    private ChoiceBox<String> choiceBox;
+
+    // left bar Nodes
+    private List<Node> leftBarNodes = new ArrayList<>();
 
     @FXML
     private Rectangle paperRectangle;
@@ -89,16 +86,20 @@ public class WorkSceneController {
 
     @FXML
     void deleteLeftBarButtons() {
-        for (Button button : leftBarButtons) {
-            //observableList.remove(button);
+        for (Node object : leftBarNodes) {
+            layoutButtons.getChildren().remove(object);
         }
-        leftBarButtons.clear();
+        leftBarNodes.clear();
     }
 
     @FXML
     void changeLeftBarToTextButtons() {
         deleteLeftBarButtons();
         // задать свои кнопки в левой панели
+
+        // setFont
+        // size
+        // underlining/ bold
     }
 
     @FXML
@@ -123,23 +124,6 @@ public class WorkSceneController {
     void changeLeftBarToListButtons() {
         deleteLeftBarButtons();
         // задать свои кнопки в левой панели
-    }
-
-    @FXML
-    Rectangle createRectangle() {
-        Rectangle rectangle = new Rectangle();
-//
-//        rectangle.setX(centerX);
-//        rectangle.setY(centerY);
-//
-//        rectangle.setWidth(defaultRecWidth);
-//        rectangle.setHeight(defaultRecHeight);
-//
-//        // adding to the layout
-//        //observableList.add(rectangle);
-//        layout.getChildren().add(rectangle);
-//
-        return rectangle;
     }
 
     @FXML
@@ -170,21 +154,21 @@ public class WorkSceneController {
     void createTableField(ActionEvent event) {
         changeLeftBarToTableButtons();
 
-        Rectangle workingRec = createRectangle();
+        //Rectangle workingRec = createRectangle();
     }
 
     @FXML
     void createHeadingField(ActionEvent event) {
         changeLeftBarToHeadingButtons();
 
-        Rectangle workingRec = createRectangle();
+        //Rectangle workingRec = createRectangle();
     }
 
     @FXML
     void createListField(ActionEvent event) {
         changeLeftBarToListButtons();
 
-        Rectangle workingRec = createRectangle();
+        //Rectangle workingRec = createRectangle();
     }
 
     Button createRightBarButton(String buttonName, int number, EventHandler<ActionEvent> eventHandler) {
@@ -195,6 +179,7 @@ public class WorkSceneController {
         button.setText(buttonName);
         button.setFont(buttonFont);
 
+        /** переделать на относительные координаты **/
         double buttonsX = 756;
         double buttonsY = 50;
         double buttonsW = 218;
@@ -212,7 +197,7 @@ public class WorkSceneController {
         button.setOnAction(eventHandler);
 
         // adding to list
-        rightBarButtons.add(button);
+        //rightBarButtons.add(button);
 
         // adding to layout
         //observableList.add(button);
