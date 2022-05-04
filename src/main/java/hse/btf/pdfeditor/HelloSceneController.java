@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.Screen;
 import javafx.stage.StageStyle;
@@ -16,7 +17,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.text.NumberFormat;
 
-public class PdfEditorController {
+public class HelloSceneController {
     @FXML
     private Button createButton;
 
