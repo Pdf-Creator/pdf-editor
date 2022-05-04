@@ -255,7 +255,7 @@ public class WorkSceneController {
     @FXML
     public void minWindow(ActionEvent event) {
         Stage thisStage = (Stage) hideButton.getScene().getWindow();
-        MAXIMIZED = !MAXIMIZED;
+        MAXIMIZED ^= true;
         thisStage.setMaximized(MAXIMIZED);
     }
 }

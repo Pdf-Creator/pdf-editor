@@ -1,25 +1,13 @@
 package hse.btf.pdfeditor;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Stack;
 
 import javafx.fxml.Initializable;
 
@@ -30,15 +18,35 @@ public class PdfWorkWindowController implements Initializable {
         paperSize = 100;
         originalPaperWidth = paper.getPrefWidth();
         originalPaperHeight = paper.getPrefHeight();
+        addLeftButtonClicker(leftFormulaButton, formulaPane);
+        addLeftButtonClicker(leftOthersButton, othersPane);
     }
 
+    private void addLeftButtonClicker(Button button, AnchorPane panel) {
+        button.setOnMouseClicked(ev -> {
+            if (selectedPane == null) {
+                selectedPane = panel;
+                leftPanel.setPrefWidth(164);
+                selectedPane.setPrefWidth(144);
+            } else {
+                selectedPane.setPrefWidth(0);
 
+                if (selectedPane == panel) {
+                    selectedPane = null;
+                    leftPanel.setPrefWidth(20);
+                } else {
+                    selectedPane = panel;
+                    selectedPane.setPrefWidth(144);
+                }
+            }
+        });
+    }
 
     @FXML
     void paperSizeDecrease(MouseEvent event) {
         if (paperSize != 25) {
             paperSize -= 25;
-            sizeLabel.setText(paperSize.toString() + "%");
+            sizeLabel.setText(paperSize + "%");
             resizePaper();
         }
     }
@@ -47,7 +55,7 @@ public class PdfWorkWindowController implements Initializable {
     void paperSizeIncrease(MouseEvent event) {
         if (paperSize != 100) {
             paperSize += 25;
-            sizeLabel.setText(paperSize.toString() + "%");
+            sizeLabel.setText(paperSize + "%");
             resizePaper();
         }
     }
@@ -56,6 +64,25 @@ public class PdfWorkWindowController implements Initializable {
         paper.setPrefWidth(originalPaperWidth / 100 * paperSize);
         paper.setPrefHeight(originalPaperHeight / 100 * paperSize);
     }
+
+    @FXML
+    public Button leftFormulaButton;
+
+    @FXML
+    public Button leftOthersButton;
+
+
+    @FXML
+    public AnchorPane leftPanel;
+
+    @FXML
+    private AnchorPane selectedPane = null;
+
+    @FXML
+    public AnchorPane othersPane;
+
+    @FXML
+    public AnchorPane formulaPane;
 
     @FXML
     private AnchorPane paperBackground;
@@ -73,7 +100,9 @@ public class PdfWorkWindowController implements Initializable {
     private Label sizeLabel;
 
     private double originalPaperWidth;
+
     private double originalPaperHeight;
-    private Integer paperSize; /// TODO :: beautiful enum
+
+    private Integer paperSize;
 
 }
