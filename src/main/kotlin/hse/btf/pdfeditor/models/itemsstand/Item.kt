@@ -10,31 +10,21 @@ import kotlinx.serialization.Serializable
 
 // внешний прямоугольник, в который обрамлен контент
 @Serializable
-abstract class Item {
+sealed class Item {
     @Serializable(with = IntegerPropertySerializer::class)
-    val x: IntegerProperty = SimpleIntegerProperty(centerX)
+    val x: IntegerProperty = SimpleIntegerProperty(150)
 
     @Serializable(with = IntegerPropertySerializer::class)
-    val y: IntegerProperty = SimpleIntegerProperty(centerY)
+    val y: IntegerProperty = SimpleIntegerProperty(200)
 
     @Serializable(with = IntegerPropertySerializer::class)
-    val w: IntegerProperty = SimpleIntegerProperty(defaultWidth)
+    val w: IntegerProperty = SimpleIntegerProperty(100)
 
     @Serializable(with = IntegerPropertySerializer::class)
-    val h: IntegerProperty = SimpleIntegerProperty(defaultHeight)
+    val h: IntegerProperty = SimpleIntegerProperty(50)
 
     @Serializable(with = StringPropertySerializer::class)
     val color: StringProperty = SimpleStringProperty("white")
-
-    companion object {
-        // default width and height
-        const val defaultWidth = 100
-        const val defaultHeight = 50
-
-        // field center
-        const val centerX = 150
-        const val centerY = 200
-    }
 
     /**
      * сделать размер центра изменяемым

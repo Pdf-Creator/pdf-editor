@@ -23,5 +23,7 @@ module hse.btf.pdfeditor {
 
     requires tornadofx;
     requires kotlin.stdlib;
+    requires kotlin.reflect;
     requires kotlinx.serialization.core;
+    requires kotlinx.serialization.json;
 }

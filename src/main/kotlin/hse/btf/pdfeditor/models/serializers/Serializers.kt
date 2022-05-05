@@ -36,7 +36,8 @@ object IntegerPropertySerializer : KSerializer<IntegerProperty> {
     override val descriptor = SerialDescriptor("Int", delegateSerializer.descriptor)
 
     override fun serialize(encoder: Encoder, value: IntegerProperty) {
-        val intData = IntArray(value.intValue())
+        val intData = IntArray(1)
+        intData[0] = value.intValue()
         encoder.encodeSerializableValue(delegateSerializer, intData)
     }
 

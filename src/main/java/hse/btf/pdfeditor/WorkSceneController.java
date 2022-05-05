@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static hse.btf.pdfeditor.Singleton.itemsHolder;
+import static hse.btf.pdfeditor.models.serializers.SavingClassKt.readFromFile;
+import static hse.btf.pdfeditor.models.serializers.SavingClassKt.saveToFile;
 
 public class WorkSceneController {
     private double lastDraggedX = -1;
@@ -141,6 +143,7 @@ public class WorkSceneController {
 
         // создать в центре paper'а прямоугольник с возможностью добавления текста
         //Rectangle workingRec = createRectangle();
+        saveToFile(null);
     }
 
     @FXML
@@ -148,6 +151,7 @@ public class WorkSceneController {
         //changeLeftBarToFormulaButtons();
 
         //Rectangle workingRec = createRectangle();
+        readFromFile(null);
     }
 
     @FXML

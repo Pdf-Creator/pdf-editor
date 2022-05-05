@@ -1,4 +1,4 @@
-package hse.btf.pdfeditor.models.itemsstand;
-
-public class FormulaItem extends Item {
-}
+//package hse.btf.pdfeditor.models.itemsstand;
+//
+//public class FormulaItem extends Item {
+//}
