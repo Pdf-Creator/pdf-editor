@@ -2,8 +2,13 @@ package hse.btf.pdfeditor;
 
 import hse.btf.pdfeditor.models.itemsjava.TextItem;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.skin.ContextMenuSkin;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -11,6 +16,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
+import javafx.scene.layout.TilePane;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import static hse.btf.pdfeditor.Singleton.itemsHolder;
 
@@ -24,13 +32,23 @@ public class PdfWorkWindowController implements Initializable {
         leftPanel.setPrefWidth(20);
         formulaPane.setPrefWidth(0);
 
-        //initFormulaPane();
 
         textItemButton.setOnMouseClicked(ev -> {
             TextItem textField = new TextItem();
 
             itemsHolder.observableItemsList.add(new TextItem());
             System.out.println("Wow, you pressed me!");
+        });
+
+
+        PaperContextMenu contextMenu = new PaperContextMenu();
+
+        paper.setOnMouseClicked(ev -> {
+            if (ev.getButton() == MouseButton.SECONDARY) {
+                contextMenu.show(paper, ev.getScreenX(), ev.getScreenY());
+            } else {
+                contextMenu.hide();
+            }
         });
 
         addLeftButtonClicker(leftFormulaButton, formulaPane);

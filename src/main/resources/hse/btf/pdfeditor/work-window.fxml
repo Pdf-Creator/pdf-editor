@@ -105,7 +105,7 @@
                     <content>
                         <AnchorPane id="Content" fx:id="paperBackground" nodeOrientation="LEFT_TO_RIGHT" prefHeight="1208.0" prefWidth="10000.0" style="-fx-background-color: #EEEEEE;">
                      <children>
-                        <AnchorPane fx:id="paper" layoutX="14.0" layoutY="21.0" prefHeight="1188.0" prefWidth="840.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="21.0" />
+                        <AnchorPane fx:id="paper" accessibleRoleDescription="BUTTON" layoutX="14.0" layoutY="21.0" prefHeight="1188.0" prefWidth="840.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="21.0" />
                      </children>
                         </AnchorPane>
                     </content>
