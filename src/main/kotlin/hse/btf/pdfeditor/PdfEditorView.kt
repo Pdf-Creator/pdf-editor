@@ -9,12 +9,9 @@ import tornadofx.bind
 class PdfEditorView(layout: Pane) {
     init {
         layout.children.bind(itemsHolder.observableItemsList) {
-            if (it is TextItem){
-                // Item --> Node
-                TextItemFxml(it).root
-            } else {
-                throw Exception()
-            }
+            when (it) {
+                is TextItem -> TextItemFxml(it)
+            }.root
         }
     }
 }

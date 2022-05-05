@@ -6,43 +6,38 @@ import javafx.beans.property.SimpleStringProperty
 import javafx.beans.property.StringProperty
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
-import kotlinx.serialization.builtins.CharArraySerializer
-import kotlinx.serialization.builtins.IntArraySerializer
-import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
 object StringPropertySerializer : KSerializer<StringProperty> {
-    private val delegateSerializer = CharArraySerializer()
+    private val delegateSerializer = String.serializer()
 
     @OptIn(ExperimentalSerializationApi::class)
-    override val descriptor = SerialDescriptor("String", delegateSerializer.descriptor)
+    override val descriptor = delegateSerializer.descriptor
 
     override fun serialize(encoder: Encoder, value: StringProperty) {
-        val stringData = value.get().toCharArray()
-        encoder.encodeSerializableValue(delegateSerializer, stringData)
+        encoder.encodeSerializableValue(delegateSerializer, value.get())
     }
 
     override fun deserialize(decoder: Decoder): StringProperty {
         val stringData = decoder.decodeSerializableValue(delegateSerializer)
-        return SimpleStringProperty(String(stringData))
+        return SimpleStringProperty(stringData)
     }
 }
 
 object IntegerPropertySerializer : KSerializer<IntegerProperty> {
-    private val delegateSerializer = IntArraySerializer()
+    private val delegateSerializer = Int.serializer()
 
     @OptIn(ExperimentalSerializationApi::class)
-    override val descriptor = SerialDescriptor("Int", delegateSerializer.descriptor)
+    override val descriptor = delegateSerializer.descriptor
 
     override fun serialize(encoder: Encoder, value: IntegerProperty) {
-        val intData = IntArray(1)
-        intData[0] = value.intValue()
-        encoder.encodeSerializableValue(delegateSerializer, intData)
+        encoder.encodeSerializableValue(delegateSerializer, value.get())
     }
 
     override fun deserialize(decoder: Decoder): IntegerProperty {
         val intData = decoder.decodeSerializableValue(delegateSerializer)
-        return SimpleIntegerProperty(intData[0])
+        return SimpleIntegerProperty(intData)
     }
 }
