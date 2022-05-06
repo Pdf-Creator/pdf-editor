@@ -1,24 +1,16 @@
 package hse.btf.pdfeditor;
 
-import hse.btf.pdfeditor.models.itemsjava.TextItem;
+import hse.btf.pdfeditor.models.itemsstand.TextItem;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.skin.ContextMenuSkin;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import javafx.fxml.Initializable;
-import javafx.scene.layout.TilePane;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import static hse.btf.pdfeditor.Singleton.itemsHolder;
 
@@ -27,22 +19,19 @@ public class PdfWorkWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         paperSize = 100;
+
         originalPaperWidth = paper.getPrefWidth();
         originalPaperHeight = paper.getPrefHeight();
         leftPanel.setPrefWidth(20);
         formulaPane.setPrefWidth(0);
 
-
         textItemButton.setOnMouseClicked(ev -> {
-            TextItem textField = new TextItem();
-
-            itemsHolder.observableItemsList.add(new TextItem());
+            itemsHolder.getObservableItemsList().add(new TextItem());
             System.out.println("Wow, you pressed me!");
         });
 
 
         PaperContextMenu contextMenu = new PaperContextMenu();
-
         paper.setOnMouseClicked(ev -> {
             if (ev.getButton() == MouseButton.SECONDARY) {
                 contextMenu.show(paper, ev.getScreenX(), ev.getScreenY());
@@ -86,7 +75,7 @@ public class PdfWorkWindowController implements Initializable {
     }
 
     @FXML
-    void paperSizeDecrease(MouseEvent event) {
+    public void paperSizeDecrease(MouseEvent event) {
         if (paperSize != 25) {
             paperSize -= 25;
             sizeLabel.setText(paperSize + "%");
@@ -95,7 +84,7 @@ public class PdfWorkWindowController implements Initializable {
     }
 
     @FXML
-    void paperSizeIncrease(MouseEvent event) {
+    public void paperSizeIncrease(MouseEvent event) {
         if (paperSize != 100) {
             paperSize += 25;
             sizeLabel.setText(paperSize + "%");
