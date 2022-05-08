@@ -16,6 +16,7 @@ module hse.btf.pdfeditor {
 
     opens hse.btf.pdfeditor to javafx.fxml;
     exports hse.btf.pdfeditor;
+
     exports hse.btf.pdfeditor.models.itemsfxml;
     opens hse.btf.pdfeditor.models.itemsfxml to javafx.fxml;
     exports hse.btf.pdfeditor.models.itemsstand;
@@ -26,4 +27,6 @@ module hse.btf.pdfeditor {
     requires kotlin.reflect;
     requires kotlinx.serialization.core;
     requires kotlinx.serialization.json;
+    exports hse.btf.pdfeditor.entity;
+    opens hse.btf.pdfeditor.entity to javafx.fxml;
 }
