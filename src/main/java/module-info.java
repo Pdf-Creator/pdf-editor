@@ -11,8 +11,6 @@ module hse.btf.pdfeditor {
     requires eu.hansolo.tilesfx;
 
     requires jlatexmath;
-    requires itextpdf;
-    //requires bcprov.jdk16;
     requires kernel;
     requires io;
     requires layout;
