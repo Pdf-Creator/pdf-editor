@@ -1,161 +1,144 @@
 package hse.btf.pdfeditor;
 
-import javafx.event.ActionEvent;
+import hse.btf.pdfeditor.models.itemsstand.TextItem;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuBar;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
-import javafx.stage.Window;
+import javafx.scene.layout.AnchorPane;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class PdfWorkWindowController {
-    private double lastDraggedX = -1;
-    private double lastDraggedY = -1;
-    private boolean MAXIMIZED = true;
+import static hse.btf.pdfeditor.Singleton.itemsHolder;
 
-    @FXML
-    private Button closeButton;
-    @FXML
-    private Button hideButton;
-    @FXML
-    private Button minButton;
+public class PdfWorkWindowController implements Initializable {
 
-    @FXML
-    private MenuBar stageControlBar;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        paperSize = 100;
 
-    // right bar buttons
-    @FXML
-    private Button textButton;
-    @FXML
-    private Button formulaButton;
-    @FXML
-    private Button imageButton;
-    @FXML
-    private Button tableButton;
-    @FXML
-    private Button headingButton;
-    @FXML
-    private Button listButton;
+        originalPaperWidth = paper.getPrefWidth();
+        originalPaperHeight = paper.getPrefHeight();
+        leftPanel.setPrefWidth(20);
+        formulaPane.setPrefWidth(0);
 
-    @FXML
-    private Rectangle paperRectangle;
+        textItemButton.setOnMouseClicked(ev -> {
+            itemsHolder.getObservableItemsList().add(new TextItem());
+            System.out.println("Wow, you pressed me!");
+        });
 
-    private List<? extends RectangleField> paperObjectsList = new ArrayList<>();
 
-    @FXML
-    void deleteLeftBarButtons() {
+        PaperContextMenu contextMenu = new PaperContextMenu();
+        paper.setOnMouseClicked(ev -> {
+            if (ev.getButton() == MouseButton.SECONDARY) {
+                contextMenu.show(paper, ev.getScreenX(), ev.getScreenY());
+            } else {
+                contextMenu.hide();
+            }
+        });
 
+        addLeftButtonClicker(leftFormulaButton, formulaPane);
+        addLeftButtonClicker(leftOthersButton, othersPane);
+        pdfEditorView = new PdfEditorView(paper);
+    }
+
+/*
+    TODO : ultimate way to add handlers
+    private void initFormulaPane() {
+        formulaPane.getChildren().forEach(node -> {
+            node.setOnMouseClicked();
+        });
+    }
+*/
+
+    private void addLeftButtonClicker(Button button, AnchorPane panel) {
+        button.setOnMouseClicked(ev -> {
+            if (selectedPane == null) {
+                selectedPane = panel;
+                leftPanel.setPrefWidth(164);
+                selectedPane.setPrefWidth(144);
+            } else {
+                selectedPane.setPrefWidth(0);
+
+                if (selectedPane == panel) {
+                    selectedPane = null;
+                    leftPanel.setPrefWidth(20);
+                } else {
+                    selectedPane = panel;
+                    selectedPane.setPrefWidth(144);
+                }
+            }
+        });
     }
 
     @FXML
-    void changeLeftBarToTextButtons() {
-        deleteLeftBarButtons();
-        // задать свои кнопки в левой панели
-    }
-
-    @FXML
-    void changeLeftBarToFormulaButtons() {
-        deleteLeftBarButtons();
-        // задать свои кнопки в левой панели
-    }
-
-    @FXML
-    void changeLeftBarToTableButtons() {
-        deleteLeftBarButtons();
-        // задать свои кнопки в левой панели
-    }
-
-    @FXML
-    void changeLeftBarToHeadingButtons() {
-        deleteLeftBarButtons();
-        // задать свои кнопки в левой панели
-    }
-
-    @FXML
-    void changeLeftBarToListButtons() {
-        deleteLeftBarButtons();
-        // задать свои кнопки в левой панели
-    }
-
-    @FXML
-    void createTextField(MouseEvent event) {
-        // изменить кнопки в левой панели
-        changeLeftBarToTextButtons();
-
-        // создать в центре paper'а прямоугольник с возможностью добавления текста
-    }
-
-    @FXML
-    void createFormulaField(MouseEvent event) {
-        // изменить кнопки в левой панели
-        changeLeftBarToFormulaButtons();
-
-        // создать в центре paper'а прямоугольник с возможностью добавления текста
-    }
-
-    @FXML
-    void createTableField(MouseEvent event) {
-        // изменить кнопки в левой панели
-        changeLeftBarToTableButtons();
-
-        // создать в центре paper'а прямоугольник с возможностью добавления текста
-    }
-
-    @FXML
-    void createHeadingField(MouseEvent event) {
-        // изменить кнопки в левой панели
-        changeLeftBarToHeadingButtons();
-
-        // создать в центре paper'а прямоугольник с возможностью добавления текста
-    }
-
-    @FXML
-    void createListField(MouseEvent event) {
-        // изменить кнопки в левой панели
-        changeLeftBarToListButtons();
-
-        // создать в центре paper'а прямоугольник с возможностью добавления текста
-    }
-
-    @FXML
-    void stagedDragged(MouseEvent event) {
-        var dx = event.getScreenX() - lastDraggedX;
-        var dy = event.getScreenY() - lastDraggedY;
-        Window thisWindow = stageControlBar.getScene().getWindow();
-        if (Math.abs(dx) > 30 || Math.abs(dy) > 30) {
-            lastDraggedX = event.getScreenX();
-            lastDraggedY = event.getScreenY();
-        } else {
-            thisWindow.setX(thisWindow.getX() + dx);
-            thisWindow.setY(thisWindow.getY() + dy);
-            lastDraggedX = event.getScreenX();
-            lastDraggedY = event.getScreenY();
-
-            Stage thisStage = (Stage) thisWindow;
-            thisStage.setMaximized(false);
+    public void paperSizeDecrease(MouseEvent event) {
+        if (paperSize != 25) {
+            paperSize -= 25;
+            sizeLabel.setText(paperSize + "%");
+            resizePaper();
         }
     }
 
     @FXML
-    void closeWindow(ActionEvent event) {
-        Stage thisStage = (Stage) closeButton.getScene().getWindow();
-        thisStage.close();
+    public void paperSizeIncrease(MouseEvent event) {
+        if (paperSize != 100) {
+            paperSize += 25;
+            sizeLabel.setText(paperSize + "%");
+            resizePaper();
+        }
+    }
+
+    private void resizePaper() {
+        paper.setPrefWidth(originalPaperWidth / 100 * paperSize);
+        paper.setPrefHeight(originalPaperHeight / 100 * paperSize);
     }
 
     @FXML
-    void hideWindow(ActionEvent event) {
-        Stage thisStage = (Stage) hideButton.getScene().getWindow();
-        thisStage.hide();
-    }
+    public Button leftFormulaButton;
 
     @FXML
-    void minWindow(ActionEvent event) {
-        Stage thisStage = (Stage) hideButton.getScene().getWindow();
-        MAXIMIZED = !MAXIMIZED;
-        thisStage.setMaximized(MAXIMIZED);
-    }
+    public Button leftOthersButton;
+
+    @FXML
+    public Button textItemButton;
+
+    @FXML
+    public AnchorPane leftPanel;
+
+    @FXML
+    private AnchorPane selectedPane = null;
+
+    @FXML
+    public AnchorPane othersPane;
+
+    @FXML
+    public AnchorPane formulaPane;
+
+    @FXML
+    private AnchorPane paperBackground;
+
+    @FXML
+    private AnchorPane paper;
+
+    @FXML
+    private Button buttonPaperSizeIncrease;
+
+    @FXML
+    private Button buttonPaperSizeDecrease;
+
+    @FXML
+    private Label sizeLabel;
+
+    private PdfEditorView pdfEditorView;
+
+    private double originalPaperWidth;
+
+    private double originalPaperHeight;
+
+    private Integer paperSize;
+
 }
