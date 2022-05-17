@@ -4,7 +4,7 @@ import javafx.scene.Node;
 
 public abstract class ItemFxml {
     /**
-     * returning element that could be drawn
+     * returning an element that could be drawn
      **/
     public abstract Node getRoot();
 }

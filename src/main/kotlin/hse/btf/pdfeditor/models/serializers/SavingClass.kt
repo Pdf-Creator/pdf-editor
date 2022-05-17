@@ -1,6 +1,7 @@
 package hse.btf.pdfeditor.models.serializers
 
 import hse.btf.pdfeditor.Singleton.itemsHolder
+import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.io.File
@@ -23,4 +24,21 @@ fun readFromFile(fileName: String?): Unit {
 
     val fileData = file.readText()
     itemsHolder.updateFromFileData(fileData)
+}
+
+fun serializeProjectsNames(projectNamesList: List<String>): Unit {
+    val jsonFile = File("./src/resources/users/projects/projectNamesList.json")
+
+    val json = format.encodeToString(projectNamesList)
+    jsonFile.writeText(json)
+}
+
+fun deserializeProjectsNames(projectNamesList: MutableList<String>): Unit {
+    val jsonFile = File("./src/resources/users/projects/projectNamesList.json")
+
+    val fileData = jsonFile.readText();
+    val namesList = Json.decodeFromString<List<String>>(fileData)
+
+    projectNamesList.clear()
+    projectNamesList.addAll(namesList)
 }
