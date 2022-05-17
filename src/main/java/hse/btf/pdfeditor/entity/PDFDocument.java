@@ -21,25 +21,30 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class PDFDocument {
-    private final String path;
     private final PdfWriter pdfWriter;
     private final PdfDocument pdfDocument;
     List<PdfPage> pages;
     private PdfPage currentPage;
 
-    public PDFDocument() throws FileNotFoundException {
+    public PDFDocument() throws IOException {
         this("out/file.pdf");
     }
 
-    public PDFDocument(String path) throws FileNotFoundException {
-        this.path = path;
-        pdfWriter = new PdfWriter(path);
+    public PDFDocument(String fileName) throws IOException {
+        Path path = Paths.get(fileName);
+        if (!Files.exists(path)) {
+            Files.createDirectories(path.getParent());
+            Files.createFile(path);
+        }
+        pdfWriter = new PdfWriter(fileName);
         pdfDocument = new PdfDocument(pdfWriter);
         addPage();
     }
@@ -60,11 +65,12 @@ public class PDFDocument {
                 .rectangle(rect)
                 .fill()
                 .stroke();
+
         // adding text to rectangle;
-        new Canvas(canvas, rect).add(
-                new Paragraph(textItem.getText())
-                        .setFontColor(textItem.getFontColor())
-        );
+        Paragraph paragraph = new Paragraph(textItem.getText());
+        paragraph.setFontColor(textItem.getFontColor());
+
+        new Canvas(canvas, rect).add(paragraph);
     }
 
     public void addRectangleWithFormulaItem(FormulaItem formulaItem) throws IOException {
@@ -114,6 +120,7 @@ public class PDFDocument {
                 imageItem.getW(),
                 imageItem.getH()
         );
+
         canvas.setStrokeColor(imageItem.getRectangleStrokeColor())
                 .setFillColor(imageItem.getRectangleFillColor())
                 .rectangle(rect)
@@ -143,6 +150,7 @@ public class PDFDocument {
                 .stroke();
 
         Table table = new Table(tableItem.getCols());
+        table.setFontColor(tableItem.getFontColor());
 
         for (String cellContent : tableItem.getCellContents()) {
             table.addCell(cellContent);
