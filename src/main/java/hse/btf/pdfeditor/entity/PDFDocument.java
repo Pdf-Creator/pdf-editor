@@ -11,11 +11,16 @@ import com.itextpdf.layout.Canvas;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
 import org.scilab.forge.jlatexmath.TeXConstants;
 import org.scilab.forge.jlatexmath.TeXFormula;
 import org.scilab.forge.jlatexmath.TeXIcon;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.List;
 
@@ -58,7 +63,7 @@ public class PDFDocument {
         );
     }
 
-    public void addRectangleWithFormulaItem(FormulaItem formulaItem) {
+    public void addRectangleWithFormulaItem(FormulaItem formulaItem) throws IOException {
         PdfCanvas canvas = new PdfCanvas(currentPage);
         Rectangle rect = new Rectangle(
                 formulaItem.getX(),
@@ -70,7 +75,18 @@ public class PDFDocument {
                 .rectangle(rect)
                 .stroke();
 
-        // TODO formula to image
+        // very strange method
+        TeXFormula formula = new TeXFormula(formulaItem.getFormula());
+        TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 20);
+        BufferedImage bufferedImage = new BufferedImage(icon.getIconWidth(), icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ImageIO.write(bufferedImage, "png", byteArrayOutputStream);
+        ImageData data = ImageDataFactory.create(byteArrayOutputStream.toByteArray());
+        Image image = new Image(data);
+        image.setFixedPosition(formulaItem.getX(), formulaItem.getY());
+        image.scaleAbsolute(formulaItem.getW(), formulaItem.getH());
+
+        new Canvas(canvas, rect).add(image);
     }
 
     public void addRectangleWithImageItem(ImageItem imageItem) throws MalformedURLException {
@@ -91,6 +107,27 @@ public class PDFDocument {
         image.scaleAbsolute(imageItem.getW(), imageItem.getH());
 
         new Canvas(canvas, rect).add(image);
+    }
+
+    public void addRectangleWithTableItem(TableItem tableItem) {
+        PdfCanvas canvas = new PdfCanvas(currentPage);
+        Rectangle rect = new Rectangle(
+                tableItem.getX(),
+                tableItem.getY(),
+                tableItem.getW(),
+                tableItem.getH()
+        );
+        canvas.setStrokeColor(tableItem.getRectangleStrokeColor())
+                .rectangle(rect)
+                .stroke();
+
+        Table table = new Table(tableItem.getCols());
+
+        for (String cellContent : tableItem.getCellContents()) {
+            table.addCell(cellContent);
+        }
+
+        new Canvas(canvas, rect).add(table);
     }
 
     public void setCurrentPage(int index) {
