@@ -17,6 +17,8 @@ import org.scilab.forge.jlatexmath.TeXFormula;
 import org.scilab.forge.jlatexmath.TeXIcon;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -54,7 +56,9 @@ public class PDFDocument {
         );
         // drawing rectangle
         canvas.setStrokeColor(textItem.getRectangleStrokeColor())
+                .setFillColor(textItem.getRectangleFillColor())
                 .rectangle(rect)
+                .fill()
                 .stroke();
         // adding text to rectangle;
         new Canvas(canvas, rect).add(
@@ -72,15 +76,28 @@ public class PDFDocument {
                 formulaItem.getW()
         );
         canvas.setStrokeColor(formulaItem.getRectangleStrokeColor())
+                .setFillColor(formulaItem.getRectangleStrokeColor())
                 .rectangle(rect)
+                .fill()
                 .stroke();
 
         // very strange method
-        TeXFormula formula = new TeXFormula(formulaItem.getFormula());
-        TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 20);
-        BufferedImage bufferedImage = new BufferedImage(icon.getIconWidth(), icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+        TeXFormula tf = new TeXFormula(formulaItem.getFormula());
+        TeXIcon ti = tf.createTeXIcon(TeXConstants.STYLE_DISPLAY, formulaItem.getFontSize());
+        BufferedImage bimg = new BufferedImage(ti.getIconWidth(), ti.getIconHeight(), BufferedImage.TYPE_4BYTE_ABGR);
+
+        // -- painting the formula --
+        Graphics2D g2d = bimg.createGraphics();
+        g2d.setColor(Color.white);
+        g2d.fillRect(0,0, ti.getIconWidth(), ti.getIconHeight());
+        JLabel jl = new JLabel();
+        jl.setForeground(new Color(0, 0, 0));
+        ti.paintIcon(jl, g2d, 0, 0);
+        // --------------------------
+
+        // -- adding it to pdf --
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        ImageIO.write(bufferedImage, "png", byteArrayOutputStream);
+        ImageIO.write(bimg, "png", byteArrayOutputStream);
         ImageData data = ImageDataFactory.create(byteArrayOutputStream.toByteArray());
         Image image = new Image(data);
         image.setFixedPosition(formulaItem.getX(), formulaItem.getY());
@@ -98,7 +115,9 @@ public class PDFDocument {
                 imageItem.getH()
         );
         canvas.setStrokeColor(imageItem.getRectangleStrokeColor())
+                .setFillColor(imageItem.getRectangleFillColor())
                 .rectangle(rect)
+                .fill()
                 .stroke();
 
         ImageData data = ImageDataFactory.create(imageItem.getImagePath());
@@ -118,7 +137,9 @@ public class PDFDocument {
                 tableItem.getH()
         );
         canvas.setStrokeColor(tableItem.getRectangleStrokeColor())
+                .setFillColor(tableItem.getRectangleFillColor())
                 .rectangle(rect)
+                .fill()
                 .stroke();
 
         Table table = new Table(tableItem.getCols());
@@ -142,5 +163,4 @@ public class PDFDocument {
         Document document = new Document(pdfDocument);
         document.close();
     }
-
 }
