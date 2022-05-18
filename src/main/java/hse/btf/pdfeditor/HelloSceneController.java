@@ -36,6 +36,7 @@ public class HelloSceneController implements Initializable {
 
     private final List<String> projectNamesList = new ArrayList<>();
     private String currentProjectName = "";
+    private final ResourceBundle resourceBundle = ResourceBundle.getBundle("hello-scene");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -52,13 +53,12 @@ public class HelloSceneController implements Initializable {
     public void createProjectButton(ActionEvent event) throws IOException {
         // check whether the project with that name is already created
         if (projectNamesList.contains(projectNameField.getText())) {
-            ProjectNameBox.display("Non-new project name", "The project with this name was already created!\n"
-                    + "Please, enter a new name or click the button \"open\"");
+            ProjectNameBox.display(resourceBundle.getString("label.project-name.non-new"), resourceBundle.getString("message.project-name.non-new"));
             return;
         }
 
         if (projectNameField.getText().isEmpty()) {
-            ProjectNameBox.display("Empty project name", "A project name cannot be an empty string!");
+            ProjectNameBox.display(resourceBundle.getString("label.project-name.empty"), resourceBundle.getString("message.project-name.empty"));
             return;
         }
 
@@ -88,8 +88,7 @@ public class HelloSceneController implements Initializable {
     public void openProjectButton() {
         // check whether project with that name doesn't exist
         if (!projectNamesList.contains(projectNameField.getText())) {
-            ProjectNameBox.display("No such project", "The project with this name doesn't exist!\n"
-                    + "Please, enter the name of an existing project or click the button \"create\"");
+            ProjectNameBox.display(resourceBundle.getString("label.project-name.non-existing"), resourceBundle.getString("message.project-name.non-existing"));
         }
 
         // выгрузить состояние всей прошлой сцены

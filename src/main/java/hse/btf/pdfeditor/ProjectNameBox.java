@@ -14,7 +14,7 @@ public class ProjectNameBox {
 
         // blocking events for other windows
         window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Project Name Window");
+        window.setTitle(title);
         window.setMinWidth(350);
 
         // window elements
