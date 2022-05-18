@@ -10,10 +10,10 @@
       <AnchorPane prefHeight="60.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <TextField fx:id="projectNameField" layoutX="14.0" layoutY="18.0" prefHeight="25.0" prefWidth="420.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="160.0" />
-            <Button layoutX="523.0" layoutY="18.0" mnemonicParsing="false" text="Open" AnchorPane.rightAnchor="15.0" />
+            <Button fx:id="openButton" layoutX="523.0" layoutY="18.0" mnemonicParsing="false" onAction="#openProjectButton" text="Open" AnchorPane.rightAnchor="15.0" />
             <Button fx:id="createButton" layoutX="456.0" layoutY="18.0" mnemonicParsing="false" onAction="#createProjectButton" text="Create" AnchorPane.rightAnchor="85.0" />
          </children>
       </AnchorPane>
-      <ListView fx:id="projectNamesListView" layoutY="62.0" orientation="HORIZONTAL" prefHeight="340.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
+      <ListView fx:id="projectNamesListView" layoutY="62.0" prefHeight="340.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
    </children>
 </AnchorPane>
