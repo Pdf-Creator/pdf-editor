@@ -9,6 +9,7 @@ public class DocumentItem {
     private float w;
     private float h;
     private Color rectangleStrokeColor;
+    private Color rectangleFillColor;
 
     public DocumentItem(float x, float y, float w, float h) {
         this.x = x;
@@ -16,10 +17,15 @@ public class DocumentItem {
         this.w = w;
         this.h = h;
         rectangleStrokeColor = ColorConstants.WHITE;
+        rectangleFillColor = ColorConstants.WHITE;
     }
 
     public void setRectangleStrokeColor(Color rectangleStrokeColor) {
         this.rectangleStrokeColor = rectangleStrokeColor;
+    }
+
+    public void setRectangleFillColor(Color rectangleFillColor) {
+        this.rectangleFillColor = rectangleFillColor;
     }
 
     public void setX(float x) {
@@ -56,5 +62,9 @@ public class DocumentItem {
 
     public Color getRectangleStrokeColor() {
         return rectangleStrokeColor;
+    }
+
+    public Color getRectangleFillColor() {
+        return rectangleFillColor;
     }
 }
