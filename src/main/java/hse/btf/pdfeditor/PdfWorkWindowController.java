@@ -23,7 +23,8 @@ public class PdfWorkWindowController implements Initializable {
         originalPaperWidth = paper.getPrefWidth();
         originalPaperHeight = paper.getPrefHeight();
         leftPanel.setPrefWidth(20);
-        formulaPane.setPrefWidth(0);
+        textPane.setPrefWidth(0);
+        tablePane.setPrefWidth(0);
 
         textItemButton.setOnMouseClicked(ev -> {
             itemsHolder.getObservableItemsList().add(new TextItem());
@@ -40,8 +41,8 @@ public class PdfWorkWindowController implements Initializable {
             }
         });
 
-        addLeftButtonClicker(leftFormulaButton, formulaPane);
-        addLeftButtonClicker(leftOthersButton, othersPane);
+        addLeftButtonClicker(leftFormulaButton, textPane);
+        addLeftButtonClicker(leftOthersButton, tablePane);
         pdfEditorView = new PdfEditorView(paper);
     }
 
@@ -113,10 +114,10 @@ public class PdfWorkWindowController implements Initializable {
     private AnchorPane selectedPane = null;
 
     @FXML
-    public AnchorPane othersPane;
+    public AnchorPane textPane;
 
     @FXML
-    public AnchorPane formulaPane;
+    public AnchorPane tablePane;
 
     @FXML
     private AnchorPane paperBackground;

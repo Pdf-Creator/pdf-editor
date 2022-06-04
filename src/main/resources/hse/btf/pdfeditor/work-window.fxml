@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
@@ -56,79 +62,103 @@
         </MenuBar>
         <SplitPane dividerPositions="0.025612472160356347, 0.8340757238307349" focusTraversable="true" prefHeight="565.0" prefWidth="900.0" VBox.vgrow="ALWAYS">
             <items>
-            <AnchorPane fx:id="leftPanel" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="164.0">
-               <children>
-              <AnchorPane fx:id="formulaPane" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="144.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Button fx:id="textItemButton" layoutX="6.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Text" textFill="#9e3636" textOverrun="CLIP" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="5.0" />
-                        <Button layoutX="54.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" AnchorPane.leftAnchor="52.0" AnchorPane.topAnchor="5.0" />
-                        <Button layoutX="102.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" AnchorPane.leftAnchor="98.0" AnchorPane.topAnchor="5.0" />
-                        <Button layoutX="6.0" layoutY="51.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" textOverrun="CLIP" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="52.0" />
-                        <Button layoutX="52.0" layoutY="51.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" AnchorPane.leftAnchor="52.0" AnchorPane.topAnchor="52.0" />
-                        <Button layoutX="98.0" layoutY="51.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" AnchorPane.leftAnchor="98.0" AnchorPane.topAnchor="52.0" />
-                        <Button layoutX="6.0" layoutY="97.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" textOverrun="CLIP" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="98.0" />
-                        <Button layoutX="52.0" layoutY="97.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" AnchorPane.leftAnchor="52.0" AnchorPane.topAnchor="98.0" />
-                        <Button layoutX="98.0" layoutY="97.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" AnchorPane.leftAnchor="98.0" AnchorPane.topAnchor="98.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="othersPane" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Button layoutX="6.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Text" textFill="#9e3636" textOverrun="CLIP" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="5.0" />
-                        <Button layoutX="54.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" AnchorPane.leftAnchor="52.0" AnchorPane.topAnchor="5.0" />
-                        <Button layoutX="102.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" AnchorPane.leftAnchor="98.0" AnchorPane.topAnchor="5.0" />
-                        <Button layoutX="6.0" layoutY="51.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Text" textFill="#9e3636" textOverrun="CLIP" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="52.0" />
-                        <Button layoutX="52.0" layoutY="51.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" AnchorPane.leftAnchor="52.0" AnchorPane.topAnchor="52.0" />
-                        <Button layoutX="98.0" layoutY="51.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" AnchorPane.leftAnchor="98.0" AnchorPane.topAnchor="52.0" />
-                        <Button layoutX="6.0" layoutY="97.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Text" textFill="#9e3636" textOverrun="CLIP" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="98.0" />
-                        <Button layoutX="52.0" layoutY="97.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" AnchorPane.leftAnchor="52.0" AnchorPane.topAnchor="98.0" />
-                        <Button layoutX="98.0" layoutY="97.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" AnchorPane.leftAnchor="98.0" AnchorPane.topAnchor="98.0" />
-                        <Button layoutX="98.0" layoutY="151.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="144.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Button fx:id="leftFormulaButton" contentDisplay="TOP" graphicTextGap="0.0" layoutX="-19.0" layoutY="19.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="58.0" rotate="-90.0" text="Text" textAlignment="CENTER" textOverrun="CLIP">
-                           <font>
-                              <Font size="11.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="leftOthersButton" contentDisplay="TOP" graphicTextGap="0.0" layoutX="-19.0" layoutY="77.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="58.0" rotate="-90.0" text="Table" textAlignment="CENTER" textOverrun="CLIP">
-                           <font>
-                              <Font size="11.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="leftOthersButton1" contentDisplay="TOP" graphicTextGap="0.0" layoutX="-19.0" layoutY="135.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="58.0" rotate="-90.0" text="Image" textAlignment="CENTER" textOverrun="CLIP">
-                           <font>
-                              <Font size="11.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="leftOthersButton11" contentDisplay="TOP" graphicTextGap="0.0" layoutX="-19.0" layoutY="193.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="58.0" rotate="-90.0" text="Formula" textAlignment="CENTER" textOverrun="CLIP">
-                           <font>
-                              <Font size="11.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </AnchorPane>
+                <AnchorPane fx:id="leftPanel" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="164.0">
+                    <children>
+                        <AnchorPane fx:id="textPane" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="144.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <Button fx:id="textItemButton" layoutX="9.0" layoutY="13.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="128.0" text="New text field" textFill="#9e3636" textOverrun="CLIP" AnchorPane.leftAnchor="9.0" AnchorPane.topAnchor="13.0" />
+                        <Slider layoutX="8.0" layoutY="159.0" prefHeight="24.0" prefWidth="134.0" />
+                        <Label alignment="CENTER" layoutX="9.0" layoutY="131.0" prefHeight="21.0" prefWidth="66.0" text="Text size:" />
+                        <TextField alignment="CENTER" layoutX="77.0" layoutY="131.0" prefHeight="24.0" prefWidth="47.0" />
+                        <Separator layoutX="-23.0" layoutY="63.0" prefHeight="0.0" prefWidth="200.0" />
+                        <ChoiceBox layoutX="11.0" layoutY="84.0" prefHeight="9.0" prefWidth="128.0" />
+                        <Label alignment="CENTER" layoutX="40.0" layoutY="66.0" prefHeight="3.0" prefWidth="66.0" text="Shrift" />
+                        <Separator layoutX="5.0" layoutY="121.0" prefHeight="3.0" prefWidth="144.0" />
+                        <Separator layoutX="2.0" layoutY="192.0" prefHeight="3.0" prefWidth="144.0" />
+                        <Separator layoutX="-1.0" layoutY="28.0" orientation="VERTICAL" prefHeight="200.0" />
+                        <ColorPicker layoutX="8.0" layoutY="340.0" prefHeight="24.0" prefWidth="128.0" />
+                        <Label layoutX="42.0" layoutY="322.0" text="Text color" />
+                        <Label alignment="CENTER" layoutX="41.0" layoutY="498.0" text="Field color" />
+                        <ColorPicker layoutX="8.0" layoutY="516.0" prefHeight="24.0" prefWidth="128.0" />
+                        <Label alignment="CENTER" layoutX="27.0" layoutY="195.0" prefHeight="18.0" prefWidth="89.0" text="Alignment" />
+                        <Separator layoutX="-9.0" layoutY="255.0" prefWidth="200.0" />
+                        <Label alignment="CENTER" layoutX="41.0" layoutY="259.0" text="Properties" />
+                        <ToggleButton layoutX="6.0" layoutY="279.0" minWidth="33.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="33.0" text="B" textAlignment="CENTER" />
+                        <ToggleButton layoutX="38.0" layoutY="279.0" minWidth="33.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="33.0" text="C" textAlignment="CENTER" />
+                        <ToggleButton layoutX="70.0" layoutY="279.0" minWidth="33.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="33.0" text="U" textAlignment="CENTER" underline="true" />
+                        <ToggleButton layoutX="102.0" layoutY="279.0" minWidth="33.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="33.0" text="S" textAlignment="CENTER" />
+                        <ToggleButton layoutX="6.0" layoutY="215.0" minWidth="33.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="33.0" text="L" textAlignment="CENTER" />
+                        <ToggleButton layoutX="38.0" layoutY="215.0" minWidth="33.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="33.0" text="C" textAlignment="CENTER" />
+                        <ToggleButton layoutX="70.0" layoutY="215.0" minWidth="33.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="33.0" text="R" textAlignment="CENTER" />
+                        <ToggleButton layoutX="102.0" layoutY="215.0" minWidth="33.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="33.0" text="W" textAlignment="CENTER" />
+                        <Separator layoutX="-3.0" layoutY="319.0" prefHeight="3.0" prefWidth="154.0" />
+                        <Label layoutX="45.0" layoutY="372.0" text="Color fill" />
+                        <ColorPicker layoutX="8.0" layoutY="390.0" prefHeight="24.0" prefWidth="128.0" />
+                        <Separator layoutX="-1.0" layoutY="424.0" prefHeight="3.0" prefWidth="154.0" />
+                        <Label alignment="CENTER" layoutX="-2.0" layoutY="434.0" prefHeight="21.0" prefWidth="83.0" text="Line spaces:" />
+                        <TextField alignment="CENTER" layoutX="79.0" layoutY="434.0" prefHeight="24.0" prefWidth="47.0" />
+                        <Slider layoutX="10.0" layoutY="465.0" prefHeight="24.0" prefWidth="134.0" />
+                        <Separator layoutX="-30.0" layoutY="491.0" prefWidth="200.0" />
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="tablePane" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <Button layoutX="6.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Text" textFill="#9e3636" textOverrun="CLIP" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="5.0" />
+                                <Button layoutX="54.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" AnchorPane.leftAnchor="52.0" AnchorPane.topAnchor="5.0" />
+                                <Button layoutX="102.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" AnchorPane.leftAnchor="98.0" AnchorPane.topAnchor="5.0" />
+                                <Button layoutX="6.0" layoutY="51.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Text" textFill="#9e3636" textOverrun="CLIP" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="52.0" />
+                                <Button layoutX="52.0" layoutY="51.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" AnchorPane.leftAnchor="52.0" AnchorPane.topAnchor="52.0" />
+                                <Button layoutX="98.0" layoutY="51.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" AnchorPane.leftAnchor="98.0" AnchorPane.topAnchor="52.0" />
+                                <Button layoutX="6.0" layoutY="97.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Text" textFill="#9e3636" textOverrun="CLIP" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="98.0" />
+                                <Button layoutX="52.0" layoutY="97.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" AnchorPane.leftAnchor="52.0" AnchorPane.topAnchor="98.0" />
+                                <Button layoutX="98.0" layoutY="97.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" AnchorPane.leftAnchor="98.0" AnchorPane.topAnchor="98.0" />
+                                <Button layoutX="98.0" layoutY="151.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Button" />
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="144.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <Button fx:id="leftFormulaButton" contentDisplay="TOP" graphicTextGap="0.0" layoutX="-19.0" layoutY="19.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="58.0" rotate="-90.0" text="Text" textAlignment="CENTER" textOverrun="CLIP">
+                                    <font>
+                                        <Font size="11.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="leftOthersButton" contentDisplay="TOP" graphicTextGap="0.0" layoutX="-19.0" layoutY="77.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="58.0" rotate="-90.0" text="Table" textAlignment="CENTER" textOverrun="CLIP">
+                                    <font>
+                                        <Font size="11.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="leftOthersButton1" contentDisplay="TOP" graphicTextGap="0.0" layoutX="-19.0" layoutY="135.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="58.0" rotate="-90.0" text="Image" textAlignment="CENTER" textOverrun="CLIP">
+                                    <font>
+                                        <Font size="11.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="leftOthersButton11" contentDisplay="TOP" graphicTextGap="0.0" layoutX="-19.0" layoutY="193.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="58.0" rotate="-90.0" text="Formula" textAlignment="CENTER" textOverrun="CLIP">
+                                    <font>
+                                        <Font size="11.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </AnchorPane>
                 <ScrollPane prefHeight="554.0" prefWidth="562.0">
                     <content>
                         <AnchorPane id="Content" fx:id="paperBackground" nodeOrientation="LEFT_TO_RIGHT" prefHeight="1208.0" prefWidth="10000.0" style="-fx-background-color: #EEEEEE;">
-                     <children>
-                        <AnchorPane fx:id="paper" accessibleRoleDescription="BUTTON" layoutX="14.0" layoutY="21.0" prefHeight="1188.0" prefWidth="840.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="21.0" />
-                     </children>
+                            <children>
+                                <AnchorPane fx:id="paper" accessibleRoleDescription="BUTTON" layoutX="14.0" layoutY="21.0" prefHeight="1188.0" prefWidth="840.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="21.0" />
+                            </children>
                         </AnchorPane>
                     </content>
                 </ScrollPane>
                 <AnchorPane prefHeight="557.0" prefWidth="200.0" />
             </items>
         </SplitPane>
-      <AnchorPane prefHeight="10.0" prefWidth="903.0">
-         <children>
-            <Circle id="buttonPaperSizeIncrease" accessibleRole="BUTTON" fill="DODGERBLUE" layoutX="853.0" layoutY="11.0" onMousePressed="#paperSizeIncrease" radius="8.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="2.0" />
-            <Circle id="buttonPaperSizeDecrease" accessibleRole="BUTTON" fill="DODGERBLUE" layoutX="880.0" layoutY="11.0" onMousePressed="#paperSizeDecrease" radius="8.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="2.0" />
-            <Label id="paperSizeLabel" fx:id="sizeLabel" layoutX="822.0" layoutY="2.0" text="100%" AnchorPane.rightAnchor="50.0" />
-         </children>
-      </AnchorPane>
+        <AnchorPane prefHeight="10.0" prefWidth="903.0">
+            <children>
+                <Circle id="buttonPaperSizeIncrease" accessibleRole="BUTTON" fill="DODGERBLUE" layoutX="853.0" layoutY="11.0" onMousePressed="#paperSizeIncrease" radius="8.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="2.0" />
+                <Circle id="buttonPaperSizeDecrease" accessibleRole="BUTTON" fill="DODGERBLUE" layoutX="880.0" layoutY="11.0" onMousePressed="#paperSizeDecrease" radius="8.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="2.0" />
+                <Label id="paperSizeLabel" fx:id="sizeLabel" layoutX="822.0" layoutY="2.0" text="100%" AnchorPane.rightAnchor="50.0" />
+            </children>
+        </AnchorPane>
     </children>
 </VBox>
