@@ -129,22 +129,22 @@
                   </AnchorPane>
                         <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="144.0" AnchorPane.topAnchor="0.0">
                             <children>
-                                <Button fx:id="leftTextButton" contentDisplay="TOP" graphicTextGap="0.0" layoutX="-19.0" layoutY="19.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="58.0" rotate="-90.0" text="Text" textAlignment="CENTER" textOverrun="CLIP">
+                                <Button fx:id="leftTextPaneButton" contentDisplay="TOP" graphicTextGap="0.0" layoutX="-19.0" layoutY="19.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="58.0" rotate="-90.0" text="Text" textAlignment="CENTER" textOverrun="CLIP">
                                     <font>
                                         <Font size="11.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="leftTableButton" contentDisplay="TOP" graphicTextGap="0.0" layoutX="-19.0" layoutY="77.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="58.0" rotate="-90.0" text="Table" textAlignment="CENTER" textOverrun="CLIP">
+                                <Button fx:id="leftTablePaneButton" contentDisplay="TOP" graphicTextGap="0.0" layoutX="-19.0" layoutY="77.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="58.0" rotate="-90.0" text="Table" textAlignment="CENTER" textOverrun="CLIP">
                                     <font>
                                         <Font size="11.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="leftImageButton" contentDisplay="TOP" graphicTextGap="0.0" layoutX="-19.0" layoutY="135.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="58.0" rotate="-90.0" text="Image" textAlignment="CENTER" textOverrun="CLIP">
+                                <Button fx:id="leftImagePaneButton" contentDisplay="TOP" graphicTextGap="0.0" layoutX="-19.0" layoutY="135.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="58.0" rotate="-90.0" text="Image" textAlignment="CENTER" textOverrun="CLIP">
                                     <font>
                                         <Font size="11.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="leftFormulaButton" contentDisplay="TOP" graphicTextGap="0.0" layoutX="-19.0" layoutY="193.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="58.0" rotate="-90.0" text="Formula" textAlignment="CENTER" textOverrun="CLIP">
+                                <Button fx:id="leftFormulaPaneButton" contentDisplay="TOP" graphicTextGap="0.0" layoutX="-19.0" layoutY="193.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="58.0" rotate="-90.0" text="Formula" textAlignment="CENTER" textOverrun="CLIP">
                                     <font>
                                         <Font size="11.0" />
                                     </font>
