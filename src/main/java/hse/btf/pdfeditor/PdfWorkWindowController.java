@@ -25,8 +25,10 @@ public class PdfWorkWindowController implements Initializable {
         leftPanel.setPrefWidth(20);
         textPane.setPrefWidth(0);
         tablePane.setPrefWidth(0);
+        imagePane.setPrefWidth(0);
+        formulaPane.setPrefWidth(0);
 
-        textItemButton.setOnMouseClicked(ev -> {
+        newTextButton.setOnMouseClicked(ev -> {
             itemsHolder.getObservableItemsList().add(new TextItem());
             System.out.println("Wow, you pressed me!");
         });
@@ -41,8 +43,10 @@ public class PdfWorkWindowController implements Initializable {
             }
         });
 
-        addLeftButtonClicker(leftFormulaButton, textPane);
-        addLeftButtonClicker(leftOthersButton, tablePane);
+        addLeftButtonClicker(leftTextPaneButton, textPane);
+        addLeftButtonClicker(leftTablePaneButton, tablePane);
+        addLeftButtonClicker(leftImagePaneButton, imagePane);
+        addLeftButtonClicker(leftFormulaPaneButton, formulaPane);
         pdfEditorView = new PdfEditorView(paper);
     }
 
@@ -98,18 +102,30 @@ public class PdfWorkWindowController implements Initializable {
         paper.setPrefHeight(originalPaperHeight / 100 * paperSize);
     }
 
-    @FXML
-    public Button leftFormulaButton;
-
-    @FXML
-    public Button leftOthersButton;
-
-    @FXML
-    public Button textItemButton;
-
+    /**
+     * left panel
+     **/
     @FXML
     public AnchorPane leftPanel;
 
+    /**
+     * choosing pane buttons
+     **/
+    @FXML
+    public Button leftTextPaneButton;
+
+    @FXML
+    public Button leftTablePaneButton;
+
+    @FXML
+    public Button leftImagePaneButton;
+
+    @FXML
+    public Button leftFormulaPaneButton;
+
+    /**
+     * panes
+     **/
     @FXML
     private AnchorPane selectedPane = null;
 
@@ -119,6 +135,30 @@ public class PdfWorkWindowController implements Initializable {
     @FXML
     public AnchorPane tablePane;
 
+    @FXML
+    public AnchorPane imagePane;
+
+    @FXML
+    public AnchorPane formulaPane;
+
+    /**
+     * panes' content
+     **/
+    @FXML
+    public Button newTextButton;
+
+    @FXML
+    public Button newTableButton;
+
+    @FXML
+    public Button newImageButton;
+
+    @FXML
+    public Button newFormulaButton;
+
+    /**
+     * paper
+     **/
     @FXML
     private AnchorPane paperBackground;
 
@@ -141,5 +181,4 @@ public class PdfWorkWindowController implements Initializable {
     private double originalPaperHeight;
 
     private Integer paperSize;
-
 }
