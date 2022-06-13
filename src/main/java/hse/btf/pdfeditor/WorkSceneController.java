@@ -1,7 +1,7 @@
 package hse.btf.pdfeditor;
 
-import hse.btf.pdfeditor.models.itemsstand.Item;
-import hse.btf.pdfeditor.models.itemsstand.TextItem;
+import hse.btf.pdfeditor.models.Item;
+import hse.btf.pdfeditor.models.TextItem;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static hse.btf.pdfeditor.Singleton.itemsHolder;
-import static hse.btf.pdfeditor.models.serializers.SavingClassKt.readFromFile;
-import static hse.btf.pdfeditor.models.serializers.SavingClassKt.saveToFile;
+import static hse.btf.pdfeditor.serializers.SavingClassKt.readFromFile;
+import static hse.btf.pdfeditor.serializers.SavingClassKt.saveToFile;
 
 public class WorkSceneController {
     private double lastDraggedX = -1;

@@ -18,8 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static hse.btf.pdfeditor.models.serializers.SavingClassKt.deserializeProjectsNames;
-import static hse.btf.pdfeditor.models.serializers.SavingClassKt.serializeProjectsNames;
+import static hse.btf.pdfeditor.serializers.SavingClassKt.deserializeProjectsNames;
+import static hse.btf.pdfeditor.serializers.SavingClassKt.serializeProjectsNames;
 
 public class HelloSceneController implements Initializable {
     @FXML

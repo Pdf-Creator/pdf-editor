@@ -1,6 +1,8 @@
-package hse.btf.pdfeditor.models.serializers
+package hse.btf.pdfeditor.serializers
 
+import javafx.beans.property.DoubleProperty
 import javafx.beans.property.IntegerProperty
+import javafx.beans.property.SimpleDoubleProperty
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleStringProperty
 import javafx.beans.property.StringProperty
@@ -39,5 +41,21 @@ object IntegerPropertySerializer : KSerializer<IntegerProperty> {
     override fun deserialize(decoder: Decoder): IntegerProperty {
         val intData = decoder.decodeSerializableValue(delegateSerializer)
         return SimpleIntegerProperty(intData)
+    }
+}
+
+object DoublePropertySerializer : KSerializer<DoubleProperty> {
+    private val delegateSerializer = Double.serializer()
+
+    @OptIn(ExperimentalSerializationApi::class)
+    override val descriptor = delegateSerializer.descriptor
+
+    override fun serialize(encoder: Encoder, value: DoubleProperty) {
+        encoder.encodeSerializableValue(delegateSerializer, value.get())
+    }
+
+    override fun deserialize(decoder: Decoder): DoubleProperty {
+        val doubleData = decoder.decodeSerializableValue(delegateSerializer)
+        return SimpleDoubleProperty(doubleData)
     }
 }

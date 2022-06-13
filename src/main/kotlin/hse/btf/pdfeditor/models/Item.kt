@@ -1,21 +1,23 @@
-package hse.btf.pdfeditor.models.itemsstand
+package hse.btf.pdfeditor.models
 
-import hse.btf.pdfeditor.models.serializers.IntegerPropertySerializer
-import hse.btf.pdfeditor.models.serializers.StringPropertySerializer
+import hse.btf.pdfeditor.serializers.DoublePropertySerializer
+import hse.btf.pdfeditor.serializers.IntegerPropertySerializer
+import hse.btf.pdfeditor.serializers.StringPropertySerializer
+import javafx.beans.property.DoubleProperty
 import javafx.beans.property.IntegerProperty
+import javafx.beans.property.SimpleDoubleProperty
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleStringProperty
 import javafx.beans.property.StringProperty
 import kotlinx.serialization.Serializable
 
-// внешний прямоугольник, в который обрамлен контент
 @Serializable
 sealed class Item {
-    @Serializable(with = IntegerPropertySerializer::class)
-    val x: IntegerProperty = SimpleIntegerProperty(150)
+    @Serializable(with = DoublePropertySerializer::class)
+    val x: DoubleProperty = SimpleDoubleProperty(150.0)
 
-    @Serializable(with = IntegerPropertySerializer::class)
-    val y: IntegerProperty = SimpleIntegerProperty(200)
+    @Serializable(with = DoublePropertySerializer::class)
+    val y: DoubleProperty = SimpleDoubleProperty(200.0)
 
     @Serializable(with = IntegerPropertySerializer::class)
     val w: IntegerProperty = SimpleIntegerProperty(100)

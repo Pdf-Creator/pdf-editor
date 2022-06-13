@@ -1,4 +1,4 @@
-package hse.btf.pdfeditor.models.serializers
+package hse.btf.pdfeditor.serializers
 
 import hse.btf.pdfeditor.Singleton.itemsHolder
 import kotlinx.serialization.ExperimentalSerializationApi

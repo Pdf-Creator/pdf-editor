@@ -1,6 +1,6 @@
 package hse.btf.pdfeditor
 
-import hse.btf.pdfeditor.models.itemsstand.Item
+import hse.btf.pdfeditor.models.Item
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
 import kotlinx.serialization.decodeFromString

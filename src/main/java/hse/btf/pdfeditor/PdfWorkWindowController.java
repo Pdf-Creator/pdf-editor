@@ -1,10 +1,12 @@
 package hse.btf.pdfeditor;
 
-import hse.btf.pdfeditor.models.itemsstand.TextItem;
+import hse.btf.pdfeditor.models.TableItem;
+import hse.btf.pdfeditor.models.TextItem;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -28,11 +30,13 @@ public class PdfWorkWindowController implements Initializable {
         imagePane.setPrefWidth(0);
         formulaPane.setPrefWidth(0);
 
-        newTextButton.setOnMouseClicked(ev -> {
-            itemsHolder.getObservableItemsList().add(new TextItem());
-            System.out.println("Wow, you pressed me!");
-        });
+        newTextButton.setOnMouseClicked(ev ->
+                itemsHolder.getObservableItemsList().add(new TextItem())
+        );
 
+        newTableButton.setOnMouseClicked(ev ->
+                itemsHolder.getObservableItemsList().add(new TableItem())
+        );
 
         PaperContextMenu contextMenu = new PaperContextMenu();
         paper.setOnMouseClicked(ev -> {
