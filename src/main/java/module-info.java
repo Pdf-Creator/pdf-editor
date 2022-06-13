@@ -26,10 +26,8 @@ module hse.btf.pdfeditor {
     exports hse.btf.pdfeditor;
     exports hse.btf.pdfeditor.entity;
     opens hse.btf.pdfeditor.entity to javafx.fxml;
-    exports hse.btf.pdfeditor.models.itemsfxml;
-    opens hse.btf.pdfeditor.models.itemsfxml to javafx.fxml;
-    exports hse.btf.pdfeditor.models.itemsstand;
-    opens hse.btf.pdfeditor.models.itemsstand to javafx.fxml;
+    exports hse.btf.pdfeditor.models;
+    opens hse.btf.pdfeditor.models to javafx.fxml;
 
     requires tornadofx;
     requires kotlin.stdlib;
