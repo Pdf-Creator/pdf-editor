@@ -2,6 +2,7 @@ package hse.btf.pdfeditor;
 
 import hse.btf.pdfeditor.models.itemsstand.TextItem;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,16 +10,23 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import static hse.btf.pdfeditor.Singleton.itemsHolder;
+
 
 public class PdfWorkWindowController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         paperSize = 100;
+
+        papers = new ArrayList<>();
+        papers.add(paper);
 
         originalPaperWidth = paper.getPrefWidth();
         originalPaperHeight = paper.getPrefHeight();
@@ -28,13 +36,8 @@ public class PdfWorkWindowController implements Initializable {
         imagePane.setPrefWidth(0);
         formulaPane.setPrefWidth(0);
 
-        newTextButton.setOnMouseClicked(ev -> {
-            itemsHolder.getObservableItemsList().add(new TextItem());
-            System.out.println("Wow, you pressed me!");
-        });
-
-
         PaperContextMenu contextMenu = new PaperContextMenu();
+
         paper.setOnMouseClicked(ev -> {
             if (ev.getButton() == MouseButton.SECONDARY) {
                 contextMenu.show(paper, ev.getScreenX(), ev.getScreenY());
@@ -131,6 +134,8 @@ public class PdfWorkWindowController implements Initializable {
 
     @FXML
     public AnchorPane textPane;
+
+    static List<AnchorPane> papers;
 
     @FXML
     public AnchorPane tablePane;
