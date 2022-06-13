@@ -9,8 +9,9 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-
-import java.awt.*;
+import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -25,13 +26,18 @@ public class TextPaneController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Rectangle textBox = new Rectangle(200, 200);
-        var first = papers.get(0);
-
         newTextButton.setOnMouseClicked(ev -> {
-            first.getChildren().add(textBox);
+            Region textBox = new Region();
+            textBox.setPrefWidth(100);
+            textBox.setPrefHeight(60);
+
+            papers.get(0).getStylesheets().add(PdfEditorApplication.class.getResource("main.css").toExternalForm());
+            textBox.getStyleClass().add("text-region");
+            papers.get(0).getChildren().add(textBox);
+
+            textBox.setOnMouseDragged(e -> {
+
+            });
         });
-
-
     }
 }

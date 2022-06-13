@@ -1,0 +1,6 @@
+.text-region {
+    -fx-fill: black;
+    -fx-border-color: gray;
+    -fx-border-width: 2;
+    -fx-border-style: dotted;
+}
