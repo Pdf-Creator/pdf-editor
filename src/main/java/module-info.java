@@ -34,4 +34,5 @@ module hse.btf.pdfeditor {
     requires kotlin.reflect;
     requires kotlinx.serialization.core;
     requires kotlinx.serialization.json;
+    requires annotations;
 }

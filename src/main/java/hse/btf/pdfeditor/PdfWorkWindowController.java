@@ -2,14 +2,24 @@ package hse.btf.pdfeditor;
 
 import hse.btf.pdfeditor.models.TableItem;
 import hse.btf.pdfeditor.models.TextItem;
+import hse.btf.pdfeditor.utils.CreatorConstants;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,23 +30,16 @@ public class PdfWorkWindowController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        paperSize = 100;
+        setPaperSettings();
+        setLeftPanelsActions();
 
+        pdfEditorView = new PdfEditorView(paper);
+    }
+
+    private void setPaperSettings() {
+        paperSize = 100;
         originalPaperWidth = paper.getPrefWidth();
         originalPaperHeight = paper.getPrefHeight();
-        leftPanel.setPrefWidth(20);
-        textPane.setPrefWidth(0);
-        tablePane.setPrefWidth(0);
-        imagePane.setPrefWidth(0);
-        formulaPane.setPrefWidth(0);
-
-        newTextButton.setOnMouseClicked(ev ->
-                itemsHolder.getObservableItemsList().add(new TextItem())
-        );
-
-        newTableButton.setOnMouseClicked(ev ->
-                itemsHolder.getObservableItemsList().add(new TableItem())
-        );
 
         PaperContextMenu contextMenu = new PaperContextMenu();
         paper.setOnMouseClicked(ev -> {
@@ -46,12 +49,84 @@ public class PdfWorkWindowController implements Initializable {
                 contextMenu.hide();
             }
         });
+    }
+
+    private void setLeftPanelsActions() {
+        leftPanel.setPrefWidth(20);
+
+        textPane.setPrefWidth(0);
+        tablePane.setPrefWidth(0);
+        imagePane.setPrefWidth(0);
+        formulaPane.setPrefWidth(0);
 
         addLeftButtonClicker(leftTextPaneButton, textPane);
         addLeftButtonClicker(leftTablePaneButton, tablePane);
         addLeftButtonClicker(leftImagePaneButton, imagePane);
         addLeftButtonClicker(leftFormulaPaneButton, formulaPane);
-        pdfEditorView = new PdfEditorView(paper);
+
+        setTextFieldActions();
+        setTableActions();
+        setImageActions();
+        setFormulaActions();
+    }
+
+    private void setTextFieldActions() {
+        // new text field button
+        newTextButton.setOnMouseClicked(ev ->
+                itemsHolder.getObservableItemsList().add(new TextItem())
+        );
+
+        // font
+        textShriftChoiceBox.setItems(FXCollections.observableList(CreatorConstants.FONTS));
+        textShriftChoiceBox.setValue(CreatorConstants.DEFAULT_FONT);
+        textShriftChoiceBox.setTooltip(new Tooltip("Select text font"));
+
+        // text size
+        textSizeSlider.valueProperty().addListener((changed, oldTextSize, newTextSize) -> textSizeField.setText(newTextSize.toString()));
+        textSizeField.textProperty().addListener((changed, oldTextSize, newTextSize) -> textSizeSlider.setValue(Double.parseDouble(newTextSize)));
+
+        textSizeSlider.setMin(5.0);
+        textSizeSlider.setMax(72.0);
+        textSizeField.setText("13.0");
+
+        // alignment
+        alignmentLeftButton.setToggleGroup(alignmentToggleGroup);
+        alignmentCenterButton.setToggleGroup(alignmentToggleGroup);
+        alignmentRightButton.setToggleGroup(alignmentToggleGroup);
+        alignmentWidthButton.setToggleGroup(alignmentToggleGroup);
+
+        // добавить отражение этих действий на selectedField
+
+        // text properties
+
+        // text color
+        textColorPicker.setValue(Color.BLACK);
+        textFillColorPicker.setValue(Color.WHITE);
+
+        // line spaces
+        lineSpacesSlider.valueProperty().addListener((changed, oldSpace, newSpace) -> lineSpacesField.setText(newSpace.toString()));
+        lineSpacesField.textProperty().addListener((changed, oldSpace, newSpace) -> lineSpacesSlider.setValue(Double.parseDouble(newSpace)));
+
+        lineSpacesSlider.setMin(1.0);
+        lineSpacesSlider.setMax(3.0);
+        lineSpacesField.setText("1.0");
+
+        // field color
+        textFillColorPicker.setValue(Color.WHITE);
+    }
+
+    private void setTableActions() {
+        newTableButton.setOnMouseClicked(ev ->
+                itemsHolder.getObservableItemsList().add(new TableItem())
+        );
+    }
+
+    private void setImageActions() {
+
+    }
+
+    private void setFormulaActions() {
+
     }
 
 /*
@@ -117,14 +192,8 @@ public class PdfWorkWindowController implements Initializable {
      **/
     @FXML
     public Button leftTextPaneButton;
-
-    @FXML
     public Button leftTablePaneButton;
-
-    @FXML
     public Button leftImagePaneButton;
-
-    @FXML
     public Button leftFormulaPaneButton;
 
     /**
@@ -135,28 +204,63 @@ public class PdfWorkWindowController implements Initializable {
 
     @FXML
     public AnchorPane textPane;
-
-    @FXML
     public AnchorPane tablePane;
-
-    @FXML
     public AnchorPane imagePane;
-
-    @FXML
     public AnchorPane formulaPane;
 
     /**
-     * panes' content
+     * text pane's content
      **/
     @FXML
     public Button newTextButton;
+    public ChoiceBox<String> textShriftChoiceBox;
+    public TextField textSizeField;
+    public Slider textSizeSlider;
 
+    @FXML
+    public ToggleButton alignmentLeftButton;
+    public ToggleButton alignmentCenterButton;
+    public ToggleButton alignmentRightButton;
+    public ToggleButton alignmentWidthButton;
+
+    private final ToggleGroup alignmentToggleGroup = new ToggleGroup();
+
+    @FXML
+    public ToggleButton textPropertyBoldButton;
+    public ToggleButton textPropertyCursiveButton;
+    public ToggleButton textPropertyUnderlineButton;
+    public ToggleButton textPropertyCrossOutButton;
+
+    private final ToggleGroup textPropertyToggleGroup = new ToggleGroup();
+
+    @FXML
+    public ColorPicker textColorPicker;
+    public ColorPicker textFillColorPicker;
+
+    @FXML
+    public TextField lineSpacesField;
+    public Slider lineSpacesSlider;
+
+    @FXML
+    public ColorPicker textFieldColorPicker;
+
+    private TextArea selectedTextArea;
+
+    /**
+     * table pane's content
+     **/
     @FXML
     public Button newTableButton;
 
+    /**
+     * image pane's content
+     **/
     @FXML
     public Button newImageButton;
 
+    /**
+     * formula pane's content
+     **/
     @FXML
     public Button newFormulaButton;
 
