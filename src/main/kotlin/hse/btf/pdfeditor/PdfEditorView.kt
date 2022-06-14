@@ -16,7 +16,6 @@ class PdfEditorView(layout: Pane) {
                 is TextItem -> TextArea().apply {
                     // connection with TextItem
                     textProperty().bindBidirectional(it.text)
-
                     it.fontSize.bindBidirectional(SimpleDoubleProperty(font.size))
 
 //                    styleProperty().bindBidirectional(it.style)
@@ -31,6 +30,9 @@ class PdfEditorView(layout: Pane) {
                     prefHeightProperty().bindBidirectional(it.h)
                 }
                 is TableItem -> TableView<String>().apply {
+//                    columns
+//                    TableColumn
+                    // сделать свои columns
 
                     // position
                     layoutXProperty().bindBidirectional(it.x)
