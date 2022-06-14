@@ -82,8 +82,7 @@ public class PdfWorkWindowController implements Initializable {
         textShriftChoiceBox.setTooltip(new Tooltip("Select text font"));
 
         // text size
-        textSizeSlider.valueProperty().addListener((changed, oldTextSize, newTextSize) -> textSizeField.setText(newTextSize.toString()));
-        textSizeField.textProperty().addListener((changed, oldTextSize, newTextSize) -> textSizeSlider.setValue(Double.parseDouble(newTextSize)));
+        connectSliderWithTextField(textSizeSlider, textSizeField);
 
         textSizeSlider.setMin(5.0);
         textSizeSlider.setMax(72.0);
@@ -104,8 +103,7 @@ public class PdfWorkWindowController implements Initializable {
         textFillColorPicker.setValue(Color.WHITE);
 
         // line spaces
-        lineSpacesSlider.valueProperty().addListener((changed, oldSpace, newSpace) -> lineSpacesField.setText(newSpace.toString()));
-        lineSpacesField.textProperty().addListener((changed, oldSpace, newSpace) -> lineSpacesSlider.setValue(Double.parseDouble(newSpace)));
+        connectSliderWithTextField(lineSpacesSlider, lineSpacesField);
 
         lineSpacesSlider.setMin(1.0);
         lineSpacesSlider.setMax(3.0);
@@ -119,6 +117,20 @@ public class PdfWorkWindowController implements Initializable {
         newTableButton.setOnMouseClicked(ev ->
                 itemsHolder.getObservableItemsList().add(new TableItem())
         );
+
+        // columns
+        connectSliderWithTextField(tableColsSlider, tableColsField);
+
+        tableColsSlider.setMin(1.0);
+        tableColsSlider.setMax(20.0);
+        tableColsField.setText("2.0");
+
+        // rows
+        connectSliderWithTextField(tableRowsSlider, tableRowsField);
+
+        tableRowsSlider.setMin(1.0);
+        tableRowsSlider.setMax(20.0);
+        tableRowsField.setText("2.0");
     }
 
     private void setImageActions() {
@@ -127,6 +139,11 @@ public class PdfWorkWindowController implements Initializable {
 
     private void setFormulaActions() {
 
+    }
+
+    private void connectSliderWithTextField(Slider slider, TextField field) {
+        slider.valueProperty().addListener((changed, oldValue, newValue) -> field.setText(newValue.toString()));
+        field.textProperty().addListener((changed, oldValue, newValue) -> slider.setValue(Double.parseDouble(newValue)));
     }
 
 /*
@@ -213,7 +230,11 @@ public class PdfWorkWindowController implements Initializable {
      **/
     @FXML
     public Button newTextButton;
+
+    @FXML
     public ChoiceBox<String> textShriftChoiceBox;
+
+    @FXML
     public TextField textSizeField;
     public Slider textSizeSlider;
 
@@ -251,6 +272,12 @@ public class PdfWorkWindowController implements Initializable {
      **/
     @FXML
     public Button newTableButton;
+
+    @FXML
+    public TextField tableColsField;
+    public Slider tableColsSlider;
+    public TextField tableRowsField;
+    public Slider tableRowsSlider;
 
     /**
      * image pane's content
