@@ -17,15 +17,23 @@ public class Converter {
     public static void saveDocument() throws IOException {
         PDFDocument pdfDocument = new PDFDocument();
         for (Item item : itemsHolder.getObservableItemsList()) {
+            System.out.println("Converter: converting item:" + item.toString());
+
             if (item.getClass().equals(TextItem.class)) {
+                System.out.println("TextItem if");
+
                 TextItem textItem = (TextItem) item;
-                pdfDocument.addRectangleWithTextItem(convertTextItem(textItem));
+                PDFText pdfText = convertTextItem(textItem);
+                System.out.println("x: " + pdfText.getX() + " y: " + pdfText.getY() + " w: " + pdfText.getW() + " h: " + pdfText.getH() + " text: " + pdfText.getText());
+
+                pdfDocument.addRectangleWithTextItem(pdfText);
             }
         }
         pdfDocument.exportDocument();
     }
 
     private static PDFText convertTextItem(TextItem textItem) {
+        System.out.println("x: " + textItem.getX() + " y: " + textItem.getY() + " w: " + textItem.getW() + " h: " + textItem.getH());
         PDFText pdfText = new PDFText(
                 textItem.getX().get(),
                 textItem.getY().get(),
