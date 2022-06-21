@@ -33,7 +33,7 @@ public class PDFDocumentTest {
     public void addRectangleWithTextTest() {
         PDFText textItem = new PDFText(x, y, w, h);
         textItem.setText("Testing TextItem");
-        textItem.setFontColor(ColorConstants.BLACK);
+        textItem.setTextColor(ColorConstants.BLACK);
         textItem.setRectangleStrokeColor(ColorConstants.BLACK);
         pdfDocument.addRectangleWithTextItem(textItem);
     }

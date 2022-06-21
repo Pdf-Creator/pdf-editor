@@ -19,6 +19,7 @@ import org.scilab.forge.jlatexmath.TeXIcon;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.text.StyleConstants;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -78,8 +79,10 @@ public class PDFDocument {
                 .stroke();
 
         // adding text to rectangle;
-        Paragraph paragraph = new Paragraph(textItem.getText());
-        paragraph.setFontColor(textItem.getFontColor());
+        Paragraph paragraph = new Paragraph();
+        paragraph.setFont(textItem.getTextFont())
+                .setFontColor(textItem.getTextColor())
+                .add(textItem.getText());
 
         new Canvas(canvas, rect).add(paragraph);
     }
@@ -106,7 +109,7 @@ public class PDFDocument {
         // -- painting the formula --
         Graphics2D g2d = bimg.createGraphics();
         g2d.setColor(Color.white);
-        g2d.fillRect(0,0, ti.getIconWidth(), ti.getIconHeight());
+        g2d.fillRect(0, 0, ti.getIconWidth(), ti.getIconHeight());
         JLabel jl = new JLabel();
         jl.setForeground(new Color(0, 0, 0));
         ti.paintIcon(jl, g2d, 0, 0);
