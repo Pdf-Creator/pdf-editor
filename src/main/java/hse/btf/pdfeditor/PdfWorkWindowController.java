@@ -1,7 +1,7 @@
 package hse.btf.pdfeditor;
 
+import hse.btf.pdfeditor.service.Converter;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,28 +15,47 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static hse.btf.pdfeditor.Singleton.itemsHolder;
-
-
 public class PdfWorkWindowController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        paperSize = 100;
+        setPaperSettings();
+        setLeftPanelsActions();
 
         papers = new ArrayList<>();
         papers.add(paper);
 
-        originalPaperWidth = paper.getPrefWidth();
-        originalPaperHeight = paper.getPrefHeight();
+        createPdfButton.setOnMouseClicked(ev -> {
+            try {
+                Converter.saveDocument();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        pdfEditorView = new PdfEditorView(paper);
+    }
+
+    private void setLeftPanelsActions() {
         leftPanel.setPrefWidth(20);
+
         textPane.setPrefWidth(0);
         tablePane.setPrefWidth(0);
         imagePane.setPrefWidth(0);
         formulaPane.setPrefWidth(0);
 
-        PaperContextMenu contextMenu = new PaperContextMenu();
+        addLeftButtonClicker(leftTextPaneButton, textPane);
+        addLeftButtonClicker(leftTablePaneButton, tablePane);
+        addLeftButtonClicker(leftImagePaneButton, imagePane);
+        addLeftButtonClicker(leftFormulaPaneButton, formulaPane);
+    }
 
+    private void setPaperSettings() {
+        paperSize = 100;
+        originalPaperWidth = paper.getPrefWidth();
+        originalPaperHeight = paper.getPrefHeight();
+
+        PaperContextMenu contextMenu = new PaperContextMenu();
         paper.setOnMouseClicked(ev -> {
             if (ev.getButton() == MouseButton.SECONDARY) {
                 contextMenu.show(paper, ev.getScreenX(), ev.getScreenY());
@@ -44,12 +63,6 @@ public class PdfWorkWindowController implements Initializable {
                 contextMenu.hide();
             }
         });
-
-        addLeftButtonClicker(leftTextPaneButton, textPane);
-        addLeftButtonClicker(leftTablePaneButton, tablePane);
-        addLeftButtonClicker(leftImagePaneButton, imagePane);
-        addLeftButtonClicker(leftFormulaPaneButton, formulaPane);
-        pdfEditorView = new PdfEditorView(paper);
     }
 
 /*
@@ -177,6 +190,9 @@ public class PdfWorkWindowController implements Initializable {
 
     @FXML
     private Label sizeLabel;
+
+    @FXML
+    private Button createPdfButton;
 
     private PdfEditorView pdfEditorView;
 
