@@ -1,6 +1,6 @@
 package hse.btf.pdfeditor
 
-import hse.btf.pdfeditor.Singleton.itemsHolder
+import hse.btf.pdfeditor.utils.Singleton.itemsHolder
 import hse.btf.pdfeditor.models.TableItem
 import hse.btf.pdfeditor.models.TextItem
 import javafx.beans.property.SimpleDoubleProperty

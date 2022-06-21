@@ -1,6 +1,7 @@
 package hse.btf.pdfeditor
 
 import hse.btf.pdfeditor.models.Item
+import hse.btf.pdfeditor.utils.Singleton
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
 import kotlinx.serialization.decodeFromString
