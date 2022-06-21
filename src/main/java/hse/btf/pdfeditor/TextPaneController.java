@@ -1,5 +1,6 @@
 package hse.btf.pdfeditor;
 
+import hse.btf.pdfeditor.models.TextItem;
 import hse.btf.pdfeditor.utils.CreatorConstants;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -24,6 +25,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static hse.btf.pdfeditor.PdfWorkWindowController.papers;
+import static hse.btf.pdfeditor.utils.Singleton.itemsHolder;
 
 public class TextPaneController implements Initializable {
     private static class Position {
@@ -36,97 +38,103 @@ public class TextPaneController implements Initializable {
         setTextFieldActions();
 
         newTextButton.setOnMouseClicked(ev -> {
-            AnchorPane textBox = new AnchorPane();
-            textBox.setPrefWidth(150);
-            textBox.setPrefHeight(90);
-
-            TextArea text = new TextArea();
-            text.setWrapText(true);
-
-            Circle resizePoint = new Circle(6, Color.WHITE);
-            resizePoint.setStrokeWidth(1);
-            resizePoint.setStrokeType(StrokeType.INSIDE);
-            resizePoint.setStroke(Color.valueOf("0x808080FF"));
-
-            AnchorPane.setRightAnchor(resizePoint, -6.0);
-            AnchorPane.setBottomAnchor(resizePoint, -6.0);
-
-            AnchorPane.setTopAnchor(text, 8.0);
-            AnchorPane.setLeftAnchor(text, 8.0);
-            AnchorPane.setRightAnchor(text, 8.0);
-            AnchorPane.setBottomAnchor(text, 8.0);
-
-            textBox.getChildren().add(text);
-            textBox.getChildren().add(resizePoint);
-
-            textBox.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> textBox.setCursor(Cursor.HAND));
-            textBox.addEventHandler(MouseEvent.MOUSE_EXITED, event -> textBox.setCursor(Cursor.DEFAULT));
-
-            final Position pos = new Position();
-
-            textBox.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
-                textBox.setCursor(Cursor.MOVE);
-                pos.x = e.getX();
-                pos.y = e.getY();
-            });
-
-            textBox.addEventHandler(MouseEvent.MOUSE_RELEASED, event -> textBox.setCursor(Cursor.DEFAULT));
-
-            textBox.setOnMouseDragged(e -> {
-                double distanceX = e.getX() - pos.x;
-                double distanceY = e.getY() - pos.y;
-
-                double x = textBox.getLayoutX() + distanceX;
-                double y = textBox.getLayoutY() + distanceY;
-
-                textBox.relocate(x, y);
-            });
-
-            resizePoint.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
-                textBox.setCursor(Cursor.SE_RESIZE);
-                event.consume();
-            });
-
-            resizePoint.addEventHandler(MouseEvent.MOUSE_EXITED, event -> {
-                textBox.setCursor(Cursor.DEFAULT);
-                event.consume();
-            });
-
-            resizePoint.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
-                pos.x = e.getX();
-                pos.y = e.getY();
-                e.consume();
-            });
-
-            resizePoint.addEventHandler(MouseEvent.MOUSE_RELEASED, event -> {
-                textBox.setCursor(Cursor.DEFAULT);
-                event.consume();
-            });
-
-            resizePoint.setOnMouseDragged(e -> {
-                double distanceX = e.getX() - pos.x;
-                double distanceY = e.getY() - pos.y;
-
-                double x = textBox.getPrefWidth() + distanceX;
-                double y = textBox.getPrefHeight() + distanceY;
-
-                textBox.setPrefWidth(x);
-                textBox.setPrefHeight(y);
-                e.consume();
-            });
-
-            papers.get(0).getStylesheets().add(PdfEditorApplication.class.getResource("main.css").toExternalForm());
-            textBox.getStyleClass().add("text-region");
-            papers.get(0).getChildren().add(textBox);
+            // вернуть из метода добавления непосредственно созданный TextArea
+            // и вызвать setTextAreaSettings(textArea);
+            itemsHolder.getObservableItemsList().add(new TextItem());
+            if (PdfEditorView.lastAddedNode instanceof TextArea) {
+                TextArea textArea = (TextArea) PdfEditorView.lastAddedNode;
+                setTextAreaSettings(textArea);
+            } else {
+                System.out.println("Something went wrong, when textArea was creating");
+            }
         });
     }
 
-    private void setTextFieldActions() {
-//        // new text field button
-//        newTextButton.setOnMouseClicked(ev ->
-//                itemsHolder.getObservableItemsList().add(new TextItem())
-//        );
+    public void setTextAreaSettings(TextArea text) {
+        AnchorPane textBox = new AnchorPane();
+        textBox.setPrefWidth(150);
+        textBox.setPrefHeight(90);
 
+        text.setWrapText(true);
+
+        Circle resizePoint = new Circle(6, Color.WHITE);
+        resizePoint.setStrokeWidth(1);
+        resizePoint.setStrokeType(StrokeType.INSIDE);
+        resizePoint.setStroke(Color.valueOf("0x808080FF"));
+
+        AnchorPane.setRightAnchor(resizePoint, -6.0);
+        AnchorPane.setBottomAnchor(resizePoint, -6.0);
+
+        AnchorPane.setTopAnchor(text, 8.0);
+        AnchorPane.setLeftAnchor(text, 8.0);
+        AnchorPane.setRightAnchor(text, 8.0);
+        AnchorPane.setBottomAnchor(text, 8.0);
+
+        textBox.getChildren().add(text);
+        textBox.getChildren().add(resizePoint);
+
+        textBox.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> textBox.setCursor(Cursor.HAND));
+        textBox.addEventHandler(MouseEvent.MOUSE_EXITED, event -> textBox.setCursor(Cursor.DEFAULT));
+
+        final Position pos = new Position();
+
+        textBox.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
+            textBox.setCursor(Cursor.MOVE);
+            pos.x = e.getX();
+            pos.y = e.getY();
+        });
+
+        textBox.addEventHandler(MouseEvent.MOUSE_RELEASED, event -> textBox.setCursor(Cursor.DEFAULT));
+
+        textBox.setOnMouseDragged(e -> {
+            double distanceX = e.getX() - pos.x;
+            double distanceY = e.getY() - pos.y;
+
+            double x = textBox.getLayoutX() + distanceX;
+            double y = textBox.getLayoutY() + distanceY;
+
+            textBox.relocate(x, y);
+        });
+
+        resizePoint.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> {
+            textBox.setCursor(Cursor.SE_RESIZE);
+            event.consume();
+        });
+
+        resizePoint.addEventHandler(MouseEvent.MOUSE_EXITED, event -> {
+            textBox.setCursor(Cursor.DEFAULT);
+            event.consume();
+        });
+
+        resizePoint.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
+            pos.x = e.getX();
+            pos.y = e.getY();
+            e.consume();
+        });
+
+        resizePoint.addEventHandler(MouseEvent.MOUSE_RELEASED, event -> {
+            textBox.setCursor(Cursor.DEFAULT);
+            event.consume();
+        });
+
+        resizePoint.setOnMouseDragged(e -> {
+            double distanceX = e.getX() - pos.x;
+            double distanceY = e.getY() - pos.y;
+
+            double x = textBox.getPrefWidth() + distanceX;
+            double y = textBox.getPrefHeight() + distanceY;
+
+            textBox.setPrefWidth(x);
+            textBox.setPrefHeight(y);
+            e.consume();
+        });
+
+        papers.get(0).getStylesheets().add(PdfEditorApplication.class.getResource("main.css").toExternalForm());
+        textBox.getStyleClass().add("text-region");
+        papers.get(0).getChildren().add(textBox);
+    }
+
+    private void setTextFieldActions() {
         // font
         textShriftChoiceBox.setItems(FXCollections.observableList(CreatorConstants.FONTS));
         textShriftChoiceBox.setValue(CreatorConstants.DEFAULT_FONT);
