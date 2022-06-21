@@ -1,6 +1,5 @@
 package hse.btf.pdfeditor;
 
-import hse.btf.pdfeditor.PdfEditorView;
 import hse.btf.pdfeditor.models.PaperContextMenu;
 import hse.btf.pdfeditor.service.Converter;
 import javafx.fxml.FXML;
@@ -146,10 +145,10 @@ public class PdfWorkWindowController implements Initializable {
     @FXML
     private AnchorPane selectedPane = null;
 
+    public static List<AnchorPane> papers;
+
     @FXML
     public AnchorPane textPane;
-
-    public static List<AnchorPane> papers;
 
     @FXML
     public AnchorPane tablePane;
@@ -159,21 +158,6 @@ public class PdfWorkWindowController implements Initializable {
 
     @FXML
     public AnchorPane formulaPane;
-
-    /**
-     * panes' content
-     **/
-//    @FXML
-//    public Button newTextButton;
-
-    @FXML
-    public Button newTableButton;
-
-    @FXML
-    public Button newImageButton;
-
-    @FXML
-    public Button newFormulaButton;
 
     /**
      * paper

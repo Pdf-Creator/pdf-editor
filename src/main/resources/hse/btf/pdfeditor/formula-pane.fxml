@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="554.0"
+            prefWidth="144.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0"
+            AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="hse.btf.pdfeditor.FormulaPaneController">
+    <children>
+        <Button fx:id="newFormulaButton" layoutX="8.0" layoutY="14.0" maxHeight="-Infinity"
+                maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" prefHeight="40.0" prefWidth="128.0" text="New formula"
+                textFill="#9e3636" textOverrun="CLIP"/>
+        <Separator layoutX="2.0" layoutY="64.0" prefHeight="3.0" prefWidth="144.0"/>
+    </children>
+</AnchorPane>
