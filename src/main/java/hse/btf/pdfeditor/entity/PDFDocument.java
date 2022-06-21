@@ -2,6 +2,7 @@ package hse.btf.pdfeditor.entity;
 
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.geom.Rectangle;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfPage;
@@ -33,12 +34,17 @@ public class PDFDocument {
     private final PdfDocument pdfDocument;
     List<PdfPage> pages;
     private PdfPage currentPage;
+    private final PageSize pageSize;
 
     public PDFDocument() throws IOException {
-        this("out/file.pdf");
+        this("out/file.pdf", PageSize.A4);
     }
 
     public PDFDocument(String fileName) throws IOException {
+        this(fileName, PageSize.A4);
+    }
+
+    public PDFDocument(String fileName, PageSize pageSize) throws IOException {
         Path path = Paths.get(fileName);
         if (!Files.exists(path)) {
             Files.createDirectories(path.getParent());
@@ -46,7 +52,12 @@ public class PDFDocument {
         }
         pdfWriter = new PdfWriter(fileName);
         pdfDocument = new PdfDocument(pdfWriter);
+        this.pageSize = pageSize;
         addPage();
+    }
+
+    public PageSize getPageSize() {
+        return pageSize;
     }
 
     public void addRectangleWithTextItem(PDFText textItem) {
@@ -168,7 +179,7 @@ public class PDFDocument {
     }
 
     public void exportDocument() {
-        Document document = new Document(pdfDocument);
+        Document document = new Document(pdfDocument, pageSize);
         document.close();
     }
 }
