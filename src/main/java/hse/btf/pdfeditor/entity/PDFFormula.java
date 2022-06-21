@@ -1,10 +1,10 @@
 package hse.btf.pdfeditor.entity;
 
-public class FormulaItem extends DocumentItem {
+public class PDFFormula extends PDFItem {
     private String formula;
     private int fontSize;
 
-    public FormulaItem(float x, float y, float w, float h) {
+    public PDFFormula(float x, float y, float w, float h) {
         super(x, y, w, h);
     }
 

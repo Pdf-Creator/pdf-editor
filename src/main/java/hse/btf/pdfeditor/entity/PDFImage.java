@@ -1,9 +1,9 @@
 package hse.btf.pdfeditor.entity;
 
-public class ImageItem extends DocumentItem {
+public class PDFImage extends PDFItem {
     private String imagePath;
 
-    public ImageItem(float x, float y, float w, float h) {
+    public PDFImage(float x, float y, float w, float h) {
         super(x, y, w, h);
     }
 

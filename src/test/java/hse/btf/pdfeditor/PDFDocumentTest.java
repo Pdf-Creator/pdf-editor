@@ -4,7 +4,6 @@ import com.itextpdf.kernel.colors.ColorConstants;
 import hse.btf.pdfeditor.entity.*;
 import org.junit.jupiter.api.*;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.List;
@@ -32,7 +31,7 @@ public class PDFDocumentTest {
     @Test
     @Order(1)
     public void addRectangleWithTextTest() {
-        TextItem textItem = new TextItem(x, y, w, h);
+        PDFText textItem = new PDFText(x, y, w, h);
         textItem.setText("Testing TextItem");
         textItem.setFontColor(ColorConstants.BLACK);
         textItem.setRectangleStrokeColor(ColorConstants.BLACK);
@@ -42,7 +41,7 @@ public class PDFDocumentTest {
     @Test
     @Order(2)
     public void addRectangleWithImageTest() throws MalformedURLException {
-        ImageItem imageItem = new ImageItem(x, y, w, h);
+        PDFImage imageItem = new PDFImage(x, y, w, h);
         imageItem.setImagePath("image_examples/Java_logo.svg");
         imageItem.setRectangleStrokeColor(ColorConstants.BLACK);
         pdfDocument.addRectangleWithImageItem(imageItem);
@@ -51,7 +50,7 @@ public class PDFDocumentTest {
     @Test
     @Order(3)
     public void addRectangleWithTableTest() {
-        TableItem tableItem = new TableItem(x, y, w, h);
+        PDFTable tableItem = new PDFTable(x, y, w, h);
         tableItem.setCols(3);
         List<String> content = List.of("1", "2", "3", "4", "5", "6", "7", "8", "9");
         tableItem.setCellContents(content);
@@ -62,7 +61,7 @@ public class PDFDocumentTest {
     @Test
     @Order(4)
     public void addRectangleWithFormulaTest() throws IOException {
-        FormulaItem formulaItem = new FormulaItem(x, y, w, h);
+        PDFFormula formulaItem = new PDFFormula(x, y, w, h);
         formulaItem.setFormula("x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}");
         formulaItem.setFontSize(20);
         pdfDocument.addRectangleWithFormulaItem(formulaItem);

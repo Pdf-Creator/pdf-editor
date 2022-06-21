@@ -49,15 +49,15 @@ public class PDFDocument {
         addPage();
     }
 
-    public void addRectangleWithTextItem(TextItem textItem) {
+    public void addRectangleWithTextItem(PDFText textItem) {
         // creating canvas on current page
         PdfCanvas canvas = new PdfCanvas(currentPage);
         // creating rectangle on canvas
         Rectangle rect = new Rectangle(
-                textItem.getX(),
-                textItem.getY(),
-                textItem.getW(),
-                textItem.getH()
+                (float) textItem.getX(),
+                (float) textItem.getY(),
+                (float) textItem.getW(),
+                (float) textItem.getH()
         );
         // drawing rectangle
         canvas.setStrokeColor(textItem.getRectangleStrokeColor())
@@ -73,13 +73,13 @@ public class PDFDocument {
         new Canvas(canvas, rect).add(paragraph);
     }
 
-    public void addRectangleWithFormulaItem(FormulaItem formulaItem) throws IOException {
+    public void addRectangleWithFormulaItem(PDFFormula formulaItem) throws IOException {
         PdfCanvas canvas = new PdfCanvas(currentPage);
         Rectangle rect = new Rectangle(
-                formulaItem.getX(),
-                formulaItem.getY(),
-                formulaItem.getW(),
-                formulaItem.getW()
+                (float) formulaItem.getX(),
+                (float) formulaItem.getY(),
+                (float) formulaItem.getW(),
+                (float) formulaItem.getW()
         );
         canvas.setStrokeColor(formulaItem.getRectangleStrokeColor())
                 .setFillColor(formulaItem.getRectangleStrokeColor())
@@ -106,19 +106,19 @@ public class PDFDocument {
         ImageIO.write(bimg, "png", byteArrayOutputStream);
         ImageData data = ImageDataFactory.create(byteArrayOutputStream.toByteArray());
         Image image = new Image(data);
-        image.setFixedPosition(formulaItem.getX(), formulaItem.getY());
-        image.scaleAbsolute(formulaItem.getW(), formulaItem.getH());
+        image.setFixedPosition((float) formulaItem.getX(), (float) formulaItem.getY());
+        image.scaleAbsolute((float) formulaItem.getW(), (float) formulaItem.getH());
 
         new Canvas(canvas, rect).add(image);
     }
 
-    public void addRectangleWithImageItem(ImageItem imageItem) throws MalformedURLException {
+    public void addRectangleWithImageItem(PDFImage imageItem) throws MalformedURLException {
         PdfCanvas canvas = new PdfCanvas(currentPage);
         Rectangle rect = new Rectangle(
-                imageItem.getX(),
-                imageItem.getY(),
-                imageItem.getW(),
-                imageItem.getH()
+                (float) imageItem.getX(),
+                (float) imageItem.getY(),
+                (float) imageItem.getW(),
+                (float) imageItem.getH()
         );
 
         canvas.setStrokeColor(imageItem.getRectangleStrokeColor())
@@ -129,19 +129,19 @@ public class PDFDocument {
 
         ImageData data = ImageDataFactory.create(imageItem.getImagePath());
         Image image = new Image(data);
-        image.setFixedPosition(imageItem.getX(), imageItem.getY());
-        image.scaleAbsolute(imageItem.getW(), imageItem.getH());
+        image.setFixedPosition((float) imageItem.getX(), (float) imageItem.getY());
+        image.scaleAbsolute((float) imageItem.getW(), (float) imageItem.getH());
 
         new Canvas(canvas, rect).add(image);
     }
 
-    public void addRectangleWithTableItem(TableItem tableItem) {
+    public void addRectangleWithTableItem(PDFTable tableItem) {
         PdfCanvas canvas = new PdfCanvas(currentPage);
         Rectangle rect = new Rectangle(
-                tableItem.getX(),
-                tableItem.getY(),
-                tableItem.getW(),
-                tableItem.getH()
+                (float) tableItem.getX(),
+                (float) tableItem.getY(),
+                (float) tableItem.getW(),
+                (float) tableItem.getH()
         );
         canvas.setStrokeColor(tableItem.getRectangleStrokeColor())
                 .setFillColor(tableItem.getRectangleFillColor())

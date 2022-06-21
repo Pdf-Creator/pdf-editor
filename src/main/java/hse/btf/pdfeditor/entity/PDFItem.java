@@ -3,15 +3,15 @@ package hse.btf.pdfeditor.entity;
 import com.itextpdf.kernel.colors.Color;
 import com.itextpdf.kernel.colors.ColorConstants;
 
-public class DocumentItem {
-    private float x;
-    private float y;
-    private float w;
-    private float h;
+public class PDFItem {
+    private double x;
+    private double y;
+    private double w;
+    private double h;
     private Color rectangleStrokeColor;
     private Color rectangleFillColor;
 
-    public DocumentItem(float x, float y, float w, float h) {
+    public PDFItem(double x, double y, double w, double h) {
         this.x = x;
         this.y = y;
         this.w = w;
@@ -44,19 +44,19 @@ public class DocumentItem {
         this.h = h;
     }
 
-    public float getX() {
+    public double getX() {
         return x;
     }
 
-    public float getY() {
+    public double getY() {
         return y;
     }
 
-    public float getW() {
+    public double getW() {
         return w;
     }
 
-    public float getH() {
+    public double getH() {
         return h;
     }
 

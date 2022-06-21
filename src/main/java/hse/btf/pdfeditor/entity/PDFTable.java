@@ -4,13 +4,13 @@ import com.itextpdf.kernel.colors.Color;
 
 import java.util.List;
 
-public class TableItem extends DocumentItem {
+public class PDFTable extends PDFItem {
     private int cols;
     private List<? extends String> cellContents;
     private Color fontColor;
 
 
-    public TableItem(float x, float y, float w, float h) {
+    public PDFTable(double x, double y, double w, double h) {
         super(x, y, w, h);
     }
 
