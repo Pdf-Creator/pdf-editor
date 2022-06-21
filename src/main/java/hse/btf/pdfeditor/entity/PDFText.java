@@ -1,6 +1,7 @@
 package hse.btf.pdfeditor.entity;
 
 import com.itextpdf.kernel.colors.Color;
+import com.itextpdf.kernel.colors.ColorConstants;
 
 public class PDFText extends PDFItem {
     private String text;
@@ -9,6 +10,7 @@ public class PDFText extends PDFItem {
     public PDFText(double x, double y, double w, double h) {
         super(x, y, w, h);
         this.text = "Add text";
+        this.fontColor = ColorConstants.BLACK;
     }
 
     public void setText(String text) {
