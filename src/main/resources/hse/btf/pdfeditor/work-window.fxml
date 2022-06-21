@@ -164,7 +164,10 @@
                         </AnchorPane>
                     </content>
                 </ScrollPane>
-                <AnchorPane prefHeight="557.0" prefWidth="200.0" />
+                <AnchorPane prefHeight="557.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="createPdfButton" layoutX="5.0" layoutY="14.0" mnemonicParsing="false" text="createPdf" />
+               </children></AnchorPane>
             </items>
         </SplitPane>
         <AnchorPane prefHeight="10.0" prefWidth="903.0">

@@ -2,6 +2,7 @@ package hse.btf.pdfeditor;
 
 import hse.btf.pdfeditor.models.TableItem;
 import hse.btf.pdfeditor.models.TextItem;
+import hse.btf.pdfeditor.service.Converter;
 import hse.btf.pdfeditor.utils.CreatorConstants;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -21,6 +22,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -32,6 +34,14 @@ public class PdfWorkWindowController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setPaperSettings();
         setLeftPanelsActions();
+
+        createPdfButton.setOnMouseClicked(ev -> {
+            try {
+                Converter.saveDocument();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
         pdfEditorView = new PdfEditorView(paper);
     }
@@ -310,6 +320,9 @@ public class PdfWorkWindowController implements Initializable {
 
     @FXML
     private Label sizeLabel;
+
+    @FXML
+    private Button createPdfButton;
 
     private PdfEditorView pdfEditorView;
 

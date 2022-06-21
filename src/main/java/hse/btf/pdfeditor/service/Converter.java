@@ -14,7 +14,7 @@ import java.io.IOException;
 import static hse.btf.pdfeditor.Singleton.itemsHolder;
 
 public class Converter {
-    public void saveDocument() throws IOException {
+    public static void saveDocument() throws IOException {
         PDFDocument pdfDocument = new PDFDocument();
         for (Item item : itemsHolder.getObservableItemsList()) {
             if (item.getClass().equals(TextItem.class)) {
@@ -25,7 +25,7 @@ public class Converter {
         pdfDocument.exportDocument();
     }
 
-    private PDFText convertTextItem(TextItem textItem) {
+    private static PDFText convertTextItem(TextItem textItem) {
         PDFText pdfText = new PDFText(
                 textItem.getX().get(),
                 textItem.getY().get(),
