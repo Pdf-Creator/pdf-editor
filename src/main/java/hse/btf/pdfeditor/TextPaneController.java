@@ -1,7 +1,5 @@
 package hse.btf.pdfeditor;
 
-import hse.btf.pdfeditor.models.itemsstand.Item;
-import hse.btf.pdfeditor.models.itemsstand.TextItem;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;

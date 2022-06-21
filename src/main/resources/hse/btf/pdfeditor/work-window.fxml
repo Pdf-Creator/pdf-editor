@@ -64,43 +64,8 @@
             <items>
                 <AnchorPane fx:id="leftPanel" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="164.0">
                     <children>
-                        <AnchorPane fx:id="textPane" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                            <children>
-                                <Button fx:id="newTextButton" layoutX="9.0" layoutY="13.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="128.0" text="New text field" textFill="#9e3636" textOverrun="CLIP" AnchorPane.leftAnchor="9.0" AnchorPane.topAnchor="13.0" />
-                                <Slider fx:id="textSizeSlider" layoutX="8.0" layoutY="159.0" prefHeight="24.0" prefWidth="134.0" />
-                                <Label alignment="CENTER" layoutX="9.0" layoutY="131.0" prefHeight="21.0" prefWidth="66.0" text="Text size:" />
-                                <TextField fx:id="textSizeField" alignment="CENTER" layoutX="77.0" layoutY="131.0" prefHeight="24.0" prefWidth="47.0" />
-                                <Separator layoutY="63.0" prefHeight="3.0" prefWidth="144.0" />
-                                <ChoiceBox fx:id="textShriftChoiceBox" accessibleText="font" layoutX="11.0" layoutY="84.0" prefHeight="9.0" prefWidth="128.0" />
-                                <Label alignment="CENTER" layoutX="40.0" layoutY="66.0" prefHeight="3.0" prefWidth="66.0" text="Font" />
-                                <Separator layoutY="121.0" prefHeight="3.0" prefWidth="144.0" />
-                                <Separator layoutX="2.0" layoutY="192.0" prefHeight="3.0" prefWidth="144.0" />
-                                <Separator layoutX="-1.0" layoutY="28.0" orientation="VERTICAL" prefHeight="200.0" />
-                                <ColorPicker fx:id="textColorPicker" layoutX="8.0" layoutY="340.0" prefHeight="24.0" prefWidth="128.0" />
-                                <Label layoutX="42.0" layoutY="322.0" text="Text color" />
-                                <Label alignment="CENTER" layoutX="41.0" layoutY="498.0" text="Field color" />
-                                <ColorPicker fx:id="textFieldColorPicker" layoutX="8.0" layoutY="516.0" prefHeight="24.0" prefWidth="128.0" />
-                                <Label alignment="CENTER" layoutX="27.0" layoutY="195.0" prefHeight="18.0" prefWidth="89.0" text="Alignment" />
-                                <Separator layoutY="255.0" prefHeight="3.0" prefWidth="144.0" />
-                                <Label alignment="CENTER" layoutX="41.0" layoutY="259.0" text="Properties" />
-                                <ToggleButton fx:id="textPropertyBoldButton" layoutX="6.0" layoutY="279.0" minWidth="33.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="33.0" text="B" textAlignment="CENTER" />
-                                <ToggleButton fx:id="textPropertyCursiveButton" layoutX="38.0" layoutY="279.0" minWidth="33.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="33.0" text="C" textAlignment="CENTER" />
-                                <ToggleButton fx:id="textPropertyUnderlineButton" layoutX="70.0" layoutY="279.0" minWidth="33.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="33.0" text="U" textAlignment="CENTER" underline="true" />
-                                <ToggleButton fx:id="textPropertyCrossOutButton" layoutX="102.0" layoutY="279.0" minWidth="33.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="33.0" text="S" textAlignment="CENTER" />
-                                <ToggleButton fx:id="alignmentLeftButton" layoutX="6.0" layoutY="215.0" minWidth="33.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="33.0" text="L" textAlignment="CENTER" />
-                                <ToggleButton fx:id="alignmentCenterButton" layoutX="38.0" layoutY="215.0" minWidth="33.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="33.0" text="C" textAlignment="CENTER" />
-                                <ToggleButton fx:id="alignmentRightButton" layoutX="70.0" layoutY="215.0" minWidth="33.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="33.0" text="R" textAlignment="CENTER" />
-                                <ToggleButton fx:id="alignmentWidthButton" layoutX="102.0" layoutY="215.0" minWidth="33.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="33.0" text="W" textAlignment="CENTER" />
-                                <Separator layoutX="-3.0" layoutY="319.0" prefHeight="3.0" prefWidth="154.0" />
-                                <Label layoutX="45.0" layoutY="372.0" text="Color fill" />
-                                <ColorPicker fx:id="textFillColorPicker" layoutX="8.0" layoutY="390.0" prefHeight="24.0" prefWidth="128.0" />
-                                <Separator layoutX="-1.0" layoutY="424.0" prefHeight="3.0" prefWidth="154.0" />
-                                <Label alignment="CENTER" layoutX="-2.0" layoutY="434.0" prefHeight="21.0" prefWidth="83.0" text="Line spaces:" />
-                                <TextField fx:id="lineSpacesField" alignment="CENTER" layoutX="79.0" layoutY="434.0" prefHeight="24.0" prefWidth="47.0" />
-                                <Slider fx:id="lineSpacesSlider" layoutX="10.0" layoutY="465.0" prefHeight="24.0" prefWidth="134.0" />
-                                <Separator layoutY="491.0" prefHeight="3.0" prefWidth="144.0" />
-                            </children>
-                        </AnchorPane>
+                        <fx:include fx:id="textPane" source="text-pane.fxml"/>
+
                         <AnchorPane fx:id="tablePane" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="144.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Button fx:id="newTableButton" layoutX="8.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="128.0" text="New table" textFill="#9e3636" textOverrun="CLIP" />
