@@ -38,20 +38,21 @@ public class TextPaneController implements Initializable {
         setTextFieldActions();
 
         newTextButton.setOnMouseClicked(ev -> {
-            // вернуть из метода добавления непосредственно созданный TextArea
-            // и вызвать setTextAreaSettings(textArea);
             itemsHolder.getObservableItemsList().add(new TextItem());
+
             if (PdfEditorView.lastAddedNode instanceof TextArea) {
                 TextArea textArea = (TextArea) PdfEditorView.lastAddedNode;
-                setTextAreaSettings(textArea);
+                AnchorPane textBox = PdfEditorView.lastAddedAnchorPane;
+                assert textBox != null;
+
+                setTextAreaSettings(textArea, textBox);
             } else {
                 System.out.println("Something went wrong, when textArea was creating");
             }
         });
     }
 
-    public void setTextAreaSettings(TextArea text) {
-        AnchorPane textBox = new AnchorPane();
+    public void setTextAreaSettings(TextArea text, AnchorPane textBox) {
         textBox.setPrefWidth(150);
         textBox.setPrefHeight(90);
 
