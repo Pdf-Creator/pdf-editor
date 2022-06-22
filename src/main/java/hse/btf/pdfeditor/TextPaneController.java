@@ -34,7 +34,6 @@ public class TextPaneController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setTextFieldActions();
-        papers.get(0).getStylesheets().add(PdfEditorApplication.class.getResource("main.css").toExternalForm());
 
 
         newTextButton.setOnMouseClicked(ev -> {
@@ -43,7 +42,10 @@ public class TextPaneController implements Initializable {
             entity.setTopPadding(8.0);
             entity.setLeftPadding(8.0);
             entity.setRightPadding(8.0);
+            entity.setWidth(150);
+            entity.setHeight(90);
             papers.get(0).getChildren().add(entity.createFxmlObject());
+            papers.get(0).getStylesheets().add(PdfEditorApplication.class.getResource("main.css").toExternalForm());
         });
     }
 

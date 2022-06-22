@@ -20,11 +20,11 @@ public class PdfWorkWindowController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        papers = new ArrayList<>();
+        papers.add(paper);
         setPaperSettings();
         setLeftPanelsActions();
 
-        papers = new ArrayList<>();
-        papers.add(paper);
 
         createPdfButton.setOnMouseClicked(ev -> {
             try {
@@ -33,8 +33,6 @@ public class PdfWorkWindowController implements Initializable {
                 e.printStackTrace();
             }
         });
-
-        pdfEditorView = new PdfEditorView(paper);
     }
 
     private void setLeftPanelsActions() {

@@ -15,8 +15,8 @@ import javafx.scene.shape.StrokeType;
 
 import static hse.btf.pdfeditor.MouseController.Position;
 
-public class TextEntity extends PaperEntity {
-    
+public class TextEntity extends PaperEntity implements TextEntityInterface {
+    TextArea text;
     public TextEntity(double x, double y) {
         super(x, y);
     }
@@ -28,7 +28,7 @@ public class TextEntity extends PaperEntity {
 
     @Override
     public Pane createFxmlObject() {
-        TextArea text = new TextArea();
+        text = new TextArea();
         AnchorPane textBox = new AnchorPane();
         
         textBox.getStyleClass().add("text-region");
@@ -109,5 +109,10 @@ public class TextEntity extends PaperEntity {
         });
 
         return textBox;
+    }
+
+    @Override
+    public String getText() {   /// FOR EXAMPLE
+        return text.getText();
     }
 }
