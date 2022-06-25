@@ -25,7 +25,6 @@ public class PdfWorkWindowController implements Initializable {
         setPaperSettings();
         setLeftPanelsActions();
 
-
         createPdfButton.setOnMouseClicked(ev -> {
             try {
                 Converter.saveDocument();

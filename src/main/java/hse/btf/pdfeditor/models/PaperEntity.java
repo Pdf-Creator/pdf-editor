@@ -1,38 +1,35 @@
 package hse.btf.pdfeditor.models;
 
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 public abstract class PaperEntity {
-    protected double x;
-    protected double y;
-    protected double width;
-    protected double height;
+    AnchorPane textBox;
     protected double leftPadding;
     protected double rightPadding;
     protected double topPadding;
     protected double bottomPadding;
 
-    protected PaperEntity(double x, double y) {
-        this.x = x;
-        this.y = y;
+    protected PaperEntity() {
+        textBox = new AnchorPane();
     }
 
     public abstract Pane createFxmlObject();
 
     public double getX() {
-        return x;
+        return textBox.getLayoutX();
     }
 
     public double getY() {
-        return y;
+        return textBox.getLayoutY();
     }
 
     public double getWidth() {
-        return width;
+        return textBox.getWidth();
     }
 
     public double getHeight() {
-        return height;
+        return textBox.getHeight();
     }
 
     public double getLeftPadding() {
@@ -52,19 +49,19 @@ public abstract class PaperEntity {
     }
 
     public void setX(double x) {
-        this.x = x;
+        textBox.setLayoutX(x);
     }
 
     public void setY(double y) {
-        this.y = y;
+        textBox.setLayoutY(y);
     }
 
     public void setWidth(double width) {
-        this.width = width;
+        textBox.setPrefWidth(width);
     }
 
     public void setHeight(double height) {
-        this.height = height;
+        textBox.setPrefHeight(height);
     }
 
     public void setLeftPadding(double leftPadding) {
