@@ -1,5 +1,7 @@
 package hse.btf.pdfeditor;
 
+import hse.btf.pdfeditor.models.FormulaEntity;
+import hse.btf.pdfeditor.models.TextEntity;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,6 +16,8 @@ import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static hse.btf.pdfeditor.PdfWorkWindowController.papers;
+
 public class FormulaPaneController implements Initializable {
 
     @Override
@@ -22,14 +26,18 @@ public class FormulaPaneController implements Initializable {
     }
 
     private void setFormulaActions() {
-
-    }
-
-    private ImageView drawFormula(String latex) {
-        TeXFormula formula = new TeXFormula(latex);
-        java.awt.Image awtImage = formula.createBufferedImage(TeXConstants.STYLE_TEXT, 12, Color.BLACK, null);
-        Image fxImage = SwingFXUtils.toFXImage((BufferedImage) awtImage, null);
-        return new ImageView(fxImage);
+        newFormulaButton.setOnMouseClicked(ev -> {
+            FormulaEntity entity = new FormulaEntity();
+            entity.setString("\\frac{1}{\\sum 3}");
+            entity.setBottomPadding(8.0);
+            entity.setTopPadding(8.0);
+            entity.setLeftPadding(8.0);
+            entity.setRightPadding(8.0);
+            entity.setWidth(150);
+            entity.setHeight(90);
+            papers.get(0).getChildren().add(entity.createFxmlObject());
+            papers.get(0).getStylesheets().add(PdfEditorApplication.class.getResource("main.css").toExternalForm());
+        });
     }
 
     @FXML
