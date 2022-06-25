@@ -28,6 +28,7 @@ public class FormulaPaneController implements Initializable {
     private void setFormulaActions() {
         newFormulaButton.setOnMouseClicked(ev -> {
             FormulaEntity entity = new FormulaEntity();
+            entity.setString("\\frac{1}{\\sum 3}");
             entity.setBottomPadding(8.0);
             entity.setTopPadding(8.0);
             entity.setLeftPadding(8.0);
@@ -37,13 +38,6 @@ public class FormulaPaneController implements Initializable {
             papers.get(0).getChildren().add(entity.createFxmlObject());
             papers.get(0).getStylesheets().add(PdfEditorApplication.class.getResource("main.css").toExternalForm());
         });
-    }
-
-    private ImageView drawFormula(String latex) {
-        TeXFormula formula = new TeXFormula(latex);
-        java.awt.Image awtImage = formula.createBufferedImage(TeXConstants.STYLE_TEXT, 12, Color.BLACK, null);
-        Image fxImage = SwingFXUtils.toFXImage((BufferedImage) awtImage, null);
-        return new ImageView(fxImage);
     }
 
     @FXML

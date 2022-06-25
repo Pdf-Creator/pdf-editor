@@ -40,4 +40,5 @@ module hse.btf.pdfeditor {
     requires kotlinx.serialization.core;
     requires kotlinx.serialization.json;
     requires annotations;
+    requires org.jfree.fxgraphics2d;
 }

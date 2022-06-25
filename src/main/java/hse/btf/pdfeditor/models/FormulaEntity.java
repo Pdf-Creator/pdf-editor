@@ -1,7 +1,9 @@
 package hse.btf.pdfeditor.models;
 
 import hse.btf.pdfeditor.MouseController;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Cursor;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -9,6 +11,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
+import org.scilab.forge.jlatexmath.TeXConstants;
+import org.scilab.forge.jlatexmath.TeXFormula;
+
+import java.awt.image.BufferedImage;
 
 public class FormulaEntity extends PaperEntity {
 
@@ -20,9 +26,16 @@ public class FormulaEntity extends PaperEntity {
         formulaImage = new ImageView();
     }
 
+    public void setString(String formula) {
+        this.formula = formula;
+    }
+
     @Override
     public Pane createFxmlObject() {
-
+        formulaImage = drawFormula(formula);
+        formulaImage.setFitHeight(getHeight() - leftPadding - rightPadding);
+        formulaImage.setFitWidth(getWidth() - bottomPadding - topPadding);
+        formulaImage.setPreserveRatio(true);
         textBox.getStyleClass().add("text-region");
         Circle resizePoint = new Circle(6, Color.WHITE);
         resizePoint.setStrokeWidth(1);
@@ -91,9 +104,19 @@ public class FormulaEntity extends PaperEntity {
 
             textBox.setPrefWidth(x);
             textBox.setPrefHeight(y);
+            formulaImage.setFitWidth(x - leftPadding - rightPadding);
+            formulaImage.setFitHeight(y - bottomPadding - topPadding);
+
             e.consume();
         });
 
         return textBox;
+    }
+
+    private ImageView drawFormula(String latex) {
+        TeXFormula formula = new TeXFormula(latex);
+        java.awt.Image awtImage = formula.createBufferedImage(TeXConstants.STYLE_TEXT, 100, java.awt.Color.BLUE, null);
+        Image fxImage = SwingFXUtils.toFXImage((BufferedImage) awtImage, null);
+        return new ImageView(fxImage);
     }
 }

@@ -56,6 +56,11 @@
             <version>17.0.1</version>
         </dependency>
         <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>fxgraphics2d</artifactId>
+            <version>1.8</version>
+        </dependency>
+        <dependency>
             <groupId>org.controlsfx</groupId>
             <artifactId>controlsfx</artifactId>
             <version>11.1.0</version>
