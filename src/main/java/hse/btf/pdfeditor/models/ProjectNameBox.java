@@ -1,4 +1,4 @@
-package hse.btf.pdfeditor;
+package hse.btf.pdfeditor.models;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

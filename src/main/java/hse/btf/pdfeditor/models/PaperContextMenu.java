@@ -1,10 +1,10 @@
-package hse.btf.pdfeditor;
+package hse.btf.pdfeditor.models;
 
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 
 public class PaperContextMenu extends ContextMenu {
-    PaperContextMenu() {
+    public PaperContextMenu() {
         super();
         MenuItem menuItem1 = new MenuItem("menu item 1");
         MenuItem menuItem2 = new MenuItem("menu item 2");

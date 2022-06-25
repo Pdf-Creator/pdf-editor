@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="554.0"
+            prefWidth="144.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0"
+            AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="hse.btf.pdfeditor.ImagePaneController">
+    <children>
+        <Button fx:id="newImageButton" layoutX="8.0" layoutY="14.0" maxHeight="-Infinity"
+                maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" prefHeight="40.0" prefWidth="128.0" text="New image"
+                textFill="#9e3636" textOverrun="CLIP"/>
+        <Separator layoutY="65.0" prefHeight="3.0" prefWidth="144.0"/>
+        <Label layoutX="54.0" layoutY="68.0" text="Effect"/>
+        <ChoiceBox layoutX="5.0" layoutY="86.0" prefHeight="27.0" prefWidth="134.0"/>
+    </children>
+</AnchorPane>

@@ -1,37 +1,27 @@
 package hse.btf.pdfeditor;
 
-import hse.btf.pdfeditor.models.TableItem;
-import hse.btf.pdfeditor.models.TextItem;
+import hse.btf.pdfeditor.models.PaperContextMenu;
 import hse.btf.pdfeditor.service.Converter;
-import hse.btf.pdfeditor.utils.CreatorConstants;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
-
-import static hse.btf.pdfeditor.Singleton.itemsHolder;
 
 public class PdfWorkWindowController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        papers = new ArrayList<>();
+        papers.add(paper);
         setPaperSettings();
         setLeftPanelsActions();
 
@@ -40,23 +30,6 @@ public class PdfWorkWindowController implements Initializable {
                 Converter.saveDocument();
             } catch (IOException e) {
                 e.printStackTrace();
-            }
-        });
-
-        pdfEditorView = new PdfEditorView(paper);
-    }
-
-    private void setPaperSettings() {
-        paperSize = 100;
-        originalPaperWidth = paper.getPrefWidth();
-        originalPaperHeight = paper.getPrefHeight();
-
-        PaperContextMenu contextMenu = new PaperContextMenu();
-        paper.setOnMouseClicked(ev -> {
-            if (ev.getButton() == MouseButton.SECONDARY) {
-                contextMenu.show(paper, ev.getScreenX(), ev.getScreenY());
-            } else {
-                contextMenu.hide();
             }
         });
     }
@@ -73,89 +46,21 @@ public class PdfWorkWindowController implements Initializable {
         addLeftButtonClicker(leftTablePaneButton, tablePane);
         addLeftButtonClicker(leftImagePaneButton, imagePane);
         addLeftButtonClicker(leftFormulaPaneButton, formulaPane);
-
-        setTextFieldActions();
-        setTableActions();
-        setImageActions();
-        setFormulaActions();
     }
 
-    private void setTextFieldActions() {
-        // new text field button
-        newTextButton.setOnMouseClicked(ev ->
-                itemsHolder.getObservableItemsList().add(new TextItem())
-        );
+    private void setPaperSettings() {
+        paperSize = 100;
+        originalPaperWidth = paper.getPrefWidth();
+        originalPaperHeight = paper.getPrefHeight();
 
-        // font
-        textShriftChoiceBox.setItems(FXCollections.observableList(CreatorConstants.FONTS));
-        textShriftChoiceBox.setValue(CreatorConstants.DEFAULT_FONT);
-        textShriftChoiceBox.setTooltip(new Tooltip("Select text font"));
-
-        // text size
-        connectSliderWithTextField(textSizeSlider, textSizeField);
-
-        textSizeSlider.setMin(5.0);
-        textSizeSlider.setMax(72.0);
-        textSizeField.setText("13.0");
-
-        // alignment
-        alignmentLeftButton.setToggleGroup(alignmentToggleGroup);
-        alignmentCenterButton.setToggleGroup(alignmentToggleGroup);
-        alignmentRightButton.setToggleGroup(alignmentToggleGroup);
-        alignmentWidthButton.setToggleGroup(alignmentToggleGroup);
-
-        // сделать стартовым выравнивание по левому краю + чтобы всегда хотя бы одно выравнивание было
-
-        // добавить отражение этих действий на selectedField
-
-        // text properties
-
-        // text color
-        textColorPicker.setValue(Color.BLACK);
-        textFillColorPicker.setValue(Color.WHITE);
-
-        // line spaces
-        connectSliderWithTextField(lineSpacesSlider, lineSpacesField);
-
-        lineSpacesSlider.setMin(1.0);
-        lineSpacesSlider.setMax(3.0);
-        lineSpacesField.setText("1.0");
-
-        // field color
-        textFillColorPicker.setValue(Color.WHITE);
-    }
-
-    private void setTableActions() {
-        newTableButton.setOnMouseClicked(ev ->
-                itemsHolder.getObservableItemsList().add(new TableItem())
-        );
-
-        // columns
-        connectSliderWithTextField(tableColsSlider, tableColsField);
-
-        tableColsSlider.setMin(1.0);
-        tableColsSlider.setMax(20.0);
-        tableColsField.setText("2.0");
-
-        // rows
-        connectSliderWithTextField(tableRowsSlider, tableRowsField);
-
-        tableRowsSlider.setMin(1.0);
-        tableRowsSlider.setMax(20.0);
-        tableRowsField.setText("2.0");
-    }
-
-    private void setImageActions() {
-        // добавить рамки + посмотреть в видео, что можно делать с картинкой
-    }
-
-    private void setFormulaActions() {
-
-    }
-
-    private void connectSliderWithTextField(Slider slider, TextField field) {
-        slider.valueProperty().addListener((changed, oldValue, newValue) -> field.setText(newValue.toString()));
-        field.textProperty().addListener((changed, oldValue, newValue) -> slider.setValue(Double.parseDouble(newValue)));
+        PaperContextMenu contextMenu = new PaperContextMenu();
+        paper.setOnMouseClicked(ev -> {
+            if (ev.getButton() == MouseButton.SECONDARY) {
+                contextMenu.show(paper, ev.getScreenX(), ev.getScreenY());
+            } else {
+                contextMenu.hide();
+            }
+        });
     }
 
 /*
@@ -221,8 +126,14 @@ public class PdfWorkWindowController implements Initializable {
      **/
     @FXML
     public Button leftTextPaneButton;
+
+    @FXML
     public Button leftTablePaneButton;
+
+    @FXML
     public Button leftImagePaneButton;
+
+    @FXML
     public Button leftFormulaPaneButton;
 
     /**
@@ -231,77 +142,19 @@ public class PdfWorkWindowController implements Initializable {
     @FXML
     private AnchorPane selectedPane = null;
 
+    public static List<AnchorPane> papers;
+
     @FXML
     public AnchorPane textPane;
+
+    @FXML
     public AnchorPane tablePane;
+
+    @FXML
     public AnchorPane imagePane;
+
+    @FXML
     public AnchorPane formulaPane;
-
-    /**
-     * text pane's content
-     **/
-    @FXML
-    public Button newTextButton;
-
-    @FXML
-    public ChoiceBox<String> textShriftChoiceBox;
-
-    @FXML
-    public TextField textSizeField;
-    public Slider textSizeSlider;
-
-    @FXML
-    public ToggleButton alignmentLeftButton;
-    public ToggleButton alignmentCenterButton;
-    public ToggleButton alignmentRightButton;
-    public ToggleButton alignmentWidthButton;
-
-    private final ToggleGroup alignmentToggleGroup = new ToggleGroup();
-
-    @FXML
-    public ToggleButton textPropertyBoldButton;
-    public ToggleButton textPropertyCursiveButton;
-    public ToggleButton textPropertyUnderlineButton;
-    public ToggleButton textPropertyCrossOutButton;
-
-    private final ToggleGroup textPropertyToggleGroup = new ToggleGroup();
-
-    @FXML
-    public ColorPicker textColorPicker;
-    public ColorPicker textFillColorPicker;
-
-    @FXML
-    public TextField lineSpacesField;
-    public Slider lineSpacesSlider;
-
-    @FXML
-    public ColorPicker textFieldColorPicker;
-
-    private TextArea selectedTextArea;
-
-    /**
-     * table pane's content
-     **/
-    @FXML
-    public Button newTableButton;
-
-    @FXML
-    public TextField tableColsField;
-    public Slider tableColsSlider;
-    public TextField tableRowsField;
-    public Slider tableRowsSlider;
-
-    /**
-     * image pane's content
-     **/
-    @FXML
-    public Button newImageButton;
-
-    /**
-     * formula pane's content
-     **/
-    @FXML
-    public Button newFormulaButton;
 
     /**
      * paper

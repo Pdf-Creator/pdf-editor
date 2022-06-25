@@ -2,6 +2,7 @@ module hse.btf.pdfeditor {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
+    requires javafx.swing;
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
@@ -29,6 +30,10 @@ module hse.btf.pdfeditor {
     exports hse.btf.pdfeditor.models;
     opens hse.btf.pdfeditor.models to javafx.fxml;
     exports hse.btf.pdfeditor.utils;
+    exports hse.btf.pdfeditor.controller;
+    opens hse.btf.pdfeditor.controller to javafx.fxml;
+    exports hse.btf.pdfeditor.utils;
+    opens hse.btf.pdfeditor.utils to javafx.fxml;
 
     requires tornadofx;
     requires kotlin.stdlib;
@@ -36,4 +41,5 @@ module hse.btf.pdfeditor {
     requires kotlinx.serialization.core;
     requires kotlinx.serialization.json;
     requires annotations;
+    requires org.jfree.fxgraphics2d;
 }

@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static hse.btf.pdfeditor.Singleton.itemsHolder;
+import static hse.btf.pdfeditor.utils.Singleton.itemsHolder;
 
 public class Converter {
     public static void saveDocument() throws IOException {

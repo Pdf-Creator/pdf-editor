@@ -1,5 +1,6 @@
 package hse.btf.pdfeditor;
 
+import hse.btf.pdfeditor.models.ProjectNameBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
