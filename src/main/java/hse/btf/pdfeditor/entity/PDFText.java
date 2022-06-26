@@ -10,12 +10,13 @@ import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.layout.font.FontProvider;
 import hse.btf.pdfeditor.utils.Fonts;
+import hse.btf.pdfeditor.utils.PDFEditorConstants;
 
 import java.io.IOException;
 
 public class PDFText extends PDFItem {
+    // TODO add to PDFEditorConstants
     public static final String defaultText = "default text";
-    public static final String defaultFont = Fonts.FREE_SANS;
     public static final Color defaultColor = ColorConstants.BLACK;
 
     private String text;
@@ -25,7 +26,7 @@ public class PDFText extends PDFItem {
     public PDFText(double x, double y, double w, double h) {
         super(x, y, w, h);
         setText(defaultText);
-        setTextFont(defaultFont);
+        setTextFont(PDFEditorConstants.DEFAULT_FONT);
         setTextColor(defaultColor);
     }
 
