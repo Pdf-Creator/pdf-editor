@@ -5,7 +5,7 @@ import javafx.beans.property.IntegerProperty
 import javafx.beans.property.SimpleIntegerProperty
 import kotlinx.serialization.Serializable
 
-@Serializable
+//@Serializable
 data class TableItem (
     @Serializable(with = IntegerPropertySerializer::class)
     val rows: IntegerProperty = SimpleIntegerProperty(2),

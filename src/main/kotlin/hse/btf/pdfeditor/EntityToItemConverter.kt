@@ -71,6 +71,9 @@ class EntityToItemConverter {
                         y.bindBidirectional(it.yProperty)
                         w.bindBidirectional(it.widthProperty)
                         h.bindBidirectional(it.heightProperty)
+                        font.bindBidirectional(it.font)
+                        background.bindBidirectional(it.background)
+                        border.bindBidirectional(it.border)
                     }
                 else -> {
                     println("Else branch converter")

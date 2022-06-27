@@ -1,14 +1,18 @@
 package hse.btf.pdfeditor.models;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.Cursor;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
+import javafx.scene.text.Font;
 
 import static hse.btf.pdfeditor.MouseController.Position;
 
@@ -100,5 +104,20 @@ public class TextEntity extends PaperEntity implements TextEntityInterface {
     @Override
     public StringProperty getText() {
         return text.textProperty();
+    }
+
+    @Override
+    public ObjectProperty<Font> getFont() {
+        return text.fontProperty();
+    }
+
+    @Override
+    public ObjectProperty<Background> getBackground() {
+        return text.backgroundProperty();
+    }
+
+    @Override
+    public ObjectProperty<Border> getBorder() {
+        return text.borderProperty();
     }
 }
