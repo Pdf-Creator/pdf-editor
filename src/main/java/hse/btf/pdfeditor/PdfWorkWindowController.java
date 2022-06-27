@@ -1,6 +1,7 @@
 package hse.btf.pdfeditor;
 
 import hse.btf.pdfeditor.models.PaperContextMenu;
+import hse.btf.pdfeditor.models.PaperEntity;
 import hse.btf.pdfeditor.utils.FileUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -108,6 +109,7 @@ public class PdfWorkWindowController implements Initializable {
         paper.setPrefHeight(originalPaperHeight / 100 * paperSize);
     }
 
+    static public PaperEntity target = null;
     /**
      * left panel
      **/
