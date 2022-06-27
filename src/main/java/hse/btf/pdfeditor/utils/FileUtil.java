@@ -9,9 +9,7 @@ import javafx.stage.FileChooser;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.Locale;
-import java.util.concurrent.atomic.AtomicReference;
 
 import static hse.btf.pdfeditor.PdfWorkWindowController.papers;
 
@@ -21,13 +19,16 @@ public class FileUtil {
 
     public static void savePDFDocument(Button button) {
         button.setOnAction(ev -> {
+            fileChooser.getExtensionFilters().clear();
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF files", "*.pdf"));
             File file = fileChooser.showSaveDialog(null);
-            System.out.println(file.getAbsolutePath().toLowerCase(Locale.ROOT));
+            if (file == null) {
+                return;
+            }
             try {
                 Converter.saveDocument(file.getAbsolutePath().toLowerCase(Locale.ROOT));
             } catch (IOException e) {
-                e.printStackTrace();
+                System.err.println("Couldn't convert document");
             }
             openPDFDocument(file.getParentFile());
         });
@@ -43,8 +44,12 @@ public class FileUtil {
 
     public static void loadImage(Button button) {
         button.setOnAction(ev -> {
+            fileChooser.getExtensionFilters().clear();
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image files", "*.jpg", "*.png", "*.gif"));
             File loadedImage = fileChooser.showOpenDialog(null);
+            if (loadedImage == null) {
+                return;
+            }
             ImageEntity entity = new ImageEntity(loadedImage.getAbsolutePath());
             entity.setBottomPadding(8.0);
             entity.setTopPadding(8.0);
@@ -56,17 +61,4 @@ public class FileUtil {
             papers.get(0).getStylesheets().add(PdfEditorApplication.class.getResource("main.css").toExternalForm());
         });
     }
-
-//    FileChooser fileChooser = new FileChooser();
-//        fileChooser.setTitle("Save PDF Document");
-//        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
-//        createPdfButton.setOnAction(actionEvent -> {
-//        File file = fileChooser.showSaveDialog(null);
-//        System.out.println(file.getAbsolutePath().toLowerCase(Locale.ROOT));
-//        try {
-//            Converter.saveDocument(file.getAbsolutePath().toLowerCase(Locale.ROOT));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    });
 }
