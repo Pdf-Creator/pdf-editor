@@ -39,7 +39,7 @@ public class PDFDocument {
     private final PageSize pageSize;
 
     public PDFDocument() throws IOException {
-        this(PDFEditorConstants.DEFAULT_PDF_FILE, PageSize.A4);
+        this(PDFEditorConstants.DEFAULT_PDF_FILE, PDFEditorConstants.DEFAULT_PAGE_SIZE);
     }
 
     public PDFDocument(String fileName) throws IOException {

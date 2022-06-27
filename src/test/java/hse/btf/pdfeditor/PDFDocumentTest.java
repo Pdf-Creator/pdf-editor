@@ -42,7 +42,7 @@ public class PDFDocumentTest {
     @Order(2)
     public void addRectangleWithImageTest() throws MalformedURLException {
         PDFImage imageItem = new PDFImage(x, y, w, h);
-        imageItem.setImagePath("image_examples/Java_logo.svg");
+        imageItem.setImagePath("image_examples/java_logo.svg");
         imageItem.setRectangleStrokeColor(ColorConstants.BLACK);
         pdfDocument.addRectangleWithImageItem(imageItem);
     }
