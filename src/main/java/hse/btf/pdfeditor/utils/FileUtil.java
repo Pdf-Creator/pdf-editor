@@ -1,5 +1,6 @@
 package hse.btf.pdfeditor.utils;
 
+import hse.btf.pdfeditor.PdfEditorApplication;
 import hse.btf.pdfeditor.models.ImageEntity;
 import hse.btf.pdfeditor.service.Converter;
 import javafx.scene.control.Button;
@@ -45,7 +46,14 @@ public class FileUtil {
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image files", "*.jpg", "*.png", "*.gif"));
             File loadedImage = fileChooser.showOpenDialog(null);
             ImageEntity entity = new ImageEntity(loadedImage.getAbsolutePath());
+            entity.setBottomPadding(8.0);
+            entity.setTopPadding(8.0);
+            entity.setLeftPadding(8.0);
+            entity.setRightPadding(8.0);
+            entity.setWidth(150);
+            entity.setHeight(90);
             papers.get(0).getChildren().add(entity.createFxmlObject());
+            papers.get(0).getStylesheets().add(PdfEditorApplication.class.getResource("main.css").toExternalForm());
         });
     }
 
