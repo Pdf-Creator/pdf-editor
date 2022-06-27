@@ -1,6 +1,7 @@
 package hse.btf.pdfeditor;
 
 import com.itextpdf.kernel.colors.ColorConstants;
+import com.itextpdf.layout.properties.TransparentColor;
 import hse.btf.pdfeditor.entity.*;
 import org.junit.jupiter.api.*;
 
@@ -34,7 +35,7 @@ public class PDFDocumentTest {
         PDFText textItem = new PDFText(x, y, w, h);
         textItem.setText("Testing TextItem");
         textItem.setTextColor(ColorConstants.BLACK);
-        textItem.setRectangleStrokeColor(ColorConstants.BLACK);
+        textItem.setRectangleStrokeColor(new TransparentColor(ColorConstants.BLACK, 1));
         pdfDocument.addRectangleWithTextItem(textItem);
     }
 
@@ -42,8 +43,8 @@ public class PDFDocumentTest {
     @Order(2)
     public void addRectangleWithImageTest() throws MalformedURLException {
         PDFImage imageItem = new PDFImage(x, y, w, h);
-        imageItem.setImagePath("image_examples/java_logo.svg");
-        imageItem.setRectangleStrokeColor(ColorConstants.BLACK);
+        imageItem.setImagePath("src/test/resources/images/java_logo.svg");
+        imageItem.setRectangleStrokeColor(new TransparentColor(ColorConstants.BLACK, 1));
         pdfDocument.addRectangleWithImageItem(imageItem);
     }
 

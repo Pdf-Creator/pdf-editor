@@ -73,8 +73,8 @@ public class PDFDocument {
                 (float) textItem.getH()
         );
         // drawing rectangle
-        canvas.setStrokeColor(textItem.getRectangleStrokeColor())
-                .setFillColor(textItem.getRectangleFillColor())
+        canvas.setStrokeColor(textItem.getRectangleStrokeColor().getColor())
+                .setFillColor(textItem.getRectangleFillColor().getColor())
                 .rectangle(rect)
                 .fill()
                 .stroke();
@@ -96,8 +96,8 @@ public class PDFDocument {
                 (float) formulaItem.getW(),
                 (float) formulaItem.getW()
         );
-        canvas.setStrokeColor(formulaItem.getRectangleStrokeColor())
-                .setFillColor(formulaItem.getRectangleStrokeColor())
+        canvas.setStrokeColor(formulaItem.getRectangleStrokeColor().getColor())
+                .setFillColor(formulaItem.getRectangleStrokeColor().getColor())
                 .rectangle(rect)
                 .fill()
                 .stroke();
@@ -108,6 +108,7 @@ public class PDFDocument {
         BufferedImage bimg = new BufferedImage(ti.getIconWidth(), ti.getIconHeight(), BufferedImage.TYPE_4BYTE_ABGR);
 
         // -- painting the formula --
+        // TODO get info about background and formula color
         Graphics2D g2d = bimg.createGraphics();
         g2d.setColor(Color.white);
         g2d.fillRect(0, 0, ti.getIconWidth(), ti.getIconHeight());
@@ -118,7 +119,7 @@ public class PDFDocument {
 
         // -- adding it to pdf --
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        ImageIO.write(bimg, "png", byteArrayOutputStream);
+        ImageIO.write(bimg, "jpg", byteArrayOutputStream);
         ImageData data = ImageDataFactory.create(byteArrayOutputStream.toByteArray());
         Image image = new Image(data);
         image.setFixedPosition((float) formulaItem.getX(), (float) formulaItem.getY());
@@ -136,8 +137,8 @@ public class PDFDocument {
                 (float) imageItem.getH()
         );
 
-        canvas.setStrokeColor(imageItem.getRectangleStrokeColor())
-                .setFillColor(imageItem.getRectangleFillColor())
+        canvas.setStrokeColor(imageItem.getRectangleStrokeColor().getColor())
+                .setFillColor(imageItem.getRectangleFillColor().getColor())
                 .rectangle(rect)
                 .fill()
                 .stroke();
@@ -158,8 +159,8 @@ public class PDFDocument {
                 (float) tableItem.getW(),
                 (float) tableItem.getH()
         );
-        canvas.setStrokeColor(tableItem.getRectangleStrokeColor())
-                .setFillColor(tableItem.getRectangleFillColor())
+        canvas.setStrokeColor(tableItem.getRectangleStrokeColor().getColor())
+                .setFillColor(tableItem.getRectangleFillColor().getColor())
                 .rectangle(rect)
                 .fill()
                 .stroke();

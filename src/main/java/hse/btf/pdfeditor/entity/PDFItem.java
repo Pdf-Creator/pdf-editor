@@ -2,29 +2,30 @@ package hse.btf.pdfeditor.entity;
 
 import com.itextpdf.kernel.colors.Color;
 import com.itextpdf.kernel.colors.ColorConstants;
+import com.itextpdf.layout.properties.TransparentColor;
 
 public class PDFItem {
     private double x;
     private double y;
     private double w;
     private double h;
-    private Color rectangleStrokeColor;
-    private Color rectangleFillColor;
+    private TransparentColor rectangleStrokeColor;
+    private TransparentColor rectangleFillColor;
 
     public PDFItem(double x, double y, double w, double h) {
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
-        rectangleStrokeColor = ColorConstants.WHITE;
-        rectangleFillColor = ColorConstants.WHITE;
+        rectangleStrokeColor = new TransparentColor(ColorConstants.WHITE, 1);
+        rectangleFillColor = new TransparentColor(ColorConstants.WHITE, 0);
     }
 
-    public void setRectangleStrokeColor(Color rectangleStrokeColor) {
+    public void setRectangleStrokeColor(TransparentColor rectangleStrokeColor) {
         this.rectangleStrokeColor = rectangleStrokeColor;
     }
 
-    public void setRectangleFillColor(Color rectangleFillColor) {
+    public void setRectangleFillColor(TransparentColor rectangleFillColor) {
         this.rectangleFillColor = rectangleFillColor;
     }
 
@@ -60,11 +61,11 @@ public class PDFItem {
         return h;
     }
 
-    public Color getRectangleStrokeColor() {
+    public TransparentColor getRectangleStrokeColor() {
         return rectangleStrokeColor;
     }
 
-    public Color getRectangleFillColor() {
+    public TransparentColor getRectangleFillColor() {
         return rectangleFillColor;
     }
 }
