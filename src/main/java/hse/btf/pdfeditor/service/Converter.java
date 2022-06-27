@@ -21,15 +21,9 @@ public class Converter {
         PDFDocument pdfDocument = new PDFDocument(fileName);
         PageSize pageSize = pdfDocument.getPageSize();
         for (Item item : itemsHolder.getObservableItemsList()) {
-            System.out.println("Converter: converting item:" + item.toString());
-
             if (item instanceof TextItem) {
-                System.out.println("TextItem if");
-
                 TextItem textItem = (TextItem) item;
                 PDFText pdfText = convertTextItem(textItem, pageSize);
-                System.out.println("x: " + pdfText.getX() + " y: " + pdfText.getY() + " w: " + pdfText.getW() + " h: " + pdfText.getH() + " text: " + pdfText.getText());
-
                 pdfDocument.addRectangleWithTextItem(pdfText);
             }
         }
@@ -37,9 +31,6 @@ public class Converter {
     }
 
     private static PDFText convertTextItem(TextItem textItem, PageSize pageSize) {
-        System.out.println("x: " + textItem.getX() + " y: " + textItem.getY() + " w: " + textItem.getW() + " h: " + textItem.getH());
-        System.out.println("page height: " + pageSize.getHeight() + " page width: " + pageSize.getWidth());
-        System.out.println("needed y: " + (pageSize.getHeight() - textItem.getY().get() - textItem.getH().get()));
         List<Double> converted = convertCoordinates(textItem.getX().get(), textItem.getY().get(), textItem.getW().get(), textItem.getH().get(), pageSize);
         PDFText pdfText = new PDFText(
                 converted.get(0),

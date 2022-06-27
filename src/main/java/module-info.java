@@ -29,9 +29,9 @@ module hse.btf.pdfeditor {
     opens hse.btf.pdfeditor.entity to javafx.fxml;
     exports hse.btf.pdfeditor.models;
     opens hse.btf.pdfeditor.models to javafx.fxml;
+    exports hse.btf.pdfeditor.utils;
     exports hse.btf.pdfeditor.controller;
     opens hse.btf.pdfeditor.controller to javafx.fxml;
-    exports hse.btf.pdfeditor.utils;
     opens hse.btf.pdfeditor.utils to javafx.fxml;
 
     requires tornadofx;

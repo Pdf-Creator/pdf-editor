@@ -9,26 +9,25 @@ import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.layout.font.FontProvider;
+import hse.btf.pdfeditor.utils.Fonts;
+import hse.btf.pdfeditor.utils.PDFEditorConstants;
 
 import java.io.IOException;
 
 public class PDFText extends PDFItem {
+    // TODO add to PDFEditorConstants
+    public static final String defaultText = "default text";
+    public static final Color defaultColor = ColorConstants.BLACK;
+
     private String text;
     private PdfFont textFont;
     private Color textColor;
 
-    // TODO fix after
-    public static final String FONT = "src/main/resources/fonts/freesans.ttf";
-
     public PDFText(double x, double y, double w, double h) {
         super(x, y, w, h);
-        this.text = "Add text";
-        try {
-            this.textFont = PdfFontFactory.createFont(FONT, PdfEncodings.IDENTITY_H);
-        } catch (IOException e) {
-            System.out.println("Font not found");
-        }
-        this.textColor = ColorConstants.BLACK;
+        setText(defaultText);
+        setTextFont(PDFEditorConstants.DEFAULT_FONT);
+        setTextColor(defaultColor);
     }
 
     public void setText(String text) {
@@ -39,8 +38,12 @@ public class PDFText extends PDFItem {
         this.textColor = textColor;
     }
 
-    public void setTextFont(PdfFont textFont) {
-        this.textFont = textFont;
+    public void setTextFont(String font) {
+        try {
+            this.textFont = PdfFontFactory.createFont(font, PdfEncodings.IDENTITY_H);
+        } catch (IOException e) {
+            System.out.println("Font not found");
+        }
     }
 
     public String getText() {
