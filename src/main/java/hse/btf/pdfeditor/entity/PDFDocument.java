@@ -13,6 +13,7 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
+import hse.btf.pdfeditor.utils.PDFEditorConstants;
 import org.scilab.forge.jlatexmath.TeXConstants;
 import org.scilab.forge.jlatexmath.TeXFormula;
 import org.scilab.forge.jlatexmath.TeXIcon;
@@ -38,11 +39,11 @@ public class PDFDocument {
     private final PageSize pageSize;
 
     public PDFDocument() throws IOException {
-        this("out/file.pdf", PageSize.A4);
+        this(PDFEditorConstants.DEFAULT_PDF_FILE, PageSize.A4);
     }
 
     public PDFDocument(String fileName) throws IOException {
-        this(fileName, PageSize.A4);
+        this(fileName, PDFEditorConstants.DEFAULT_PAGE_SIZE);
     }
 
     public PDFDocument(String fileName, PageSize pageSize) throws IOException {
