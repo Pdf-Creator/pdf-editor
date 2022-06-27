@@ -40,6 +40,7 @@ public class FormulaPaneController implements Initializable {
                 root = fxmlLoader.load();
             } catch (IOException e) {
                 e.printStackTrace();
+                return;
             }
             Scene scene = new Scene(root);
             stage.setScene(scene);
