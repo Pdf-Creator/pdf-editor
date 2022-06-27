@@ -13,7 +13,7 @@ import javafx.scene.shape.StrokeType;
 
 public class ImageEntity extends PaperEntity {
     ImageView image;
-    ImageEntity(String url) {
+    public ImageEntity(String url) {
         super();
         image = new ImageView(url);
     }

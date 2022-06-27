@@ -1,5 +1,6 @@
 package hse.btf.pdfeditor.utils;
 
+import hse.btf.pdfeditor.models.ImageEntity;
 import hse.btf.pdfeditor.service.Converter;
 import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
@@ -10,6 +11,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicReference;
+
+import static hse.btf.pdfeditor.PdfWorkWindowController.papers;
 
 public class FileUtil {
     private static final FileChooser fileChooser = new FileChooser();
@@ -37,14 +40,13 @@ public class FileUtil {
         }
     }
 
-    public static String loadImage(Button button) {
-        AtomicReference<String> file = new AtomicReference<>();
+    public static void loadImage(Button button) {
         button.setOnAction(ev -> {
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image files", "*.jpg", "*.png", "*.gif"));
             File loadedImage = fileChooser.showOpenDialog(null);
-            file.set(loadedImage.getAbsolutePath());
+            ImageEntity entity = new ImageEntity(loadedImage.getAbsolutePath());
+            papers.get(0).getChildren().add(entity.createFxmlObject());
         });
-        return file.get();
     }
 
 //    FileChooser fileChooser = new FileChooser();
