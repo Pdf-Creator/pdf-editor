@@ -1,6 +1,5 @@
 package hse.btf.pdfeditor;
 
-import hse.btf.pdfeditor.models.TableItem;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -10,8 +9,6 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static hse.btf.pdfeditor.utils.Singleton.itemsHolder;
-
 public class TablePaneController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -19,8 +16,9 @@ public class TablePaneController implements Initializable {
     }
 
     private void setTableActions() {
-        newTableButton.setOnMouseClicked(ev ->
-                itemsHolder.getObservableItemsList().add(new TableItem())
+        newTableButton.setOnMouseClicked(ev -> {
+                }
+                //entitiesHolder.getObservableItemsList().add(new TableItem())
         );
 
         // columns

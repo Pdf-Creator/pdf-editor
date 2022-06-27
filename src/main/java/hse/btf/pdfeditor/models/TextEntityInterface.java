@@ -1,5 +1,7 @@
 package hse.btf.pdfeditor.models;
 
+import javafx.beans.property.StringProperty;
+
 public interface TextEntityInterface {
-    public String getText(); // FOR EXAMPLE
+    StringProperty getText();
 }

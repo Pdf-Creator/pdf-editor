@@ -1,6 +1,6 @@
 package hse.btf.pdfeditor.serializers
 
-import hse.btf.pdfeditor.utils.Singleton.itemsHolder
+import hse.btf.pdfeditor.utils.DataStorage.itemsHolder
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString

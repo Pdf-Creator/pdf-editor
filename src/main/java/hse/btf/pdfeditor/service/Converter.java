@@ -14,14 +14,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static hse.btf.pdfeditor.utils.Singleton.itemsHolder;
+import static hse.btf.pdfeditor.utils.DataStorage.itemsHolder;
 
 public class Converter {
     public static void saveDocument() throws IOException {
         PDFDocument pdfDocument = new PDFDocument();
         PageSize pageSize = pdfDocument.getPageSize();
+
+        System.out.println("size: " + itemsHolder.getObservableItemsList().size());
         for (Item item : itemsHolder.getObservableItemsList()) {
             if (item instanceof TextItem) {
+                System.out.println("TextItem");
+
                 TextItem textItem = (TextItem) item;
                 PDFText pdfText = convertTextItem(textItem, pageSize);
                 pdfDocument.addRectangleWithTextItem(pdfText);

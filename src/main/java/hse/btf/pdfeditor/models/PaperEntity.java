@@ -1,5 +1,6 @@
 package hse.btf.pdfeditor.models;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
@@ -10,18 +11,28 @@ public abstract class PaperEntity {
     protected double topPadding;
     protected double bottomPadding;
 
+    // TODO: поле isDeleted
+
     protected PaperEntity() {
         textBox = new AnchorPane();
     }
 
     public abstract Pane createFxmlObject();
 
-    public double getX() {
-        return textBox.getLayoutX();
+    public DoubleProperty getXProperty() {
+        return textBox.layoutXProperty();
     }
 
-    public double getY() {
-        return textBox.getLayoutY();
+    public DoubleProperty getYProperty() {
+        return textBox.layoutYProperty();
+    }
+
+    public DoubleProperty getWidthProperty() {
+        return textBox.prefWidthProperty();
+    }
+
+    public DoubleProperty getHeightProperty() {
+        return textBox.prefHeightProperty();
     }
 
     public double getWidth() {

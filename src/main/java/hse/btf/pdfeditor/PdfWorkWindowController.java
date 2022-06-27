@@ -177,7 +177,7 @@ public class PdfWorkWindowController implements Initializable {
     @FXML
     private Button createPdfButton;
 
-    private PdfEditorView pdfEditorView;
+    private final EntityToItemConverter pdfEditorView = new EntityToItemConverter();
 
     private double originalPaperWidth;
 

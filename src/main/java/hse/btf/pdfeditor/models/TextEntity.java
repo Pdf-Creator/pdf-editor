@@ -1,12 +1,8 @@
 package hse.btf.pdfeditor.models;
 
-import hse.btf.pdfeditor.MouseController;
-import hse.btf.pdfeditor.PdfEditorView;
-import hse.btf.pdfeditor.TextPaneController;
-import javafx.geometry.Pos;
+import javafx.beans.property.StringProperty;
 import javafx.scene.Cursor;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -17,14 +13,13 @@ import javafx.scene.shape.StrokeType;
 import static hse.btf.pdfeditor.MouseController.Position;
 
 public class TextEntity extends PaperEntity implements TextEntityInterface {
-    private TextArea text;
+    private final TextArea text = new TextArea();
     public TextEntity() {
         super();
     }
 
     @Override
     public Pane createFxmlObject() {
-        text = new TextArea();
         textBox.getStyleClass().add("text-region");
 
         text.setWrapText(true);
@@ -103,7 +98,7 @@ public class TextEntity extends PaperEntity implements TextEntityInterface {
     }
 
     @Override
-    public String getText() {   /// FOR EXAMPLE
-        return text.getText();
+    public StringProperty getText() {
+        return text.textProperty();
     }
 }

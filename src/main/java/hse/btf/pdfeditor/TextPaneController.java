@@ -1,32 +1,25 @@
 package hse.btf.pdfeditor;
 
 import hse.btf.pdfeditor.models.TextEntity;
-import hse.btf.pdfeditor.models.TextItem;
 import hse.btf.pdfeditor.utils.CreatorConstants;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Slider;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.StrokeType;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import static hse.btf.pdfeditor.PdfWorkWindowController.papers;
-import static hse.btf.pdfeditor.utils.Singleton.itemsHolder;
+import static hse.btf.pdfeditor.utils.DataStorage.entitiesList;
 
 public class TextPaneController implements Initializable {
 
@@ -38,6 +31,9 @@ public class TextPaneController implements Initializable {
 
         newTextButton.setOnMouseClicked(ev -> {
             TextEntity entity = new TextEntity();
+            entitiesList.add(entity);
+
+            // TODO: вынести код -- повторяется в formula pane
             entity.setBottomPadding(8.0);
             entity.setTopPadding(8.0);
             entity.setLeftPadding(8.0);
