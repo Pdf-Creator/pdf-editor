@@ -13,6 +13,9 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.element.Text;
+import com.itextpdf.layout.properties.TransparentColor;
+import hse.btf.pdfeditor.service.Converter;
 import hse.btf.pdfeditor.utils.PDFEditorConstants;
 import org.scilab.forge.jlatexmath.TeXConstants;
 import org.scilab.forge.jlatexmath.TeXFormula;
@@ -73,59 +76,25 @@ public class PDFDocument {
                 (float) textItem.getH()
         );
         // drawing rectangle
-        canvas.setStrokeColor(textItem.getRectangleStrokeColor().getColor())
-                .setFillColor(textItem.getRectangleFillColor().getColor())
-                .rectangle(rect)
-                .fill()
-                .stroke();
+        // stroke
+        TransparentColor borderColor = textItem.getBorderColor();
+        canvas.saveState().setStrokeColor(borderColor.getColor());
+        borderColor.applyStrokeTransparency(canvas);
+        canvas.rectangle(rect);
+        canvas.stroke().restoreState();
+        // fill
+        TransparentColor backgroundColor = textItem.getBackgroundColor();
+        canvas.saveState().setFillColor(backgroundColor.getColor());
+        backgroundColor.applyFillTransparency(canvas);
+        canvas.rectangle(rect);
+        canvas.fill().restoreState();
 
-        // adding text to rectangle;
-        Paragraph paragraph = new Paragraph();
-        paragraph.setFont(textItem.getTextFont())
+        // adding text to rectangle
+        Text text = new Text(textItem.getText())
                 .setFontColor(textItem.getTextColor())
-                .add(textItem.getText());
-
+                .setFont(textItem.getTextFont());
+        Paragraph paragraph = new Paragraph(text);
         new Canvas(canvas, rect).add(paragraph);
-    }
-
-    public void addRectangleWithFormulaItem(PDFFormula formulaItem) throws IOException {
-        PdfCanvas canvas = new PdfCanvas(currentPage);
-        Rectangle rect = new Rectangle(
-                (float) formulaItem.getX(),
-                (float) formulaItem.getY(),
-                (float) formulaItem.getW(),
-                (float) formulaItem.getW()
-        );
-        canvas.setStrokeColor(formulaItem.getRectangleStrokeColor().getColor())
-                .setFillColor(formulaItem.getRectangleStrokeColor().getColor())
-                .rectangle(rect)
-                .fill()
-                .stroke();
-
-        // very strange method
-        TeXFormula tf = new TeXFormula(formulaItem.getFormula());
-        TeXIcon ti = tf.createTeXIcon(TeXConstants.STYLE_DISPLAY, formulaItem.getFontSize());
-        BufferedImage bimg = new BufferedImage(ti.getIconWidth(), ti.getIconHeight(), BufferedImage.TYPE_4BYTE_ABGR);
-
-        // -- painting the formula --
-        // TODO get info about background and formula color
-        Graphics2D g2d = bimg.createGraphics();
-        g2d.setColor(Color.white);
-        g2d.fillRect(0, 0, ti.getIconWidth(), ti.getIconHeight());
-        JLabel jl = new JLabel();
-        jl.setForeground(new Color(0, 0, 0));
-        ti.paintIcon(jl, g2d, 0, 0);
-        // --------------------------
-
-        // -- adding it to pdf --
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        ImageIO.write(bimg, "jpg", byteArrayOutputStream);
-        ImageData data = ImageDataFactory.create(byteArrayOutputStream.toByteArray());
-        Image image = new Image(data);
-        image.setFixedPosition((float) formulaItem.getX(), (float) formulaItem.getY());
-        image.scaleAbsolute((float) formulaItem.getW(), (float) formulaItem.getH());
-
-        new Canvas(canvas, rect).add(image);
     }
 
     public void addRectangleWithImageItem(PDFImage imageItem) throws MalformedURLException {
@@ -137,16 +106,64 @@ public class PDFDocument {
                 (float) imageItem.getH()
         );
 
-        canvas.setStrokeColor(imageItem.getRectangleStrokeColor().getColor())
-                .setFillColor(imageItem.getRectangleFillColor().getColor())
-                .rectangle(rect)
-                .fill()
-                .stroke();
+        // drawing rectangle
+        // stroke
+        TransparentColor borderColor = imageItem.getBorderColor();
+        canvas.saveState().setStrokeColor(borderColor.getColor());
+        borderColor.applyStrokeTransparency(canvas);
+        canvas.rectangle(rect);
+        canvas.stroke().restoreState();
+        // fill
+        TransparentColor backgroundColor = imageItem.getBackgroundColor();
+        canvas.saveState().setFillColor(backgroundColor.getColor());
+        backgroundColor.applyFillTransparency(canvas);
+        canvas.rectangle(rect);
+        canvas.fill().restoreState();
 
         ImageData data = ImageDataFactory.create(imageItem.getImagePath());
         Image image = new Image(data);
         image.setFixedPosition((float) imageItem.getX(), (float) imageItem.getY());
         image.scaleAbsolute((float) imageItem.getW(), (float) imageItem.getH());
+
+        new Canvas(canvas, rect).add(image);
+    }
+
+    public void addRectangleWithFormulaItem(PDFFormula formulaItem) throws IOException {
+        PdfCanvas canvas = new PdfCanvas(currentPage);
+        Rectangle rect = new Rectangle(
+                (float) formulaItem.getX(),
+                (float) formulaItem.getY(),
+                (float) formulaItem.getW(),
+                (float) formulaItem.getW()
+        );
+
+        // drawing rectangle
+        // stroke
+        TransparentColor borderColor = formulaItem.getBorderColor();
+        canvas.saveState().setStrokeColor(borderColor.getColor());
+        borderColor.applyStrokeTransparency(canvas);
+        canvas.rectangle(rect);
+        canvas.stroke().restoreState();
+        // fill
+        TransparentColor backgroundColor = formulaItem.getBackgroundColor();
+        canvas.saveState().setFillColor(backgroundColor.getColor());
+        backgroundColor.applyFillTransparency(canvas);
+        canvas.rectangle(rect);
+        canvas.fill().restoreState();
+
+        // сreating formula image
+        TeXFormula formula = new TeXFormula(formulaItem.getFormula());
+        java.awt.Image formulaImage = formula.createBufferedImage(TeXConstants.STYLE_DISPLAY, formulaItem.getFontSize(), formulaItem.getFormulaColor(), null);
+        BufferedImage bufferedImage = (BufferedImage) formulaImage;
+
+        // -- adding it to pdf --
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ImageIO.write(bufferedImage, "png", byteArrayOutputStream);
+
+        ImageData data = ImageDataFactory.create(byteArrayOutputStream.toByteArray());
+        Image image = new Image(data);
+        image.setFixedPosition((float) formulaItem.getX(), (float) formulaItem.getY());
+        image.scaleAbsolute((float) formulaItem.getW(), (float) formulaItem.getH());
 
         new Canvas(canvas, rect).add(image);
     }
@@ -159,11 +176,11 @@ public class PDFDocument {
                 (float) tableItem.getW(),
                 (float) tableItem.getH()
         );
-        canvas.setStrokeColor(tableItem.getRectangleStrokeColor().getColor())
-                .setFillColor(tableItem.getRectangleFillColor().getColor())
-                .rectangle(rect)
-                .fill()
-                .stroke();
+//        canvas.setStrokeColor(tableItem.getRectangleStrokeColor().getColor())
+//                .setFillColor(tableItem.getRectangleFillColor().getColor())
+//                .rectangle(rect)
+//                .fill()
+//                .stroke();
 
         Table table = new Table(tableItem.getCols());
         table.setFontColor(tableItem.getFontColor());
