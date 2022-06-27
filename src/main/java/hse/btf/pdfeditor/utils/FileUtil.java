@@ -9,6 +9,8 @@ import javafx.stage.FileChooser;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Locale;
 
 import static hse.btf.pdfeditor.PdfWorkWindowController.papers;
@@ -59,6 +61,23 @@ public class FileUtil {
             entity.setHeight(90);
             papers.get(0).getChildren().add(entity.createFxmlObject());
             papers.get(0).getStylesheets().add(PdfEditorApplication.class.getResource("main.css").toExternalForm());
+        });
+    }
+
+    public static void loadFont(Button button) {
+        button.setOnAction(ev -> {
+            fileChooser.getExtensionFilters().clear();
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("TTF files", "*.ttf"));
+            File loadedFont = fileChooser.showOpenDialog(null);
+            System.out.println(loadedFont.getName());
+            Path newPath = Path.of("src", "main", "resources", "fonts", loadedFont.getName());
+            try {
+                Files.copy(loadedFont.toPath(), newPath);
+                FontUtil.addPdfFont(newPath.toString());
+                FontUtil.addFxFont(newPath.toString());
+            } catch (IOException e) {
+                System.err.println("Couldn't load font");
+            }
         });
     }
 }
