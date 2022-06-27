@@ -32,7 +32,6 @@ module hse.btf.pdfeditor {
     exports hse.btf.pdfeditor.utils;
     exports hse.btf.pdfeditor.controller;
     opens hse.btf.pdfeditor.controller to javafx.fxml;
-    exports hse.btf.pdfeditor.utils;
     opens hse.btf.pdfeditor.utils to javafx.fxml;
 
     requires tornadofx;
