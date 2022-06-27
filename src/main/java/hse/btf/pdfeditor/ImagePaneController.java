@@ -1,5 +1,6 @@
 package hse.btf.pdfeditor;
 
+import hse.btf.pdfeditor.utils.FileUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,6 +16,7 @@ public class ImagePaneController implements Initializable {
 
     private void setImageActions() {
         // добавить рамки + посмотреть в видео, что можно делать с картинкой
+        FileUtil.loadImage(newImageButton);
     }
 
     @FXML

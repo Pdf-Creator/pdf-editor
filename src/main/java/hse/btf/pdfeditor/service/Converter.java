@@ -17,8 +17,8 @@ import java.util.List;
 import static hse.btf.pdfeditor.utils.Singleton.itemsHolder;
 
 public class Converter {
-    public static void saveDocument() throws IOException {
-        PDFDocument pdfDocument = new PDFDocument();
+    public static void saveDocument(String fileName) throws IOException {
+        PDFDocument pdfDocument = new PDFDocument(fileName);
         PageSize pageSize = pdfDocument.getPageSize();
         for (Item item : itemsHolder.getObservableItemsList()) {
             if (item instanceof TextItem) {

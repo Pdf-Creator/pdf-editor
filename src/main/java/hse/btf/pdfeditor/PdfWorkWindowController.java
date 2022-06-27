@@ -1,7 +1,7 @@
 package hse.btf.pdfeditor;
 
 import hse.btf.pdfeditor.models.PaperContextMenu;
-import hse.btf.pdfeditor.service.Converter;
+import hse.btf.pdfeditor.utils.FileUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -10,7 +10,6 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +24,7 @@ public class PdfWorkWindowController implements Initializable {
         setPaperSettings();
         setLeftPanelsActions();
 
-        createPdfButton.setOnMouseClicked(ev -> {
-            try {
-                Converter.saveDocument();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+        FileUtil.savePDFDocument(createPdfButton);
     }
 
     private void setLeftPanelsActions() {
