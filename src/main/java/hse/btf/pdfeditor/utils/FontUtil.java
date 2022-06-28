@@ -4,6 +4,7 @@ import com.itextpdf.io.font.PdfEncodings;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import eu.hansolo.tilesfx.fonts.Fonts;
+import hse.btf.pdfeditor.PdfEditorApplication;
 import javafx.scene.text.Font;
 import org.jetbrains.annotations.NotNull;
 
@@ -11,9 +12,10 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class FontUtil {
-    private static final @NotNull String FONTS_DIR = "src/main/resources/fonts/";
+    private static final @NotNull String FONTS_DIR = "/src/main/resources/fonts/";
 
     public static final @NotNull String FREE_SANS = FONTS_DIR + "free_sans.ttf";
     public static final @NotNull String ARIAL = FONTS_DIR + "arial.ttf";
@@ -40,6 +42,7 @@ public class FontUtil {
     }
 
     private static void addPdfFont(Path fontPath) throws IOException {
+        PdfFont font = PdfFontFactory.createFont(fontPath.toString(), PdfEncodings.IDENTITY_H);
         pdfFonts.put(fontPath, PdfFontFactory.createFont(fontPath.toString(), PdfEncodings.IDENTITY_H));
     }
 
@@ -48,7 +51,8 @@ public class FontUtil {
     }
 
     public static void addFxFont(Path fontPath, double fontSize) {
-        fxFonts.put(fontPath, Font.loadFont(fontPath.toString(), fontSize));
+        Font font = Font.loadFont(fontPath.toString(), fontSize);
+        fxFonts.put(fontPath, font);
     }
 
     public static PdfFont getPdfFontByName(String fontName) {
