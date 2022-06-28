@@ -53,12 +53,10 @@ public class FileUtil {
             }
             ImageEntity entity = new ImageEntity(loadedImage.getAbsolutePath());
             entitiesList.add(entity);
-            entity.setBottomPadding(8.0);
-            entity.setTopPadding(8.0);
-            entity.setLeftPadding(8.0);
-            entity.setRightPadding(8.0);
-            entity.setWidth(150);
-            entity.setHeight(90);
+            entity.setBottomPadding(0);
+            entity.setTopPadding(0);
+            entity.setLeftPadding(0);
+            entity.setRightPadding(0);
             papers.get(0).getChildren().add(entity.createFxmlObject());
             papers.get(0).getStylesheets().add(PdfEditorApplication.class.getResource("main.css").toExternalForm());
         });

@@ -22,10 +22,10 @@ public class FormulaWindowController implements Initializable {
         createFormula.setOnAction(ev -> {
             FormulaEntity entity = new FormulaEntity(formulaText.getText());
             entitiesList.add(entity);
-            entity.setBottomPadding(8.0);
-            entity.setTopPadding(8.0);
-            entity.setLeftPadding(8.0);
-            entity.setRightPadding(8.0);
+            entity.setBottomPadding(0);
+            entity.setTopPadding(0);
+            entity.setLeftPadding(0);
+            entity.setRightPadding(0);
             entity.setWidth(90);
             entity.setHeight(60);
             papers.get(0).getChildren().add(entity.createFxmlObject());
