@@ -1,17 +1,17 @@
-package hse.btf.pdfeditor.models;
+package hse.btf.pdfeditor.models.entities;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 
 public abstract class PaperEntity {
-    AnchorPane textBox;
+    protected AnchorPane textBox;
+    protected Circle resizePoint;
     protected double leftPadding;
     protected double rightPadding;
     protected double topPadding;
     protected double bottomPadding;
-
-    // TODO: поле isDeleted
 
     protected PaperEntity() {
         textBox = new AnchorPane();
@@ -90,4 +90,21 @@ public abstract class PaperEntity {
     public void setBottomPadding(double bottomPadding) {
         this.bottomPadding = bottomPadding;
     }
+
+    protected void removeCss(String css) {
+        textBox.getStyleClass().remove(css);
+    }
+
+    protected void applyCss(String css) {
+        textBox.getStyleClass().add(css);
+    }
+
+    protected void hidePoint() {
+        resizePoint.setVisible(false);
+    }
+
+    protected void showPoint() {
+        resizePoint.setVisible(true);
+    }
 }
+

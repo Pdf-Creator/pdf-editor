@@ -9,24 +9,24 @@ public class PDFItem {
     private double y;
     private double w;
     private double h;
-    private TransparentColor rectangleStrokeColor;
-    private TransparentColor rectangleFillColor;
+    private TransparentColor borderColor;
+    private TransparentColor backgroundColor;
 
     public PDFItem(double x, double y, double w, double h) {
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
-        rectangleStrokeColor = new TransparentColor(ColorConstants.WHITE, 1);
-        rectangleFillColor = new TransparentColor(ColorConstants.WHITE, 0);
+        borderColor = new TransparentColor(ColorConstants.WHITE, 1);
+        backgroundColor = new TransparentColor(ColorConstants.WHITE, 0);
     }
 
-    public void setRectangleStrokeColor(TransparentColor rectangleStrokeColor) {
-        this.rectangleStrokeColor = rectangleStrokeColor;
+    public void setBorderColor(TransparentColor borderColor) {
+        this.borderColor = borderColor;
     }
 
-    public void setRectangleFillColor(TransparentColor rectangleFillColor) {
-        this.rectangleFillColor = rectangleFillColor;
+    public void setBackgroundColor(TransparentColor backgroundColor) {
+        this.backgroundColor = backgroundColor;
     }
 
     public void setX(float x) {
@@ -61,11 +61,11 @@ public class PDFItem {
         return h;
     }
 
-    public TransparentColor getRectangleStrokeColor() {
-        return rectangleStrokeColor;
+    public TransparentColor getBorderColor() {
+        return borderColor;
     }
 
-    public TransparentColor getRectangleFillColor() {
-        return rectangleFillColor;
+    public TransparentColor getBackgroundColor() {
+        return backgroundColor;
     }
 }

@@ -1,6 +1,6 @@
 package hse.btf.pdfeditor;
 
-import hse.btf.pdfeditor.models.TextEntity;
+import hse.btf.pdfeditor.models.entities.TextEntity;
 import hse.btf.pdfeditor.utils.CreatorConstants;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;

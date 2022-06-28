@@ -1,7 +1,7 @@
 package hse.btf.pdfeditor.utils;
 
 import hse.btf.pdfeditor.PdfEditorApplication;
-import hse.btf.pdfeditor.models.ImageEntity;
+import hse.btf.pdfeditor.models.entities.ImageEntity;
 import hse.btf.pdfeditor.service.Converter;
 import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
@@ -14,6 +14,7 @@ import java.nio.file.Path;
 import java.util.Locale;
 
 import static hse.btf.pdfeditor.PdfWorkWindowController.papers;
+import static hse.btf.pdfeditor.utils.DataStorage.entitiesList;
 
 public class FileUtil {
     private static final FileChooser fileChooser = new FileChooser();
@@ -59,6 +60,7 @@ public class FileUtil {
                 return;
             }
             ImageEntity entity = new ImageEntity(loadedImage.getAbsolutePath());
+            entitiesList.add(entity);
             entity.setBottomPadding(8.0);
             entity.setTopPadding(8.0);
             entity.setLeftPadding(8.0);
