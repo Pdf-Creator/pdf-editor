@@ -8,6 +8,7 @@ import javafx.scene.text.Font;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,18 +19,35 @@ public class FontUtil {
     public static final @NotNull String ARIAL = FONTS_DIR + "arial.ttf";
     public static final @NotNull String TIMES_NEW_ROMAN = FONTS_DIR + "times_new_roman.ttf";
 
-    private static Map<String, PdfFont> pdfFonts = new HashMap<>();
-    private static Map<String, Font> fxFonts = new HashMap<>();
+    private static Map<String, Path> fontNameToFontPath = new HashMap<>();
+    private static Map<Path, PdfFont> pdfFonts = new HashMap<>();
+    private static Map<Path, Font> fxFonts = new HashMap<>();
 
-    public static void addPdfFont(String fontFile) throws IOException {
-        pdfFonts.put(fontFile, PdfFontFactory.createFont(fontFile, PdfEncodings.IDENTITY_H));
+    public static void registerFont(String fontName, Path fontPath) throws IOException {
+        fontNameToFontPath.put(fontName, fontPath);
+        addPdfFont(fontPath);
+        addFxFont(fontPath);
     }
 
-    public static void addFxFont(String fontFile) {
-        addFxFont(fontFile, PDFEditorConstants.DEFAULT_FONT_SIZE);
+    private static void addPdfFont(Path fontPath) throws IOException {
+        pdfFonts.put(fontPath, PdfFontFactory.createFont(fontPath.toString(), PdfEncodings.IDENTITY_H));
     }
 
-    public static void addFxFont(String fontFile, double fontSize) {
-        fxFonts.put(fontFile, Font.loadFont(fontFile, fontSize));
+    private static void addFxFont(Path fontPath) {
+        addFxFont(fontPath, PDFEditorConstants.DEFAULT_FONT_SIZE);
+    }
+
+    public static void addFxFont(Path fontPath, double fontSize) {
+        fxFonts.put(fontPath, Font.loadFont(fontPath.toString(), fontSize));
+    }
+
+    public static PdfFont getPdfFontByName(String fontName) {
+        Path fontPath = fontNameToFontPath.get(fontName);
+        return pdfFonts.get(fontPath);
+    }
+
+    public static Font getFxFontByName(String fontName) {
+        Path fontPath = fontNameToFontPath.get(fontName);
+        return fxFonts.get(fontPath);
     }
 }

@@ -64,7 +64,7 @@ public class FileUtil {
         });
     }
 
-    public static void loadFont(Button button) {
+    public static void loadFont(Button button, String fontName) {
         button.setOnAction(ev -> {
             fileChooser.getExtensionFilters().clear();
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("TTF files", "*.ttf"));
@@ -73,8 +73,7 @@ public class FileUtil {
             Path newPath = Path.of("src", "main", "resources", "fonts", loadedFont.getName());
             try {
                 Files.copy(loadedFont.toPath(), newPath);
-                FontUtil.addPdfFont(newPath.toString());
-                FontUtil.addFxFont(newPath.toString());
+                FontUtil.registerFont(fontName, newPath);
             } catch (IOException e) {
                 System.err.println("Couldn't load font");
             }
