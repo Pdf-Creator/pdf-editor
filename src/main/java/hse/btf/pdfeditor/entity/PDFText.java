@@ -1,15 +1,10 @@
 package hse.btf.pdfeditor.entity;
 
-import com.itextpdf.io.font.FontProgram;
-import com.itextpdf.io.font.FontProgramFactory;
 import com.itextpdf.io.font.PdfEncodings;
-import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.kernel.colors.Color;
 import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
-import com.itextpdf.layout.font.FontProvider;
-import hse.btf.pdfeditor.utils.Fonts;
 import hse.btf.pdfeditor.utils.PDFEditorConstants;
 
 import java.io.IOException;
