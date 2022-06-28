@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import static hse.btf.pdfeditor.serializers.SavingClassKt.deserializeProjectsNames;
+import static hse.btf.pdfeditor.serializers.SavingClassKt.readFromFile;
 import static hse.btf.pdfeditor.serializers.SavingClassKt.serializeProjectsNames;
 
 public class HelloSceneController implements Initializable {
@@ -93,5 +94,6 @@ public class HelloSceneController implements Initializable {
         }
 
         // выгрузить состояние всей прошлой сцены
+        readFromFile(projectNameField.getText());
     }
 }
