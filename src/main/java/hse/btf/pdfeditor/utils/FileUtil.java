@@ -23,16 +23,22 @@ public class FileUtil {
         button.setOnAction(ev -> {
             fileChooser.getExtensionFilters().clear();
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF files", "*.pdf"));
-            File file = fileChooser.showSaveDialog(null);
-            if (file == null) {
-                return;
+            File file;
+            if (DataStorage.pdfFileName.isEmpty()) {
+                file = fileChooser.showSaveDialog(null);
+                if (file == null) {
+                    return;
+                }
+                DataStorage.pdfFileName = file.getAbsolutePath();
+            } else {
+                file = new File(DataStorage.pdfFileName);
             }
             try {
                 Converter.saveDocument(file.getAbsolutePath().toLowerCase(Locale.ROOT));
             } catch (IOException e) {
                 System.err.println("Couldn't convert document");
             }
-            openPDFDocument(file.getParentFile());
+            openPDFDocument(file);
         });
     }
 
