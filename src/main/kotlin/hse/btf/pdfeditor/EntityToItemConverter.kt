@@ -22,6 +22,10 @@ class EntityToItemConverter {
                         h.bindBidirectional(it.heightProperty)
 
                         text.bindBidirectional(it.text)
+                        fontFamily.bindBidirectional(it.fontFamily)
+                        fontName.bindBidirectional(it.fontName)
+                        fontSize.bindBidirectional(it.fontSize)
+                        fontStyle.bindBidirectional(it.fontStyle)
 //                        font.bindBidirectional(it.font)
 //                        background.bindBidirectional(it.background)
 //                        border.bindBidirectional(it.border)

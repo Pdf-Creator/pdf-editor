@@ -100,33 +100,35 @@ public class Converter {
                 converted.get(2),
                 converted.get(3)
         );
-        pdfText.setText(textItem.getText().get());
-        System.out.println("-- font --");
-        Font font = textItem.getFont().get();
-        if (font != null) {
-            System.out.println(font.getFamily());
-            System.out.println(font.getName());
-            System.out.println(font.getSize());
-            System.out.println(font.getStyle());
-        }
-        System.out.println("----------");
-        System.out.println("-- background --");
-        Background background = textItem.getBackground().get();
-        if (background != null) {
-            background.getFills().forEach(fill -> System.out.println("background fill: " + fill.getFill()));
-            background.getImages().forEach(image -> System.out.println("background image: " + image.getImage().getUrl()));
-            System.out.println("background outsets: " + background.getOutsets());
-        }
-        System.out.println("----------------");
-        System.out.println("-- border --");
-        Border border = textItem.getBorder().get();
-        if (border != null) {
-            border.getImages().forEach(image -> System.out.println("border image: " + image.getImage().getUrl()));
-            border.getStrokes().forEach(stroke -> System.out.println("border stroke: " + stroke));
-            System.out.println("border insets: " + border.getInsets());
-            System.out.println("border outsets: " + border.getOutsets());
-        }
-        System.out.println("------------");
+
+        // TODO: здесь пофиксить геттеры
+//        pdfText.setText(textItem.getText().get());
+//        System.out.println("-- font --");
+//        Font font = textItem.getFont().get();
+//        if (font != null) {
+//            System.out.println(font.getFamily());
+//            System.out.println(font.getName());
+//            System.out.println(font.getSize());
+//            System.out.println(font.getStyle());
+//        }
+//        System.out.println("----------");
+//        System.out.println("-- background --");
+//        Background background = textItem.getBackground().get();
+//        if (background != null) {
+//            background.getFills().forEach(fill -> System.out.println("background fill: " + fill.getFill()));
+//            background.getImages().forEach(image -> System.out.println("background image: " + image.getImage().getUrl()));
+//            System.out.println("background outsets: " + background.getOutsets());
+//        }
+//        System.out.println("----------------");
+//        System.out.println("-- border --");
+//        Border border = textItem.getBorder().get();
+//        if (border != null) {
+//            border.getImages().forEach(image -> System.out.println("border image: " + image.getImage().getUrl()));
+//            border.getStrokes().forEach(stroke -> System.out.println("border stroke: " + stroke));
+//            System.out.println("border insets: " + border.getInsets());
+//            System.out.println("border outsets: " + border.getOutsets());
+//        }
+//        System.out.println("------------");
         return pdfText;
     }
 

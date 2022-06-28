@@ -1,5 +1,6 @@
 package hse.btf.pdfeditor.models.entities;
 
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.layout.Background;
@@ -11,4 +12,8 @@ public interface TextEntityInterface {
     ObjectProperty<Font> getFont();
     ObjectProperty<Background> getBackground();
     ObjectProperty<Border> getBorder();
+    StringProperty getFontFamily();
+    StringProperty getFontName();
+    IntegerProperty getFontSize();
+    StringProperty getFontStyle();
 }

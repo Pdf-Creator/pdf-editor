@@ -17,9 +17,15 @@ data class TextItem(
 //    val background: ObjectProperty<Background> = SimpleObjectProperty(),
 //    val border: ObjectProperty<Border> = SimpleObjectProperty()
 
+    @Serializable(with = StringPropertySerializer::class)
+    val fontFamily: StringProperty = SimpleStringProperty(""),
+
+    @Serializable(with = StringPropertySerializer::class)
+    val fontName: StringProperty = SimpleStringProperty("Arial"),
+
     @Serializable(with = IntegerPropertySerializer::class)
     val fontSize: IntegerProperty = SimpleIntegerProperty(13),
 
     @Serializable(with = StringPropertySerializer::class)
-    val style: StringProperty = SimpleStringProperty("type text here")
+    val fontStyle: StringProperty = SimpleStringProperty("")
 ) : Item()
