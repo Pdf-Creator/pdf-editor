@@ -134,7 +134,7 @@ public class PDFDocument {
                 (float) formulaItem.getX(),
                 (float) formulaItem.getY(),
                 (float) formulaItem.getW(),
-                (float) formulaItem.getW()
+                (float) formulaItem.getH()
         );
 
         // drawing rectangle
@@ -153,7 +153,7 @@ public class PDFDocument {
 
         // сreating formula image
         TeXFormula formula = new TeXFormula(formulaItem.getFormula());
-        java.awt.Image formulaImage = formula.createBufferedImage(TeXConstants.STYLE_DISPLAY, formulaItem.getFontSize(), formulaItem.getFormulaColor(), null);
+        java.awt.Image formulaImage = formula.createBufferedImage(TeXConstants.STYLE_TEXT, PDFEditorConstants.DEFAULT_LATEX_DPI, formulaItem.getFormulaColor(), null);
         BufferedImage bufferedImage = (BufferedImage) formulaImage;
 
         // -- adding it to pdf --
@@ -163,7 +163,8 @@ public class PDFDocument {
         ImageData data = ImageDataFactory.create(byteArrayOutputStream.toByteArray());
         Image image = new Image(data);
         image.setFixedPosition((float) formulaItem.getX(), (float) formulaItem.getY());
-        image.scaleAbsolute((float) formulaItem.getW(), (float) formulaItem.getH());
+        image.setWidth((float) formulaItem.getW());
+        image.setHeight((float) formulaItem.getH());
 
         new Canvas(canvas, rect).add(image);
     }

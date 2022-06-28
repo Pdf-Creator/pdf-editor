@@ -132,7 +132,7 @@ public class FormulaEntity extends PaperEntity implements FormulaEntityInterface
 
     private ImageView drawFormula(String latex) {
         TeXFormula formula = new TeXFormula(latex);
-        java.awt.Image awtImage = formula.createBufferedImage(TeXConstants.STYLE_TEXT, 300, java.awt.Color.BLACK, null);
+        java.awt.Image awtImage = formula.createBufferedImage(TeXConstants.STYLE_TEXT, PDFEditorConstants.DEFAULT_LATEX_DPI, java.awt.Color.BLACK, null);
         Image fxImage = SwingFXUtils.toFXImage((BufferedImage) awtImage, null);
         return new ImageView(fxImage);
     }

@@ -46,11 +46,37 @@ public class Converter {
     }
 
     private static List<Float> convertCoordinates(double x, double y, double w, double h, PageSize pageSize) {
+        System.out.println("-- from ui --");
+        System.out.println("x = " + x);
+        System.out.println("y = " + y);
+        System.out.println("w = " + w);
+        System.out.println("h = " + h);
+        System.out.println("-------------");
+        System.out.println("-- page size --");
+        System.out.println("width = " + pageSize.getWidth());
+        System.out.println("height = " + pageSize.getHeight());
+        System.out.println("---------------");
         List<Float> coordinates = new ArrayList<>();
-        coordinates.add(0, (float) x); // x
-        coordinates.add(1, (float) (pageSize.getHeight() - y - h)); //
-        coordinates.add(2, (float) w); // w
-        coordinates.add(3, (float) h); // h
+        // // prefHeight="1188.0" prefWidth="840.0"
+        double coef = 842.0 / 1188.0;
+        double conv_x = x * coef;
+        double conv_y = y * coef;
+        double conv_w = w * coef;
+        double conv_h = h * coef;
+        System.out.println("conv_x = " + conv_x);
+        System.out.println("conv_y = " + conv_y);
+        System.out.println("conv_w = " + conv_w);
+        System.out.println("conv_h = " + conv_h);
+        coordinates.add(0, (float) conv_x); // x
+        coordinates.add(1, (float) (pageSize.getHeight() - conv_y - conv_h)); //
+        coordinates.add(2, (float) conv_w); // w
+        coordinates.add(3, (float) conv_h); // h
+        System.out.println("-- pdf --");
+        System.out.println("x = " + coordinates.get(0));
+        System.out.println("y = " + coordinates.get(1));
+        System.out.println("w = " + coordinates.get(2));
+        System.out.println("h = " + coordinates.get(3));
+        System.out.println("---------");
         return coordinates;
     }
 
@@ -71,26 +97,32 @@ public class Converter {
                 converted.get(3)
         );
         pdfText.setText(textItem.getText().get());
-//        System.out.println("-- font --");
-//        Font font = textItem.getFont().get();
-//        System.out.println(font.getFamily());
-//        System.out.println(font.getName());
-//        System.out.println(font.getSize());
-//        System.out.println(font.getStyle());
-//        System.out.println("----------");
-//        System.out.println("-- background --");
-//        Background background = textItem.getBackground().get();
-//        background.getFills().forEach(fill -> System.out.println("background fill: " + fill.getFill()));
-//        background.getImages().forEach(image -> System.out.println("background image: " + image.getImage().getUrl()));
-//        System.out.println("background outsets: " + background.getOutsets());
-//        System.out.println("----------------");
-//        System.out.println("-- border --");
-//        Border border = textItem.getBorder().get();
-//        border.getImages().forEach(image -> System.out.println("border image: " + image.getImage().getUrl()));
-//        border.getStrokes().forEach(stroke -> System.out.println("border stroke: " + stroke));
-//        System.out.println("border insets: " + border.getInsets());
-//        System.out.println("border outsets: " + border.getOutsets());
-//        System.out.println("------------");
+        System.out.println("-- font --");
+        Font font = textItem.getFont().get();
+        if (font != null) {
+            System.out.println(font.getFamily());
+            System.out.println(font.getName());
+            System.out.println(font.getSize());
+            System.out.println(font.getStyle());
+        }
+        System.out.println("----------");
+        System.out.println("-- background --");
+        Background background = textItem.getBackground().get();
+        if (background != null) {
+            background.getFills().forEach(fill -> System.out.println("background fill: " + fill.getFill()));
+            background.getImages().forEach(image -> System.out.println("background image: " + image.getImage().getUrl()));
+            System.out.println("background outsets: " + background.getOutsets());
+        }
+        System.out.println("----------------");
+        System.out.println("-- border --");
+        Border border = textItem.getBorder().get();
+        if (border != null) {
+            border.getImages().forEach(image -> System.out.println("border image: " + image.getImage().getUrl()));
+            border.getStrokes().forEach(stroke -> System.out.println("border stroke: " + stroke));
+            System.out.println("border insets: " + border.getInsets());
+            System.out.println("border outsets: " + border.getOutsets());
+        }
+        System.out.println("------------");
         return pdfText;
     }
 
