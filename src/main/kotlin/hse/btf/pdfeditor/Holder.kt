@@ -1,7 +1,7 @@
 package hse.btf.pdfeditor
 
 import hse.btf.pdfeditor.models.Item
-import hse.btf.pdfeditor.utils.DataStorage
+import hse.btf.pdfeditor.storages.ProjectDataStorage
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
 import kotlinx.serialization.decodeFromString
@@ -12,7 +12,7 @@ data class Holder(val observableItemsList: ObservableList<Item> = FXCollections.
         val itemsList = Json.decodeFromString<List<Item>>(fileData)
 
         // updating data
-        DataStorage.itemsHolder.observableItemsList.clear()
-        DataStorage.itemsHolder.observableItemsList.addAll(itemsList)
+        ProjectDataStorage.itemsHolder.observableItemsList.clear()
+        ProjectDataStorage.itemsHolder.observableItemsList.addAll(itemsList)
     }
 }

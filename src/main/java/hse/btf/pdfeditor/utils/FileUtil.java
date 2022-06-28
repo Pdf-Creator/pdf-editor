@@ -3,6 +3,7 @@ package hse.btf.pdfeditor.utils;
 import hse.btf.pdfeditor.PdfEditorApplication;
 import hse.btf.pdfeditor.models.entities.ImageEntity;
 import hse.btf.pdfeditor.service.Converter;
+import hse.btf.pdfeditor.storages.ProjectDataStorage;
 import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
 
@@ -14,7 +15,8 @@ import java.nio.file.Path;
 import java.util.Locale;
 
 import static hse.btf.pdfeditor.PdfWorkWindowController.papers;
-import static hse.btf.pdfeditor.utils.DataStorage.entitiesList;
+import static hse.btf.pdfeditor.serializers.SavingClassKt.saveToFile;
+import static hse.btf.pdfeditor.storages.EntitiesStorage.entitiesList;
 
 public class FileUtil {
     private static final FileChooser fileChooser = new FileChooser();
@@ -25,14 +27,14 @@ public class FileUtil {
             fileChooser.getExtensionFilters().clear();
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF files", "*.pdf"));
             File file;
-            if (DataStorage.pdfFileName.isEmpty()) {
+            if (ProjectDataStorage.pdfFileName.isEmpty()) {
                 file = fileChooser.showSaveDialog(null);
                 if (file == null) {
                     return;
                 }
-                DataStorage.pdfFileName = file.getAbsolutePath();
+                ProjectDataStorage.pdfFileName = file.getAbsolutePath();
             } else {
-                file = new File(DataStorage.pdfFileName);
+                file = new File(ProjectDataStorage.pdfFileName);
             }
             try {
                 Converter.saveDocument(file.getAbsolutePath().toLowerCase(Locale.ROOT));
@@ -40,6 +42,9 @@ public class FileUtil {
                 System.err.println("Couldn't convert document");
             }
             openPDFDocument(file);
+
+            // saving info to JSON
+            saveToFile(ProjectDataStorage.pdfFileName);
         });
     }
 

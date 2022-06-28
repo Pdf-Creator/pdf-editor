@@ -123,4 +123,24 @@ public class ImageEntity extends PaperEntity implements ImageEntityInterface {
     public String getFileName() {
         return fileName;
     }
+
+    @Override
+    public DoubleProperty getXProperty() {
+        return image.xProperty();
+    }
+
+    @Override
+    public DoubleProperty getYProperty() {
+        return image.yProperty();
+    }
+
+    @Override
+    public DoubleProperty getWidthProperty() {
+        return image.fitWidthProperty();
+    }
+
+    @Override
+    public DoubleProperty getHeightProperty() {
+        return image.fitHeightProperty();
+    }
 }

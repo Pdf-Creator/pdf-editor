@@ -16,14 +16,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import static hse.btf.pdfeditor.HelloSceneController.usedByOpenButton;
+
 public class PdfWorkWindowController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         papers = new ArrayList<>();
         papers.add(paper);
+
         setPaperSettings();
         setLeftPanelsActions();
+
+        // TODO
+        if (usedByOpenButton) {
+            // создать entities из списка item'ов
+            // отрисовать объекты на бумаге
+        }
 
         FileUtil.savePDFDocument(createPdfButton);
     }
