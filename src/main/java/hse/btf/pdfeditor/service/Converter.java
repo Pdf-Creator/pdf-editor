@@ -8,6 +8,7 @@ import com.itextpdf.kernel.pdf.colorspace.PdfColorSpace;
 import com.itextpdf.layout.properties.TransparentColor;
 import hse.btf.pdfeditor.entity.*;
 import hse.btf.pdfeditor.models.*;
+import hse.btf.pdfeditor.utils.FontUtil;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
@@ -18,11 +19,13 @@ import java.awt.*;
 import java.awt.image.ColorConvertOp;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static hse.btf.pdfeditor.utils.DataStorage.itemsHolder;
+import static hse.btf.pdfeditor.utils.FontUtil.*;
 
 public class Converter {
     public static void saveDocument(String fileName) throws IOException {
@@ -53,6 +56,16 @@ public class Converter {
         }
         pdfDocument.exportDocument();
     }
+
+//    static {
+//        try {
+//            FontUtil.registerFont("Free Sans", Path.of(FREE_SANS));
+//            FontUtil.registerFont("Arial", Path.of(ARIAL));
+//            FontUtil.registerFont("Times New Roman", Path.of(TIMES_NEW_ROMAN));
+//        } catch (IOException e) {
+//            System.err.println("Couldn't load default fonts");
+//        }
+//    }
 
     private static List<Float> convertCoordinates(double x, double y, double w, double h, PageSize pageSize) {
 //        System.out.println("-- from ui --");
@@ -140,6 +153,7 @@ public class Converter {
         pdfText.setBorderColor(borderColor);
 
         // TODO add size, font, color
+        //pdfText.setTextFont(FontUtil.getPdfFontByName("Free Sans"));
         return pdfText;
 //        System.out.println("-- font --");
 //        Font font = textItem.getFont().get();
