@@ -38,6 +38,8 @@ public class FormulaEntity extends PaperEntity {
             PdfWorkWindowController.target.hidePoint();
         }
         this.applyCss("text-region");
+        PdfWorkWindowController.target = this;
+
         formulaImage = drawFormula(formula);
         formulaImage.setFitHeight(getHeight() - leftPadding - rightPadding);
         formulaImage.setFitWidth(getWidth() - bottomPadding - topPadding);
@@ -66,8 +68,8 @@ public class FormulaEntity extends PaperEntity {
                 PdfWorkWindowController.target.removeCss("text-region");
                 PdfWorkWindowController.target.hidePoint();
             }
-            PdfWorkWindowController.target = this;
             this.applyCss("text-region");
+            PdfWorkWindowController.target = this;
             this.showPoint();
             textBox.setCursor(Cursor.MOVE);
             MouseController.Position.x = e.getX();
@@ -127,7 +129,7 @@ public class FormulaEntity extends PaperEntity {
 
     private ImageView drawFormula(String latex) {
         TeXFormula formula = new TeXFormula(latex);
-        java.awt.Image awtImage = formula.createBufferedImage(TeXConstants.STYLE_TEXT, 100, java.awt.Color.BLUE, null);
+        java.awt.Image awtImage = formula.createBufferedImage(TeXConstants.STYLE_TEXT, 50, java.awt.Color.BLACK, null);
         Image fxImage = SwingFXUtils.toFXImage((BufferedImage) awtImage, null);
         return new ImageView(fxImage);
     }
