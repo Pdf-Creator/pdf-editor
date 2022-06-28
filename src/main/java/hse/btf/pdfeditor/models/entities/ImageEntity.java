@@ -2,6 +2,7 @@ package hse.btf.pdfeditor.models.entities;
 
 import hse.btf.pdfeditor.MouseController;
 import hse.btf.pdfeditor.PdfWorkWindowController;
+import javafx.beans.property.DoubleProperty;
 import javafx.scene.Cursor;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -120,5 +121,25 @@ public class ImageEntity extends PaperEntity implements ImageEntityInterface {
     @Override
     public String getFileName() {
         return fileName;
+    }
+
+    @Override
+    public DoubleProperty getXProperty() {
+        return image.xProperty();
+    }
+
+    @Override
+    public DoubleProperty getYProperty() {
+        return image.yProperty();
+    }
+
+    @Override
+    public DoubleProperty getWidthProperty() {
+        return image.fitWidthProperty();
+    }
+
+    @Override
+    public DoubleProperty getHeightProperty() {
+        return image.fitHeightProperty();
     }
 }
