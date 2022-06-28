@@ -26,8 +26,6 @@ public class FormulaWindowController implements Initializable {
             entity.setTopPadding(0);
             entity.setLeftPadding(0);
             entity.setRightPadding(0);
-            entity.setWidth(90);
-            entity.setHeight(60);
             papers.get(0).getChildren().add(entity.createFxmlObject());
             papers.get(0).getStylesheets().add(PdfEditorApplication.class.getResource("main.css").toExternalForm());
             Stage stage = (Stage)formulaText.getScene().getWindow();
