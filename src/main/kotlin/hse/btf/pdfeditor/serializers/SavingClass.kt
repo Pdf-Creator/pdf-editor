@@ -28,8 +28,9 @@ fun saveToFile(fileName: String) {
     file.writeText(json)
 }
 
-fun readFromFile(fileName: String?) {
-    val filePath = fileName ?: ("./src/main/kotlin/hse/btf/pdfeditor/datasaving/" + "dataFile.json")
+fun readFromFile(fileName: String) {
+    var filePath = "./src/main/kotlin/hse/btf/pdfeditor/datasaving/"
+    filePath += if (fileName == "") fileName else "dataFile.json"
     val file = File(filePath)
 
     val fileData = file.readText()
