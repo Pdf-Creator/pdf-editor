@@ -2,10 +2,7 @@ package hse.btf.pdfeditor.service;
 
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.layout.properties.TransparentColor;
-import hse.btf.pdfeditor.entity.PDFDocument;
-import hse.btf.pdfeditor.entity.PDFImage;
-import hse.btf.pdfeditor.entity.PDFTable;
-import hse.btf.pdfeditor.entity.PDFText;
+import hse.btf.pdfeditor.entity.*;
 import hse.btf.pdfeditor.models.*;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -34,9 +31,15 @@ public class Converter {
             }
             if (item instanceof ImageItem) {
                 System.out.println("image item");
+                ImageItem imageItem = (ImageItem) item;
+                PDFImage pdfImage = convertImageItem(imageItem, pageSize);
+                pdfDocument.addRectangleWithImageItem(pdfImage);
             }
             if (item instanceof FormulaItem) {
                 System.out.println("formula item");
+                FormulaItem formulaItem = (FormulaItem) item;
+                PDFFormula pdfFormula = convertFormulaItem(formulaItem, pageSize);
+                pdfDocument.addRectangleWithFormulaItem(pdfFormula);
             }
         }
         pdfDocument.exportDocument();
@@ -91,9 +94,29 @@ public class Converter {
         return pdfText;
     }
 
-    private PDFImage convertImageItem(ImageItem imageItem) {
-        // TODO fix this
-        return null;
+    private static PDFImage convertImageItem(ImageItem imageItem, PageSize pageSize) {
+        List<Float> converted = convertCoordinates(imageItem.getX().get(), imageItem.getY().get(), imageItem.getW().get(), imageItem.getH().get(), pageSize);
+        PDFImage pdfImage = new PDFImage(
+                converted.get(0),
+                converted.get(1),
+                converted.get(2),
+                converted.get(3)
+        );
+        pdfImage.setImagePath(imageItem.getImageFileName());
+        return pdfImage;
+    }
+
+    private static PDFFormula convertFormulaItem(FormulaItem formulaItem, PageSize pageSize) {
+        List<Float> converted = convertCoordinates(formulaItem.getX().get(), formulaItem.getY().get(), formulaItem.getW().get(), formulaItem.getH().get(), pageSize);
+        PDFFormula pdfFormula = new PDFFormula(
+                converted.get(0),
+                converted.get(1),
+                converted.get(2),
+                converted.get(3)
+        );
+        pdfFormula.setFormula(formulaItem.getFormula().get());
+        pdfFormula.setFontSize(50);
+        return pdfFormula;
     }
 }
 
