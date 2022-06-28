@@ -1,7 +1,8 @@
 package hse.btf.pdfeditor;
 
-import hse.btf.pdfeditor.models.PaperContextMenu;
-import hse.btf.pdfeditor.models.PaperEntity;
+import hse.btf.pdfeditor.models.utility.PaperContextMenu;
+import hse.btf.pdfeditor.models.utility.PaperEntity;
+import hse.btf.pdfeditor.models.utility.PaperContextMenu;
 import hse.btf.pdfeditor.utils.FileUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

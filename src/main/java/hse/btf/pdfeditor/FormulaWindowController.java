@@ -1,11 +1,10 @@
 package hse.btf.pdfeditor;
 
-import hse.btf.pdfeditor.models.FormulaEntity;
+import hse.btf.pdfeditor.models.entities.FormulaEntity;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
-import kotlin.jvm.Synchronized;
 
 import java.net.URL;
 import java.util.ResourceBundle;

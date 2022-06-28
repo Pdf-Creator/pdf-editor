@@ -1,4 +1,4 @@
-package hse.btf.pdfeditor.models;
+package hse.btf.pdfeditor.models.entities;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.scene.layout.AnchorPane;

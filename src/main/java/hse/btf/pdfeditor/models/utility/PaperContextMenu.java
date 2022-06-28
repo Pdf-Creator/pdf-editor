@@ -1,4 +1,4 @@
-package hse.btf.pdfeditor.models;
+package hse.btf.pdfeditor.models.utility;
 
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;

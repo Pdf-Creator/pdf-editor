@@ -1,76 +1,48 @@
 package hse.btf.pdfeditor
 
-import hse.btf.pdfeditor.models.TextEntity
+import hse.btf.pdfeditor.models.FormulaItem
+import hse.btf.pdfeditor.models.ImageItem
 import hse.btf.pdfeditor.models.TextItem
+import hse.btf.pdfeditor.models.entities.FormulaEntity
+import hse.btf.pdfeditor.models.entities.ImageEntity
+import hse.btf.pdfeditor.models.entities.TextEntity
 import hse.btf.pdfeditor.utils.DataStorage.entitiesList
 import hse.btf.pdfeditor.utils.DataStorage.itemsHolder
 import tornadofx.bind
 
 class EntityToItemConverter {
-//    companion object {
-//        @JvmField
-//        var lastAddedNode: Node? = null
-//
-//        @JvmField
-//        var lastAddedAnchorPane: AnchorPane? = null
-//    }
-//
-//    init {
-//        layout.children.bind(itemsHolder.observableItemsList) {
-//            when (it) {
-//                is TextItem -> {
-//                    // text
-//                    lastAddedNode = TextArea().apply {
-//                        // connection with TextItem
-//                        textProperty().bindBidirectional(it.text)
-//                        it.fontSize.bindBidirectional(SimpleDoubleProperty(font.size))
-//
-//                        // TODO: сконнектить style -- color, shrift, ...
-////                    styleProperty().bindBidirectional(it.style)
-////                    println("Font: $font")
-//                        //fontProperty().bindBidirectional(it.font)
-//                    }
-//
-//                    // textBox
-//                    lastAddedAnchorPane = AnchorPane().apply {
-//                        // position
-//                        layoutXProperty().bindBidirectional(it.x)
-//                        layoutYProperty().bindBidirectional(it.y)
-//
-//                        prefWidthProperty().bindBidirectional(it.w)
-//                        prefHeightProperty().bindBidirectional(it.h)
-//                    }
-//
-//                    lastAddedNode
-//                }
-//                is TableItem -> TableView<String>().apply {
-////                    columns
-////                    TableColumn
-//                    // сделать свои columns
-//
-//                    // position
-//                    layoutXProperty().bindBidirectional(it.x)
-//                    layoutYProperty().bindBidirectional(it.y)
-//
-//                    prefWidthProperty().bindBidirectional(it.w)
-//                    prefHeightProperty().bindBidirectional(it.h)
-//
-//                    lastAddedNode = this
-//                }
-//            }
-//        }
-//    }
-
     init {
         itemsHolder.observableItemsList.bind(entitiesList) {
             when (it) {
                 is TextEntity ->
                     TextItem().apply {
-                        text.bindBidirectional(it.text)
                         x.bindBidirectional(it.xProperty)
                         y.bindBidirectional(it.yProperty)
                         w.bindBidirectional(it.widthProperty)
                         h.bindBidirectional(it.heightProperty)
+
+                        text.bindBidirectional(it.text)
+                        font.bindBidirectional(it.font)
+                        background.bindBidirectional(it.background)
+                        border.bindBidirectional(it.border)
+                    }
+                is ImageEntity ->
+                    ImageItem().apply {
+                        x.bindBidirectional(it.xProperty)
+                        y.bindBidirectional(it.yProperty)
+                        w.bindBidirectional(it.widthProperty)
+                        h.bindBidirectional(it.heightProperty)
+
+                        imageFileName = it.fileName
+                    }
+                is FormulaEntity ->
+                    FormulaItem().apply {
+                        x.bindBidirectional(it.xProperty)
+                        y.bindBidirectional(it.yProperty)
+                        w.bindBidirectional(it.widthProperty)
+                        h.bindBidirectional(it.heightProperty)
+
+                        formula.bindBidirectional(it.formulaProperty)
                     }
                 else -> {
                     println("Else branch converter")
