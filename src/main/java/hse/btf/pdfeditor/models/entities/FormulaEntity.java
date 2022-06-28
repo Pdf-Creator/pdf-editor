@@ -2,6 +2,7 @@ package hse.btf.pdfeditor.models.entities;
 
 import hse.btf.pdfeditor.MouseController;
 import hse.btf.pdfeditor.PdfWorkWindowController;
+import hse.btf.pdfeditor.utils.PDFEditorConstants;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.embed.swing.SwingFXUtils;
