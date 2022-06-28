@@ -12,4 +12,4 @@ data class TableItem (
 
     @Serializable(with = IntegerPropertySerializer::class)
     val cols: IntegerProperty = SimpleIntegerProperty(2)
-) : Item()
+)
