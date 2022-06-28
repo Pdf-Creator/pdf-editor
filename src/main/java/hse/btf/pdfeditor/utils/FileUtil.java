@@ -14,6 +14,7 @@ import java.util.Locale;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static hse.btf.pdfeditor.PdfWorkWindowController.papers;
+import static hse.btf.pdfeditor.utils.DataStorage.entitiesList;
 
 public class FileUtil {
     private static final FileChooser fileChooser = new FileChooser();
@@ -46,6 +47,7 @@ public class FileUtil {
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image files", "*.jpg", "*.png", "*.gif"));
             File loadedImage = fileChooser.showOpenDialog(null);
             ImageEntity entity = new ImageEntity(loadedImage.getAbsolutePath());
+            entitiesList.add(entity);
             entity.setBottomPadding(8.0);
             entity.setTopPadding(8.0);
             entity.setLeftPadding(8.0);

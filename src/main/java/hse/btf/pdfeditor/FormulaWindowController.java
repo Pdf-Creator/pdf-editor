@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static hse.btf.pdfeditor.PdfWorkWindowController.papers;
+import static hse.btf.pdfeditor.utils.DataStorage.entitiesList;
 
 public class FormulaWindowController implements Initializable {
     public TextArea formulaText;
@@ -21,6 +22,7 @@ public class FormulaWindowController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         createFormula.setOnAction(ev -> {
             FormulaEntity entity = new FormulaEntity();
+            entitiesList.add(entity);
             entity.setString(formulaText.getText());
             entity.setBottomPadding(8.0);
             entity.setTopPadding(8.0);
