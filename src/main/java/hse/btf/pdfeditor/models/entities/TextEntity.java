@@ -1,4 +1,4 @@
-package hse.btf.pdfeditor.models;
+package hse.btf.pdfeditor.models.entities;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;

@@ -1,7 +1,7 @@
 package hse.btf.pdfeditor.utils;
 
 import hse.btf.pdfeditor.PdfEditorApplication;
-import hse.btf.pdfeditor.models.ImageEntity;
+import hse.btf.pdfeditor.models.entities.ImageEntity;
 import hse.btf.pdfeditor.service.Converter;
 import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
@@ -9,9 +9,7 @@ import javafx.stage.FileChooser;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.Locale;
-import java.util.concurrent.atomic.AtomicReference;
 
 import static hse.btf.pdfeditor.PdfWorkWindowController.papers;
 

@@ -1,7 +1,6 @@
 package hse.btf.pdfeditor
 
 import hse.btf.pdfeditor.models.Item
-import hse.btf.pdfeditor.models.PaperEntity
 import hse.btf.pdfeditor.utils.DataStorage
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
