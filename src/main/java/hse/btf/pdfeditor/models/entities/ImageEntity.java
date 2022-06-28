@@ -1,4 +1,4 @@
-package hse.btf.pdfeditor.models;
+package hse.btf.pdfeditor.models.entities;
 
 import hse.btf.pdfeditor.MouseController;
 import javafx.scene.Cursor;
@@ -11,12 +11,16 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
 
 
-public class ImageEntity extends PaperEntity {
+public class ImageEntity extends PaperEntity implements ImageEntityInterface {
     ImageView image;
+    String fileName;
+
     public ImageEntity(String url) {
         super();
         image = new ImageView(url);
+        fileName = url;
     }
+
     @Override
     public Pane createFxmlObject() {
         image.setFitHeight(getHeight() - leftPadding - rightPadding);
@@ -97,5 +101,10 @@ public class ImageEntity extends PaperEntity {
         });
 
         return textBox;
+    }
+
+    @Override
+    public String getFileName() {
+        return fileName;
     }
 }

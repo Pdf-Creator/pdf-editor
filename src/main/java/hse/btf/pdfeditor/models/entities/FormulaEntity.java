@@ -1,6 +1,8 @@
-package hse.btf.pdfeditor.models;
+package hse.btf.pdfeditor.models.entities;
 
 import hse.btf.pdfeditor.MouseController;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Cursor;
 import javafx.scene.image.Image;
@@ -16,10 +18,10 @@ import org.scilab.forge.jlatexmath.TeXFormula;
 
 import java.awt.image.BufferedImage;
 
-public class FormulaEntity extends PaperEntity {
-
+public class FormulaEntity extends PaperEntity implements FormulaEntityInterface {
     private ImageView formulaImage;
     private String formula;
+    private StringProperty formulaProperty;
 
     public FormulaEntity() {
         super();
@@ -28,6 +30,7 @@ public class FormulaEntity extends PaperEntity {
 
     public void setString(String formula) {
         this.formula = formula;
+        this.formulaProperty = new SimpleStringProperty(formula);
     }
 
     @Override
@@ -118,5 +121,10 @@ public class FormulaEntity extends PaperEntity {
         java.awt.Image awtImage = formula.createBufferedImage(TeXConstants.STYLE_TEXT, 100, java.awt.Color.BLUE, null);
         Image fxImage = SwingFXUtils.toFXImage((BufferedImage) awtImage, null);
         return new ImageView(fxImage);
+    }
+
+    @Override
+    public StringProperty getFormulaProperty() {
+        return formulaProperty;
     }
 }

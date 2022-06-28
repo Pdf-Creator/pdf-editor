@@ -1,7 +1,7 @@
 package hse.btf.pdfeditor.utils;
 
 import hse.btf.pdfeditor.PdfEditorApplication;
-import hse.btf.pdfeditor.models.ImageEntity;
+import hse.btf.pdfeditor.models.entities.ImageEntity;
 import hse.btf.pdfeditor.service.Converter;
 import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
