@@ -6,10 +6,7 @@ import hse.btf.pdfeditor.entity.PDFDocument;
 import hse.btf.pdfeditor.entity.PDFImage;
 import hse.btf.pdfeditor.entity.PDFTable;
 import hse.btf.pdfeditor.entity.PDFText;
-import hse.btf.pdfeditor.models.ImageItem;
-import hse.btf.pdfeditor.models.Item;
-import hse.btf.pdfeditor.models.TableItem;
-import hse.btf.pdfeditor.models.TextItem;
+import hse.btf.pdfeditor.models.*;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
@@ -34,6 +31,12 @@ public class Converter {
                 TextItem textItem = (TextItem) item;
                 PDFText pdfText = convertTextItem(textItem, pageSize);
                 pdfDocument.addRectangleWithTextItem(pdfText);
+            }
+            if (item instanceof ImageItem) {
+                System.out.println("image item");
+            }
+            if (item instanceof FormulaItem) {
+                System.out.println("formula item");
             }
         }
         pdfDocument.exportDocument();
@@ -65,26 +68,26 @@ public class Converter {
                 converted.get(3)
         );
         pdfText.setText(textItem.getText().get());
-        System.out.println("-- font --");
-        Font font = textItem.getFont().get();
-        System.out.println(font.getFamily());
-        System.out.println(font.getName());
-        System.out.println(font.getSize());
-        System.out.println(font.getStyle());
-        System.out.println("----------");
-        System.out.println("-- background --");
-        Background background = textItem.getBackground().get();
-        background.getFills().forEach(fill -> System.out.println("background fill: " + fill.getFill()));
-        background.getImages().forEach(image -> System.out.println("background image: " + image.getImage().getUrl()));
-        System.out.println("background outsets: " + background.getOutsets());
-        System.out.println("----------------");
-        System.out.println("-- border --");
-        Border border = textItem.getBorder().get();
-        border.getImages().forEach(image -> System.out.println("border image: " + image.getImage().getUrl()));
-        border.getStrokes().forEach(stroke -> System.out.println("border stroke: " + stroke));
-        System.out.println("border insets: " + border.getInsets());
-        System.out.println("border outsets: " + border.getOutsets());
-        System.out.println("------------");
+//        System.out.println("-- font --");
+//        Font font = textItem.getFont().get();
+//        System.out.println(font.getFamily());
+//        System.out.println(font.getName());
+//        System.out.println(font.getSize());
+//        System.out.println(font.getStyle());
+//        System.out.println("----------");
+//        System.out.println("-- background --");
+//        Background background = textItem.getBackground().get();
+//        background.getFills().forEach(fill -> System.out.println("background fill: " + fill.getFill()));
+//        background.getImages().forEach(image -> System.out.println("background image: " + image.getImage().getUrl()));
+//        System.out.println("background outsets: " + background.getOutsets());
+//        System.out.println("----------------");
+//        System.out.println("-- border --");
+//        Border border = textItem.getBorder().get();
+//        border.getImages().forEach(image -> System.out.println("border image: " + image.getImage().getUrl()));
+//        border.getStrokes().forEach(stroke -> System.out.println("border stroke: " + stroke));
+//        System.out.println("border insets: " + border.getInsets());
+//        System.out.println("border outsets: " + border.getOutsets());
+//        System.out.println("------------");
         return pdfText;
     }
 
