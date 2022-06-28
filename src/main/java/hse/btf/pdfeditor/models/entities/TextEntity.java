@@ -1,6 +1,7 @@
 package hse.btf.pdfeditor.models.entities;
 
 import hse.btf.pdfeditor.PdfWorkWindowController;
+import hse.btf.pdfeditor.utils.FontUtil;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.Cursor;
@@ -132,5 +133,9 @@ public class TextEntity extends PaperEntity implements TextEntityInterface {
     @Override
     public ObjectProperty<Border> getBorder() {
         return text.borderProperty();
+    }
+
+    public void setFont(String fontName) {
+        text.setFont(FontUtil.getFxFontByName(fontName));
     }
 }
