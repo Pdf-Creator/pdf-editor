@@ -44,7 +44,7 @@ public class FileUtil {
             openPDFDocument(file);
 
             // saving info to JSON
-            saveToFile(ProjectDataStorage.pdfFileName);
+            saveToFile(file.getName());
         });
     }
 

@@ -3,6 +3,7 @@ package hse.btf.pdfeditor.service;
 import com.itextpdf.kernel.colors.Color;
 import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.colors.DeviceRgb;
+import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.colorspace.PdfColorSpace;
 import com.itextpdf.layout.properties.TransparentColor;
@@ -17,6 +18,7 @@ import hse.btf.pdfeditor.models.FormulaItem;
 import hse.btf.pdfeditor.models.ImageItem;
 import hse.btf.pdfeditor.models.Item;
 import hse.btf.pdfeditor.models.TextItem;
+import hse.btf.pdfeditor.utils.PDFEditorConstants;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
@@ -160,7 +162,11 @@ public class Converter {
 //        pdfText.setBorderColor(borderColor);
 
         // TODO add size, font, color
-        pdfText.setTextFont(FontUtil.getPdfFontByName(textItem.getFontFamily().get()));
+        PdfFont font = FontUtil.getPdfFontByName(textItem.getFontFamily().get());
+        if (font == null) {
+            font = FontUtil.getPdfFontByName(PDFEditorConstants.DEFAULT_FONT);
+        }
+        pdfText.setTextFont(font);
         pdfText.setTextSize(textItem.getFontSize().get());
         // TODO: здесь пофиксить геттеры
 //        pdfText.setText(textItem.getText().get());
