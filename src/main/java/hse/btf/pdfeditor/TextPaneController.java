@@ -2,6 +2,7 @@ package hse.btf.pdfeditor;
 
 import hse.btf.pdfeditor.models.entities.TextEntity;
 import hse.btf.pdfeditor.utils.CreatorConstants;
+import hse.btf.pdfeditor.utils.FontUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -50,6 +51,7 @@ public class TextPaneController implements Initializable {
         textShriftChoiceBox.setValue("Free Sans");
         textShriftChoiceBox.setOnAction(ev -> {
             TextEntity entity = (TextEntity)target;
+            FontUtil.getPdfFontByName(textShriftChoiceBox.getValue());
             entity.setFont(textShriftChoiceBox.getValue());
         });
     }
