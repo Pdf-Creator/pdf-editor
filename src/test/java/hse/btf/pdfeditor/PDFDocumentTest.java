@@ -1,5 +1,6 @@
 package hse.btf.pdfeditor;
 
+import com.itextpdf.kernel.colors.Color;
 import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.layout.properties.TransparentColor;
 import hse.btf.pdfeditor.entity.*;
@@ -35,7 +36,8 @@ public class PDFDocumentTest {
         PDFText textItem = new PDFText(x, y, w, h);
         textItem.setText("Testing TextItem");
         textItem.setTextColor(ColorConstants.BLACK);
-        textItem.setRectangleStrokeColor(new TransparentColor(ColorConstants.BLACK, 1));
+        textItem.setBorderColor(new TransparentColor(ColorConstants.BLACK, 1));
+        textItem.setBackgroundColor(new TransparentColor(ColorConstants.CYAN, .2f));
         pdfDocument.addRectangleWithTextItem(textItem);
     }
 
@@ -44,7 +46,8 @@ public class PDFDocumentTest {
     public void addRectangleWithImageTest() throws MalformedURLException {
         PDFImage imageItem = new PDFImage(x, y, w, h);
         imageItem.setImagePath("src/test/resources/images/java_logo.svg");
-        imageItem.setRectangleStrokeColor(new TransparentColor(ColorConstants.BLACK, 1));
+        imageItem.setBorderColor(new TransparentColor(ColorConstants.BLACK, 1));
+        imageItem.setBackgroundColor(new TransparentColor(ColorConstants.CYAN, .2f));
         pdfDocument.addRectangleWithImageItem(imageItem);
     }
 
@@ -64,6 +67,8 @@ public class PDFDocumentTest {
     public void addRectangleWithFormulaTest() throws IOException {
         PDFFormula formulaItem = new PDFFormula(x, y, w, h);
         formulaItem.setFormula("x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}");
+        formulaItem.setBorderColor(new TransparentColor(ColorConstants.BLACK, 1));
+        formulaItem.setBackgroundColor(new TransparentColor(ColorConstants.CYAN, .2f));
         formulaItem.setFontSize(20);
         pdfDocument.addRectangleWithFormulaItem(formulaItem);
     }
