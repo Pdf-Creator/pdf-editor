@@ -1,36 +1,30 @@
+/*!* TODO: Fix auto-scrolling *!*/
 .text-region {
-    -fx-background-color: transparent;
     -fx-border-color: gray;
-    -fx-border-width: 2;
     -fx-border-style: dotted;
+    -fx-border-width: 2;
+
+    -fx-background-color: transparent;
 }
 
 .text-area {
-    -fx-background-insets: 0;
-    -fx-background-color: transparent, white, transparent, white;
+    -fx-background-color: transparent;
 }
 
-.text-area .content {
-    -fx-background-color: transparent, white, transparent, white;
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
 }
 
-.text-area:focused .content {
-    -fx-background-color: transparent, white, transparent, white;
+.text-area .scroll-pane .viewport {
+    -fx-background-color: transparent;
 }
 
-.text-area:focused {
-    -fx-highlight-fill: #7ecfff;
-}
 
-.text-area .content {
-    -fx-padding: 1px;
-    -fx-text-fill: gray;
-    -fx-highlight-fill: #7ecfff;
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
 }
 
 .text-area .scroll-bar:vertical {
     -fx-pref-width: 0;
     -fx-opacity: 0;
 }
-
-/* TODO: Fix auto-scrolling */

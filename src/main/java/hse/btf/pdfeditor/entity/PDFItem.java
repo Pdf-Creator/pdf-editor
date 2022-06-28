@@ -17,7 +17,7 @@ public class PDFItem {
         this.y = y;
         this.w = w;
         this.h = h;
-        borderColor = new TransparentColor(ColorConstants.WHITE, 1);
+        borderColor = new TransparentColor(ColorConstants.WHITE, 0);
         backgroundColor = new TransparentColor(ColorConstants.WHITE, 0);
     }
 
