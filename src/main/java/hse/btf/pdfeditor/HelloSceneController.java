@@ -40,6 +40,8 @@ public class HelloSceneController implements Initializable {
     private String currentProjectName = "";
     private final ResourceBundle resourceBundle = ResourceBundle.getBundle("hello-scene");
 
+    public static boolean usedByOpenButton = false;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         deserializeProjectsNames(projectNamesList);
@@ -68,6 +70,25 @@ public class HelloSceneController implements Initializable {
         projectNamesList.add(projectNameField.getText());
         serializeProjectsNames(projectNamesList);
 
+        changeScene();
+    }
+
+    @FXML
+    public void openProjectButton(ActionEvent event) throws IOException {
+        // check whether project with that name doesn't exist
+        if (!projectNamesList.contains(projectNameField.getText())) {
+            ProjectNameBox.display(resourceBundle.getString("label.project-name.non-existing"), resourceBundle.getString("message.project-name.non-existing"));
+            return;
+        }
+
+        // выгрузить состояние всей прошлой сцены
+        System.out.println(projectNameField.getText());
+        usedByOpenButton = readFromFile(projectNameField.getText());
+
+        changeScene();
+    }
+
+    private void changeScene() throws IOException {
         // closing previous
         Stage thisStage = (Stage) createButton.getScene().getWindow();
         thisStage.close();
@@ -84,16 +105,5 @@ public class HelloSceneController implements Initializable {
         stage.setTitle("Working Window");
         stage.setScene(scene);
         stage.show();
-    }
-
-    @FXML
-    public void openProjectButton() {
-        // check whether project with that name doesn't exist
-        if (!projectNamesList.contains(projectNameField.getText())) {
-            ProjectNameBox.display(resourceBundle.getString("label.project-name.non-existing"), resourceBundle.getString("message.project-name.non-existing"));
-        }
-
-        // выгрузить состояние всей прошлой сцены
-        readFromFile(projectNameField.getText());
     }
 }
