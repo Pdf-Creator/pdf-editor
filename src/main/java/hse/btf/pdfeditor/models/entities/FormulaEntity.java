@@ -26,9 +26,11 @@ public class FormulaEntity extends PaperEntity implements FormulaEntityInterface
 
     public FormulaEntity(String formula) {
         super();
-        formulaImage = new ImageView();
+        formulaImage = drawFormula(formula);
         this.formula = formula;
         this.formulaProperty = new SimpleStringProperty(formula);
+        textBox.setPrefHeight(formulaImage.getImage().getHeight());
+        textBox.setPrefWidth(formulaImage.getImage().getWidth());
     }
 
     @Override
@@ -40,9 +42,7 @@ public class FormulaEntity extends PaperEntity implements FormulaEntityInterface
         this.applyCss("text-region");
         PdfWorkWindowController.target = this;
 
-        formulaImage = drawFormula(formula);
-        formulaImage.setFitHeight(getHeight() - leftPadding - rightPadding);
-        formulaImage.setFitWidth(getWidth() - bottomPadding - topPadding);
+
         formulaImage.setPreserveRatio(true);
         resizePoint = new Circle(6, Color.WHITE);
         resizePoint.setStrokeWidth(1);
@@ -113,8 +113,9 @@ public class FormulaEntity extends PaperEntity implements FormulaEntityInterface
             double distanceX = e.getX() - MouseController.Position.x;
             double distanceY = e.getY() - MouseController.Position.y;
 
+            double coef = textBox.getPrefHeight() / textBox.getPrefWidth();
             double x = textBox.getPrefWidth() + distanceX;
-            double y = textBox.getPrefHeight() + distanceY;
+            double y = textBox.getPrefHeight() + distanceX * coef;
 
             textBox.setPrefWidth(x);
             textBox.setPrefHeight(y);
