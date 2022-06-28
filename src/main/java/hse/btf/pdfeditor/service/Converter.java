@@ -46,11 +46,27 @@ public class Converter {
     }
 
     private static List<Float> convertCoordinates(double x, double y, double w, double h, PageSize pageSize) {
+        System.out.println("-- from ui --");
+        System.out.println("x = " + x);
+        System.out.println("y = " + y);
+        System.out.println("w = " + w);
+        System.out.println("h = " + h);
+        System.out.println("-------------");
+        System.out.println("-- page size --");
+        System.out.println("width = " + pageSize.getWidth());
+        System.out.println("height = " + pageSize.getHeight());
+        System.out.println("---------------");
         List<Float> coordinates = new ArrayList<>();
         coordinates.add(0, (float) x); // x
         coordinates.add(1, (float) (pageSize.getHeight() - y - h)); //
         coordinates.add(2, (float) w); // w
         coordinates.add(3, (float) h); // h
+        System.out.println("-- pdf --");
+        System.out.println("x = " + coordinates.get(0));
+        System.out.println("y = " + coordinates.get(1));
+        System.out.println("w = " + coordinates.get(2));
+        System.out.println("h = " + coordinates.get(3));
+        System.out.println("---------");
         return coordinates;
     }
 
