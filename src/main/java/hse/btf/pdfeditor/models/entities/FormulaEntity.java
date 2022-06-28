@@ -27,10 +27,12 @@ public class FormulaEntity extends PaperEntity implements FormulaEntityInterface
     public FormulaEntity(String formula) {
         super();
         formulaImage = drawFormula(formula);
+        double coef = formulaImage.getImage().getWidth() / formulaImage.getImage().getHeight();
         this.formula = formula;
         this.formulaProperty = new SimpleStringProperty(formula);
-        textBox.setPrefHeight(formulaImage.getImage().getHeight());
-        textBox.setPrefWidth(formulaImage.getImage().getWidth());
+        formulaImage.setFitHeight(50);
+        textBox.setPrefHeight(50);
+        textBox.setPrefWidth(50 * coef);
     }
 
     @Override
@@ -130,7 +132,7 @@ public class FormulaEntity extends PaperEntity implements FormulaEntityInterface
 
     private ImageView drawFormula(String latex) {
         TeXFormula formula = new TeXFormula(latex);
-        java.awt.Image awtImage = formula.createBufferedImage(TeXConstants.STYLE_TEXT, 50, java.awt.Color.BLACK, null);
+        java.awt.Image awtImage = formula.createBufferedImage(TeXConstants.STYLE_TEXT, PDFEditorConstants.DEFAULT_LATEX_DPI, java.awt.Color.BLACK, null);
         Image fxImage = SwingFXUtils.toFXImage((BufferedImage) awtImage, null);
         return new ImageView(fxImage);
     }
