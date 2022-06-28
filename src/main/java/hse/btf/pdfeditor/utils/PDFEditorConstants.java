@@ -13,4 +13,5 @@ public class PDFEditorConstants {
     public static final @NotNull String DEFAULT_PDF_FILE = DEFAULT_OUTPUT_DIR + "file.pdf";
 
     public static final @NotNull PageSize DEFAULT_PAGE_SIZE = PageSize.A4;
+    public static final @NotNull int DEFAULT_LATEX_DPI = 1000;
 }

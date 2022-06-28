@@ -20,8 +20,8 @@ public class ImageEntity extends PaperEntity implements ImageEntityInterface {
     public ImageEntity(String url) {
         super();
         image = new ImageView(url);
-        textBox.setPrefWidth(image.getFitWidth());
-        textBox.setPrefHeight(image.getFitHeight());
+        textBox.setPrefHeight(image.getImage().getHeight());
+        textBox.setPrefWidth(image.getImage().getWidth());
         fileName = url;
     }
 
@@ -34,8 +34,6 @@ public class ImageEntity extends PaperEntity implements ImageEntityInterface {
         PdfWorkWindowController.target = this;
         this.applyCss("text-region");
 
-        image.setFitHeight(getHeight() - leftPadding - rightPadding);
-        image.setFitWidth(getWidth() - bottomPadding - topPadding);
         image.setPreserveRatio(true);
         resizePoint = new Circle(6, Color.WHITE);
         resizePoint.setStrokeWidth(1);
