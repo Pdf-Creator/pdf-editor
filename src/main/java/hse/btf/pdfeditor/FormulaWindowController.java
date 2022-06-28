@@ -20,9 +20,8 @@ public class FormulaWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         createFormula.setOnAction(ev -> {
-            FormulaEntity entity = new FormulaEntity();
+            FormulaEntity entity = new FormulaEntity(formulaText.getText());
             entitiesList.add(entity);
-            entity.setString(formulaText.getText());
             entity.setBottomPadding(8.0);
             entity.setTopPadding(8.0);
             entity.setLeftPadding(8.0);

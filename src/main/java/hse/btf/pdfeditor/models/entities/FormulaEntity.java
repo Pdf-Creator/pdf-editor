@@ -22,14 +22,11 @@ import java.awt.image.BufferedImage;
 public class FormulaEntity extends PaperEntity implements FormulaEntityInterface {
     private ImageView formulaImage;
     private String formula;
-    private StringProperty formulaProperty;
+    private StringProperty formulaProperty = new SimpleStringProperty();
 
-    public FormulaEntity() {
+    public FormulaEntity(String formula) {
         super();
         formulaImage = new ImageView();
-    }
-
-    public void setString(String formula) {
         this.formula = formula;
         this.formulaProperty = new SimpleStringProperty(formula);
     }
