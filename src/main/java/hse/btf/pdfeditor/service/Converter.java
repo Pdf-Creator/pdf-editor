@@ -78,16 +78,16 @@ public class Converter {
 //    }
 
     private static List<Float> convertCoordinates(double x, double y, double w, double h, PageSize pageSize) {
-//        System.out.println("-- from ui --");
-//        System.out.println("x = " + x);
-//        System.out.println("y = " + y);
-//        System.out.println("w = " + w);
-//        System.out.println("h = " + h);
-//        System.out.println("-------------");
-//        System.out.println("-- page size --");
-//        System.out.println("width = " + pageSize.getWidth());
-//        System.out.println("height = " + pageSize.getHeight());
-//        System.out.println("---------------");
+        System.out.println("-- from ui --");
+        System.out.println("x = " + x);
+        System.out.println("y = " + y);
+        System.out.println("w = " + w);
+        System.out.println("h = " + h);
+        System.out.println("-------------");
+        System.out.println("-- page size --");
+        System.out.println("width = " + pageSize.getWidth());
+        System.out.println("height = " + pageSize.getHeight());
+        System.out.println("---------------");
         List<Float> coordinates = new ArrayList<>();
         // // prefHeight="1188.0" prefWidth="840.0"
         double coef = 842.0 / 1188.0;
@@ -95,20 +95,20 @@ public class Converter {
         double conv_y = y * coef;
         double conv_w = w * coef;
         double conv_h = h * coef;
-//        System.out.println("conv_x = " + conv_x);
-//        System.out.println("conv_y = " + conv_y);
-//        System.out.println("conv_w = " + conv_w);
-//        System.out.println("conv_h = " + conv_h);
+        System.out.println("conv_x = " + conv_x);
+        System.out.println("conv_y = " + conv_y);
+        System.out.println("conv_w = " + conv_w);
+        System.out.println("conv_h = " + conv_h);
         coordinates.add(0, (float) conv_x); // x
         coordinates.add(1, (float) (pageSize.getHeight() - conv_y - conv_h)); //
         coordinates.add(2, (float) conv_w); // w
         coordinates.add(3, (float) conv_h); // h
-//        System.out.println("-- pdf --");
-//        System.out.println("x = " + coordinates.get(0));
-//        System.out.println("y = " + coordinates.get(1));
-//        System.out.println("w = " + coordinates.get(2));
-//        System.out.println("h = " + coordinates.get(3));
-//        System.out.println("---------");
+        System.out.println("-- pdf --");
+        System.out.println("x = " + coordinates.get(0));
+        System.out.println("y = " + coordinates.get(1));
+        System.out.println("w = " + coordinates.get(2));
+        System.out.println("h = " + coordinates.get(3));
+        System.out.println("---------");
         return coordinates;
     }
 
