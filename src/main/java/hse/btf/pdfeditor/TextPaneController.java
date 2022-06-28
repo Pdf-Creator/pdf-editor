@@ -51,8 +51,8 @@ public class TextPaneController implements Initializable {
         textShriftChoiceBox.setValue("Free Sans");
         textShriftChoiceBox.setOnAction(ev -> {
             TextEntity entity = (TextEntity)target;
-            FontUtil.getPdfFontByName(textShriftChoiceBox.getValue());
-            entity.setFont(textShriftChoiceBox.getValue());
+            String fontName = textShriftChoiceBox.getValue();
+            entity.setFont(fontName);
         });
     }
 

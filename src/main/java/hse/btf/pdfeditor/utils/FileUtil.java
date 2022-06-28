@@ -76,7 +76,7 @@ public class FileUtil {
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("TTF files", "*.ttf"));
             File loadedFont = fileChooser.showOpenDialog(null);
             System.out.println(loadedFont.getName());
-            Path newPath = Path.of("src", "main", "resources", "fonts", loadedFont.getName());
+            Path newPath = Path.of("src", "main", "resources", "hse/btf/pdfeditor/fonts", loadedFont.getName());
             try {
                 Files.copy(loadedFont.toPath(), newPath);
                 FontUtil.registerFont(fontName, newPath);

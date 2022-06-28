@@ -22,6 +22,7 @@ module hse.btf.pdfeditor {
     requires font.asian;
     requires hyph;
     requires java.desktop;
+    requires org.apache.commons.io;
 
     opens hse.btf.pdfeditor to javafx.fxml;
     exports hse.btf.pdfeditor;
