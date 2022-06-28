@@ -34,7 +34,7 @@ public class FileUtil {
                 }
                 ProjectDataStorage.pdfFileName = file.getAbsolutePath();
             } else {
-                file = new File(ProjectDataStorage.pdfFileName);
+                file = Path.of(ProjectDataStorage.pdfFileName).toFile();
             }
             try {
                 Converter.saveDocument(file.getAbsolutePath().toLowerCase(Locale.ROOT));
@@ -44,7 +44,7 @@ public class FileUtil {
             openPDFDocument(file);
 
             // saving info to JSON
-            saveToFile(ProjectDataStorage.pdfFileName);
+            saveToFile(file.getName());
         });
     }
 
@@ -81,7 +81,7 @@ public class FileUtil {
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("TTF files", "*.ttf"));
             File loadedFont = fileChooser.showOpenDialog(null);
             System.out.println(loadedFont.getName());
-            Path newPath = Path.of("src", "main", "resources", "fonts", loadedFont.getName());
+            Path newPath = Path.of("src", "main", "resources", "hse/btf/pdfeditor/fonts", loadedFont.getName());
             try {
                 Files.copy(loadedFont.toPath(), newPath);
                 FontUtil.registerFont(fontName, newPath);

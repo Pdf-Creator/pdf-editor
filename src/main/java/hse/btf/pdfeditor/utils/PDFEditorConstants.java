@@ -4,7 +4,7 @@ import com.itextpdf.kernel.geom.PageSize;
 import org.jetbrains.annotations.NotNull;
 
 public class PDFEditorConstants {
-    public static final @NotNull String DEFAULT_FONT = FontUtil.TIMES_NEW_ROMAN;
+    public static final @NotNull String DEFAULT_FONT = "Free Sans";
     public static final double DEFAULT_FONT_SIZE = 14;
     // TODO add default color
     // TODO add default bg color

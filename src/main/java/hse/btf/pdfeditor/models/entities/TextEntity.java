@@ -1,6 +1,7 @@
 package hse.btf.pdfeditor.models.entities;
 
 import hse.btf.pdfeditor.PdfWorkWindowController;
+import hse.btf.pdfeditor.utils.FontUtil;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -22,6 +23,10 @@ import static hse.btf.pdfeditor.MouseController.Position;
 
 public class TextEntity extends PaperEntity implements TextEntityInterface {
     private final TextArea text = new TextArea();
+    private final StringProperty textFontFamily = new SimpleStringProperty("");
+    private final StringProperty textFontName = new SimpleStringProperty("");
+    private final IntegerProperty textFontSize = new SimpleIntegerProperty(13);
+    private final StringProperty textFontStyle = new SimpleStringProperty("");
     public TextEntity() {
         super();
     }
@@ -129,22 +134,22 @@ public class TextEntity extends PaperEntity implements TextEntityInterface {
 
     @Override
     public StringProperty getFontFamily() {
-        return new SimpleStringProperty(text.getFont().getFamily());
+        return textFontFamily;
     }
 
     @Override
     public StringProperty getFontName() {
-        return new SimpleStringProperty(text.getFont().getName());
+        return textFontName;
     }
 
     @Override
     public IntegerProperty getFontSize() {
-        return new SimpleIntegerProperty((int) text.getFont().getSize());
+        return textFontSize;
     }
 
     @Override
     public StringProperty getFontStyle() {
-        return new SimpleStringProperty(text.getFont().getStyle());
+        return textFontStyle;
     }
 
     @Override
@@ -155,5 +160,9 @@ public class TextEntity extends PaperEntity implements TextEntityInterface {
     @Override
     public ObjectProperty<Border> getBorder() {
         return text.borderProperty();
+    }
+
+    public void setFont(String fontName) {
+        text.setFont(FontUtil.getFxFontByName(fontName));
     }
 }

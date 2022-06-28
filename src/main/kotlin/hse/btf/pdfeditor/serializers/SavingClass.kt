@@ -7,23 +7,27 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.io.File
+import java.nio.file.Files
+import java.nio.file.Path
 
 private val format = Json { encodeDefaults = true }
 
 @OptIn(ExperimentalSerializationApi::class)
 fun saveToFile(fileName: String) {
     // opening vs creating file and (over)writing information to it
-    var filePath = "./src/main/kotlin/hse/btf/pdfeditor/datasaving/"
-
-    val fileNameWithoutExtension = fileName.split(".").toTypedArray()
-    val fileNameWithSliders = fileNameWithoutExtension[fileNameWithoutExtension.size - 2]
-    val fileNameWords = fileNameWithSliders.split("/")
-    val fileNameSimple = fileNameWords[fileNameWords.size - 1]
-
-    filePath += if (fileNameSimple != "") "$fileNameSimple.json" else "dataFile.json"
-    val file = File(filePath)
-
+    // test.pdf -> test.json
+    var splitedFile = fileName.split(".").toTypedArray()
+    var fileDir = Path.of("src","main", "kotlin", "hse", "btf", "pdfeditor", "datasaving")
+    if (Files.notExists(fileDir)) {
+        Files.createDirectories(fileDir)
+    }
+    var filePath = Path.of(fileDir.toString(), splitedFile.get(0) + ".json")
+    if (Files.notExists(filePath)) {
+        Files.createFile(filePath)
+    }
+    val file = filePath.toAbsolutePath().toFile()
     // getting Json string
+    System.out.println(filePath)
     val json = format.encodeToString(itemsHolder.observableItemsList.toList())
     file.writeText(json)
 }
