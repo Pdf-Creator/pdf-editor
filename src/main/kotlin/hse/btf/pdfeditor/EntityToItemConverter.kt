@@ -6,8 +6,8 @@ import hse.btf.pdfeditor.models.TextItem
 import hse.btf.pdfeditor.models.entities.FormulaEntity
 import hse.btf.pdfeditor.models.entities.ImageEntity
 import hse.btf.pdfeditor.models.entities.TextEntity
-import hse.btf.pdfeditor.utils.DataStorage.entitiesList
-import hse.btf.pdfeditor.utils.DataStorage.itemsHolder
+import hse.btf.pdfeditor.storages.EntitiesStorage.entitiesList
+import hse.btf.pdfeditor.storages.ProjectDataStorage.itemsHolder
 import tornadofx.bind
 
 class EntityToItemConverter {
@@ -22,9 +22,10 @@ class EntityToItemConverter {
                         h.bindBidirectional(it.heightProperty)
 
                         text.bindBidirectional(it.text)
-                        font.bindBidirectional(it.font)
-                        background.bindBidirectional(it.background)
-                        border.bindBidirectional(it.border)
+//                        font.bindBidirectional(it.font)
+//                        background.bindBidirectional(it.background)
+//                        border.bindBidirectional(it.border)
+
                     }
                 is ImageEntity ->
                     ImageItem().apply {

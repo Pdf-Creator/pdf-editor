@@ -2,7 +2,6 @@ package hse.btf.pdfeditor.models.entities;
 
 import hse.btf.pdfeditor.MouseController;
 import hse.btf.pdfeditor.PdfWorkWindowController;
-import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.embed.swing.SwingFXUtils;
@@ -138,25 +137,5 @@ public class FormulaEntity extends PaperEntity implements FormulaEntityInterface
     @Override
     public StringProperty getFormulaProperty() {
         return formulaProperty;
-    }
-
-    @Override
-    public DoubleProperty getXProperty() {
-        return formulaImage.layoutXProperty();
-    }
-
-    @Override
-    public DoubleProperty getYProperty() {
-        return formulaImage.layoutYProperty();
-    }
-
-    @Override
-    public DoubleProperty getWidthProperty() {
-        return formulaImage.fitWidthProperty();
-    }
-
-    @Override
-    public DoubleProperty getHeightProperty() {
-        return formulaImage.fitHeightProperty();
     }
 }

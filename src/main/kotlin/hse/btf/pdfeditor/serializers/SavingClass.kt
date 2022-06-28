@@ -1,6 +1,7 @@
 package hse.btf.pdfeditor.serializers
 
-import hse.btf.pdfeditor.utils.DataStorage.itemsHolder
+
+import hse.btf.pdfeditor.storages.ProjectDataStorage.itemsHolder
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
@@ -10,9 +11,16 @@ import java.io.File
 private val format = Json { encodeDefaults = true }
 
 @OptIn(ExperimentalSerializationApi::class)
-fun saveToFile(fileName: String?) {
+fun saveToFile(fileName: String) {
     // opening vs creating file and (over)writing information to it
-    val filePath = fileName ?: ("./src/main/kotlin/hse/btf/pdfeditor/datasaving" + "dataFile.json")
+    var filePath = "./src/main/kotlin/hse/btf/pdfeditor/datasaving/"
+
+    val fileNameWithoutExtension = fileName.split(".").toTypedArray()
+    val fileNameWithSliders = fileNameWithoutExtension[fileNameWithoutExtension.size - 2]
+    val fileNameWords = fileNameWithSliders.split("/")
+    val fileNameSimple = fileNameWords[fileNameWords.size - 1]
+
+    filePath += if (fileNameSimple != "") "$fileNameSimple.json" else "dataFile.json"
     val file = File(filePath)
 
     // getting Json string
@@ -21,7 +29,7 @@ fun saveToFile(fileName: String?) {
 }
 
 fun readFromFile(fileName: String?) {
-    val filePath = fileName ?: ("./src/main/kotlin/hse/btf/pdfeditor/datasaving" + "dataFile.json")
+    val filePath = fileName ?: ("./src/main/kotlin/hse/btf/pdfeditor/datasaving/" + "dataFile.json")
     val file = File(filePath)
 
     val fileData = file.readText()

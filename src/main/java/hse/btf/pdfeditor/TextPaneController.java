@@ -19,15 +19,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static hse.btf.pdfeditor.PdfWorkWindowController.papers;
-import static hse.btf.pdfeditor.utils.DataStorage.entitiesList;
+import static hse.btf.pdfeditor.storages.EntitiesStorage.entitiesList;
 
 public class TextPaneController implements Initializable {
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setTextFieldActions();
-
 
         newTextButton.setOnMouseClicked(ev -> {
             TextEntity entity = new TextEntity();

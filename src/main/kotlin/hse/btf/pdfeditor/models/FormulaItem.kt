@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleStringProperty
 import javafx.beans.property.StringProperty
 import kotlinx.serialization.Serializable
 
-//@Serializable
+@Serializable
 data class FormulaItem(
     @Serializable(with = StringPropertySerializer::class)
     val formula: StringProperty = SimpleStringProperty("1")

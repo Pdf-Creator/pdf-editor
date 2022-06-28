@@ -2,18 +2,22 @@ package hse.btf.pdfeditor.service;
 
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.layout.properties.TransparentColor;
-import hse.btf.pdfeditor.entity.*;
-import hse.btf.pdfeditor.models.*;
+import hse.btf.pdfeditor.entity.PDFDocument;
+import hse.btf.pdfeditor.entity.PDFFormula;
+import hse.btf.pdfeditor.entity.PDFImage;
+import hse.btf.pdfeditor.entity.PDFText;
+import hse.btf.pdfeditor.models.FormulaItem;
+import hse.btf.pdfeditor.models.ImageItem;
+import hse.btf.pdfeditor.models.Item;
+import hse.btf.pdfeditor.models.TextItem;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
-import javafx.scene.text.Font;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static hse.btf.pdfeditor.utils.DataStorage.itemsHolder;
+import static hse.btf.pdfeditor.storages.ProjectDataStorage.itemsHolder;
 
 public class Converter {
     public static void saveDocument(String fileName) throws IOException {

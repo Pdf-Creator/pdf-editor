@@ -1,6 +1,8 @@
 package hse.btf.pdfeditor.models
 
-//@Serializable
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class ImageItem(
     var imageFileName: String = ""
 ) : Item()
