@@ -17,6 +17,10 @@ import hse.btf.pdfeditor.models.FormulaItem;
 import hse.btf.pdfeditor.models.ImageItem;
 import hse.btf.pdfeditor.models.Item;
 import hse.btf.pdfeditor.models.TextItem;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
 
 import java.awt.*;
 import java.awt.image.ColorConvertOp;
@@ -27,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static hse.btf.pdfeditor.utils.DataStorage.itemsHolder;
+import static hse.btf.pdfeditor.storages.ProjectDataStorage.itemsHolder;
 import static hse.btf.pdfeditor.utils.FontUtil.*;
 
 public class Converter {
@@ -150,10 +154,10 @@ public class Converter {
         );
         pdfText.setText(textItem.getText().get());
         // background and border
-        TransparentColor backgroundColor = convertBackgroundColor(textItem.getBackground().get());
-        TransparentColor borderColor = convertBorderColor(textItem.getBorder().get());
-        pdfText.setBackgroundColor(backgroundColor);
-        pdfText.setBorderColor(borderColor);
+//        TransparentColor backgroundColor = convertBackgroundColor(textItem.getBackground().get());
+//        TransparentColor borderColor = convertBorderColor(textItem.getBorder().get());
+//        pdfText.setBackgroundColor(backgroundColor);
+//        pdfText.setBorderColor(borderColor);
 
         // TODO add size, font, color
         //pdfText.setTextFont(FontUtil.getPdfFontByName("Free Sans"));

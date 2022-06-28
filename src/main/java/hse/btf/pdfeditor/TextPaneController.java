@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 
 import static hse.btf.pdfeditor.PdfWorkWindowController.papers;
 import static hse.btf.pdfeditor.PdfWorkWindowController.target;
-import static hse.btf.pdfeditor.utils.DataStorage.entitiesList;
+import static hse.btf.pdfeditor.storages.EntitiesStorage.entitiesList;
 
 public class TextPaneController implements Initializable {
 
