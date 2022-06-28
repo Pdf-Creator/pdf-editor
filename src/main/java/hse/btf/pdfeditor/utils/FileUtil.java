@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.Locale;
 
 import static hse.btf.pdfeditor.PdfWorkWindowController.papers;
+import static hse.btf.pdfeditor.utils.DataStorage.entitiesList;
 
 public class FileUtil {
     private static final FileChooser fileChooser = new FileChooser();
@@ -51,6 +52,7 @@ public class FileUtil {
                 return;
             }
             ImageEntity entity = new ImageEntity(loadedImage.getAbsolutePath());
+            entitiesList.add(entity);
             entity.setBottomPadding(8.0);
             entity.setTopPadding(8.0);
             entity.setLeftPadding(8.0);

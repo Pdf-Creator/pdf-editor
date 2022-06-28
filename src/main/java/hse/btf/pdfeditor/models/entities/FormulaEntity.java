@@ -1,6 +1,7 @@
 package hse.btf.pdfeditor.models.entities;
 
 import hse.btf.pdfeditor.MouseController;
+import hse.btf.pdfeditor.PdfWorkWindowController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.embed.swing.SwingFXUtils;
@@ -35,12 +36,18 @@ public class FormulaEntity extends PaperEntity implements FormulaEntityInterface
 
     @Override
     public Pane createFxmlObject() {
+        if (PdfWorkWindowController.target != null) {
+            PdfWorkWindowController.target.removeCss("text-region");
+            PdfWorkWindowController.target.hidePoint();
+        }
+        this.applyCss("text-region");
+        PdfWorkWindowController.target = this;
+
         formulaImage = drawFormula(formula);
         formulaImage.setFitHeight(getHeight() - leftPadding - rightPadding);
         formulaImage.setFitWidth(getWidth() - bottomPadding - topPadding);
         formulaImage.setPreserveRatio(true);
-        textBox.getStyleClass().add("text-region");
-        Circle resizePoint = new Circle(6, Color.WHITE);
+        resizePoint = new Circle(6, Color.WHITE);
         resizePoint.setStrokeWidth(1);
         resizePoint.setStrokeType(StrokeType.INSIDE);
         resizePoint.setStroke(Color.valueOf("0x808080FF"));
@@ -60,6 +67,13 @@ public class FormulaEntity extends PaperEntity implements FormulaEntityInterface
         textBox.addEventHandler(MouseEvent.MOUSE_EXITED, event -> textBox.setCursor(Cursor.DEFAULT));
 
         textBox.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
+            if (PdfWorkWindowController.target != null) {
+                PdfWorkWindowController.target.removeCss("text-region");
+                PdfWorkWindowController.target.hidePoint();
+            }
+            this.applyCss("text-region");
+            PdfWorkWindowController.target = this;
+            this.showPoint();
             textBox.setCursor(Cursor.MOVE);
             MouseController.Position.x = e.getX();
             MouseController.Position.y = e.getY();
@@ -118,7 +132,7 @@ public class FormulaEntity extends PaperEntity implements FormulaEntityInterface
 
     private ImageView drawFormula(String latex) {
         TeXFormula formula = new TeXFormula(latex);
-        java.awt.Image awtImage = formula.createBufferedImage(TeXConstants.STYLE_TEXT, 100, java.awt.Color.BLUE, null);
+        java.awt.Image awtImage = formula.createBufferedImage(TeXConstants.STYLE_TEXT, 50, java.awt.Color.BLACK, null);
         Image fxImage = SwingFXUtils.toFXImage((BufferedImage) awtImage, null);
         return new ImageView(fxImage);
     }

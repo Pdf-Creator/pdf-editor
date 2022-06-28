@@ -1,6 +1,7 @@
 package hse.btf.pdfeditor.models.entities;
 
 import hse.btf.pdfeditor.MouseController;
+import hse.btf.pdfeditor.PdfWorkWindowController;
 import javafx.scene.Cursor;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -23,11 +24,17 @@ public class ImageEntity extends PaperEntity implements ImageEntityInterface {
 
     @Override
     public Pane createFxmlObject() {
+        if (PdfWorkWindowController.target != null) {
+            PdfWorkWindowController.target.removeCss("text-region");
+            PdfWorkWindowController.target.hidePoint();
+        }
+        PdfWorkWindowController.target = this;
+        this.applyCss("text-region");
+
         image.setFitHeight(getHeight() - leftPadding - rightPadding);
         image.setFitWidth(getWidth() - bottomPadding - topPadding);
         image.setPreserveRatio(true);
-        textBox.getStyleClass().add("text-region");
-        Circle resizePoint = new Circle(6, Color.WHITE);
+        resizePoint = new Circle(6, Color.WHITE);
         resizePoint.setStrokeWidth(1);
         resizePoint.setStrokeType(StrokeType.INSIDE);
         resizePoint.setStroke(Color.valueOf("0x808080FF"));
@@ -47,6 +54,13 @@ public class ImageEntity extends PaperEntity implements ImageEntityInterface {
         textBox.addEventHandler(MouseEvent.MOUSE_EXITED, event -> textBox.setCursor(Cursor.DEFAULT));
 
         textBox.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
+            if (PdfWorkWindowController.target != null) {
+                PdfWorkWindowController.target.removeCss("text-region");
+                PdfWorkWindowController.target.hidePoint();
+            }
+            this.applyCss("text-region");
+            PdfWorkWindowController.target = this;
+            this.showPoint();
             textBox.setCursor(Cursor.MOVE);
             MouseController.Position.x = e.getX();
             MouseController.Position.y = e.getY();

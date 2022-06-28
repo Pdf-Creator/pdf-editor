@@ -1,5 +1,6 @@
 package hse.btf.pdfeditor.models.entities;
 
+import hse.btf.pdfeditor.PdfWorkWindowController;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.Cursor;
@@ -24,11 +25,16 @@ public class TextEntity extends PaperEntity implements TextEntityInterface {
 
     @Override
     public Pane createFxmlObject() {
-        textBox.getStyleClass().add("text-region");
+        if (PdfWorkWindowController.target != null) {
+            PdfWorkWindowController.target.removeCss("text-region");
+            PdfWorkWindowController.target.hidePoint();
+        }
+        this.applyCss("text-region");
+        PdfWorkWindowController.target = this;
 
         text.setWrapText(true);
 
-        Circle resizePoint = new Circle(6, Color.WHITE);
+        resizePoint = new Circle(6, Color.WHITE);
         resizePoint.setStrokeWidth(1);
         resizePoint.setStrokeType(StrokeType.INSIDE);
         resizePoint.setStroke(Color.valueOf("0x808080FF"));
@@ -48,6 +54,13 @@ public class TextEntity extends PaperEntity implements TextEntityInterface {
         textBox.addEventHandler(MouseEvent.MOUSE_EXITED, event -> textBox.setCursor(Cursor.DEFAULT));
 
         textBox.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
+            if (PdfWorkWindowController.target != null) {
+                PdfWorkWindowController.target.removeCss("text-region");
+                PdfWorkWindowController.target.hidePoint();
+            }
+            this.applyCss("text-region");
+            PdfWorkWindowController.target = this;
+            this.showPoint();
             textBox.setCursor(Cursor.MOVE);
             Position.x = e.getX();
             Position.y = e.getY();
