@@ -57,10 +57,12 @@ public class Converter {
         System.out.println("height = " + pageSize.getHeight());
         System.out.println("---------------");
         List<Float> coordinates = new ArrayList<>();
-        coordinates.add(0, (float) x); // x
-        coordinates.add(1, (float) (pageSize.getHeight() - y - h)); //
-        coordinates.add(2, (float) w); // w
-        coordinates.add(3, (float) h); // h
+        // // prefHeight="1188.0" prefWidth="840.0"
+        double coef = 842.0 / 1188.0;
+        coordinates.add(0, (float) x * (float) coef); // x
+        coordinates.add(1, (float) (pageSize.getHeight() - y * coef - h * coef)); //
+        coordinates.add(2, (float) w * (float) coef); // w
+        coordinates.add(3, (float) h * (float) coef); // h
         System.out.println("-- pdf --");
         System.out.println("x = " + coordinates.get(0));
         System.out.println("y = " + coordinates.get(1));
