@@ -34,7 +34,7 @@ public class FileUtil {
                 }
                 ProjectDataStorage.pdfFileName = file.getAbsolutePath();
             } else {
-                file = new File(ProjectDataStorage.pdfFileName);
+                file = Path.of(ProjectDataStorage.pdfFileName).toFile();
             }
             try {
                 Converter.saveDocument(file.getAbsolutePath().toLowerCase(Locale.ROOT));

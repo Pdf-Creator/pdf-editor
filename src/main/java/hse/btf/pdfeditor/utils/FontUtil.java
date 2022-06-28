@@ -25,6 +25,9 @@ public class FontUtil {
 
     public static void init() {
         try {
+            fontNameToFontPath.clear();
+            pdfFonts.clear();
+            fxFonts.clear();
             registerFont("Free Sans", Path.of(FREE_SANS));
             registerFont("Arial", Path.of(ARIAL));
             registerFont("Times New Roman", Path.of(TIMES_NEW_ROMAN));

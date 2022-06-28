@@ -38,6 +38,7 @@ import static hse.btf.pdfeditor.utils.FontUtil.*;
 
 public class Converter {
     public static void saveDocument(String fileName) throws IOException {
+        FontUtil.init();
         PDFDocument pdfDocument = new PDFDocument(fileName);
         PageSize pageSize = pdfDocument.getPageSize();
 
