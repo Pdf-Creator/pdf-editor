@@ -20,6 +20,8 @@ public class ImageEntity extends PaperEntity implements ImageEntityInterface {
     public ImageEntity(String url) {
         super();
         image = new ImageView(url);
+        textBox.setPrefWidth(image.getFitWidth());
+        textBox.setPrefHeight(image.getFitHeight());
         fileName = url;
     }
 
@@ -104,8 +106,9 @@ public class ImageEntity extends PaperEntity implements ImageEntityInterface {
             double distanceX = e.getX() - MouseController.Position.x;
             double distanceY = e.getY() - MouseController.Position.y;
 
+            double coef = textBox.getPrefHeight() / textBox.getPrefWidth();
             double x = textBox.getPrefWidth() + distanceX;
-            double y = textBox.getPrefHeight() + distanceY;
+            double y = textBox.getPrefHeight() + distanceX * coef;
 
             textBox.setPrefWidth(x);
             textBox.setPrefHeight(y);
