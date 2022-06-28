@@ -161,7 +161,8 @@ public class Converter {
 
         // TODO add size, font, color
         //pdfText.setTextFont(FontUtil.getPdfFontByName("Free Sans"));
-        return pdfText;
+        // TODO: здесь пофиксить геттеры
+//        pdfText.setText(textItem.getText().get());
 //        System.out.println("-- font --");
 //        Font font = textItem.getFont().get();
 //        if (font != null) {
@@ -188,6 +189,7 @@ public class Converter {
 //            System.out.println("border outsets: " + border.getOutsets());
 //        }
 //        System.out.println("------------");
+        return pdfText;
     }
 
     private static PDFImage convertImageItem(ImageItem imageItem, PageSize pageSize) {
