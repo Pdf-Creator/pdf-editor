@@ -160,7 +160,8 @@ public class Converter {
 //        pdfText.setBorderColor(borderColor);
 
         // TODO add size, font, color
-        //pdfText.setTextFont(FontUtil.getPdfFontByName("Free Sans"));
+        pdfText.setTextFont(FontUtil.getPdfFontByName(textItem.getFontFamily().get()));
+        pdfText.setTextSize(textItem.getFontSize().get());
         // TODO: здесь пофиксить геттеры
 //        pdfText.setText(textItem.getText().get());
 //        System.out.println("-- font --");

@@ -17,13 +17,15 @@ public class PDFText extends PDFItem {
 
     private String text;
     private PdfFont textFont;
+    private double textSize;
     private Color textColor;
 
     public PDFText(double x, double y, double w, double h) {
         super(x, y, w, h);
         setText(defaultText);
-        setTextFont(FontUtil.getPdfFontByName(FontUtil.TIMES_NEW_ROMAN));
+        setTextFont(FontUtil.getPdfFontByName(PDFEditorConstants.DEFAULT_FONT));
         setTextColor(defaultColor);
+        setTextSize(PDFEditorConstants.DEFAULT_FONT_SIZE);
     }
 
     public void setText(String text) {
@@ -38,6 +40,10 @@ public class PDFText extends PDFItem {
         this.textFont = font;
     }
 
+    public void setTextSize(double textSize) {
+        this.textSize = textSize;
+    }
+
     public String getText() {
         return text;
     }
@@ -48,5 +54,9 @@ public class PDFText extends PDFItem {
 
     public PdfFont getTextFont() {
         return textFont;
+    }
+
+    public double getTextSize() {
+        return textSize;
     }
 }
