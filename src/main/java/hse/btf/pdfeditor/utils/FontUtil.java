@@ -23,6 +23,16 @@ public class FontUtil {
     private static Map<Path, PdfFont> pdfFonts = new HashMap<>();
     private static Map<Path, Font> fxFonts = new HashMap<>();
 
+    static {
+        try {
+            registerFont("Free Sans", Path.of(FREE_SANS));
+            registerFont("Arial", Path.of(ARIAL));
+            registerFont("Times New Roman", Path.of(TIMES_NEW_ROMAN));
+        } catch (IOException e) {
+            System.err.println("Couldn't load default fonts");
+        }
+    }
+
     public static void registerFont(String fontName, Path fontPath) throws IOException {
         fontNameToFontPath.put(fontName, fontPath);
         addPdfFont(fontPath);

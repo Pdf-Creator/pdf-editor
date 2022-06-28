@@ -1,17 +1,26 @@
 package hse.btf.pdfeditor.service;
 
+import com.itextpdf.kernel.colors.Color;
+import com.itextpdf.kernel.colors.ColorConstants;
+import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.kernel.geom.PageSize;
+import com.itextpdf.kernel.pdf.colorspace.PdfColorSpace;
 import com.itextpdf.layout.properties.TransparentColor;
 import hse.btf.pdfeditor.entity.*;
 import hse.btf.pdfeditor.models.*;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
 import javafx.scene.text.Font;
 
+import java.awt.*;
+import java.awt.image.ColorConvertOp;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static hse.btf.pdfeditor.utils.DataStorage.itemsHolder;
 
@@ -46,16 +55,16 @@ public class Converter {
     }
 
     private static List<Float> convertCoordinates(double x, double y, double w, double h, PageSize pageSize) {
-        System.out.println("-- from ui --");
-        System.out.println("x = " + x);
-        System.out.println("y = " + y);
-        System.out.println("w = " + w);
-        System.out.println("h = " + h);
-        System.out.println("-------------");
-        System.out.println("-- page size --");
-        System.out.println("width = " + pageSize.getWidth());
-        System.out.println("height = " + pageSize.getHeight());
-        System.out.println("---------------");
+//        System.out.println("-- from ui --");
+//        System.out.println("x = " + x);
+//        System.out.println("y = " + y);
+//        System.out.println("w = " + w);
+//        System.out.println("h = " + h);
+//        System.out.println("-------------");
+//        System.out.println("-- page size --");
+//        System.out.println("width = " + pageSize.getWidth());
+//        System.out.println("height = " + pageSize.getHeight());
+//        System.out.println("---------------");
         List<Float> coordinates = new ArrayList<>();
         // // prefHeight="1188.0" prefWidth="840.0"
         double coef = 842.0 / 1188.0;
@@ -63,29 +72,56 @@ public class Converter {
         double conv_y = y * coef;
         double conv_w = w * coef;
         double conv_h = h * coef;
-        System.out.println("conv_x = " + conv_x);
-        System.out.println("conv_y = " + conv_y);
-        System.out.println("conv_w = " + conv_w);
-        System.out.println("conv_h = " + conv_h);
+//        System.out.println("conv_x = " + conv_x);
+//        System.out.println("conv_y = " + conv_y);
+//        System.out.println("conv_w = " + conv_w);
+//        System.out.println("conv_h = " + conv_h);
         coordinates.add(0, (float) conv_x); // x
         coordinates.add(1, (float) (pageSize.getHeight() - conv_y - conv_h)); //
         coordinates.add(2, (float) conv_w); // w
         coordinates.add(3, (float) conv_h); // h
-        System.out.println("-- pdf --");
-        System.out.println("x = " + coordinates.get(0));
-        System.out.println("y = " + coordinates.get(1));
-        System.out.println("w = " + coordinates.get(2));
-        System.out.println("h = " + coordinates.get(3));
-        System.out.println("---------");
+//        System.out.println("-- pdf --");
+//        System.out.println("x = " + coordinates.get(0));
+//        System.out.println("y = " + coordinates.get(1));
+//        System.out.println("w = " + coordinates.get(2));
+//        System.out.println("h = " + coordinates.get(3));
+//        System.out.println("---------");
         return coordinates;
     }
 
+    private static TransparentColor getPdfColorfromRGBA(String rgbaString) {
+        List<Integer> rgba = new ArrayList<>();
+        for (int i = 0; i < rgbaString.length(); i += 2) {
+            rgba.add(Integer.parseInt(rgbaString.substring(i, i + 2), 16));
+        }
+        Color color = new DeviceRgb(rgba.get(0), rgba.get(1), rgba.get(2));
+        return new TransparentColor(color, (float) rgba.get(3) / 255);
+    }
+
     private static TransparentColor convertBorderColor(Border border) {
-        return null;
+        if (border == null) {
+            return new TransparentColor(ColorConstants.WHITE, 0);
+        }
+        Optional<BorderStroke> stroke = border.getStrokes().stream().findFirst();
+        if (stroke.isEmpty()) {
+            return new TransparentColor(ColorConstants.WHITE, 0);
+        }
+        System.out.println(stroke.get().getTopStroke());
+        String rgbaString = stroke.get().getTopStroke().toString().substring(2);
+        return getPdfColorfromRGBA(rgbaString);
     }
 
     private static TransparentColor convertBackgroundColor(Background background) {
-        return null;
+        if (background == null) {
+            return new TransparentColor(ColorConstants.WHITE, 0);
+        }
+        Optional<BackgroundFill> fill = background.getFills().stream().findFirst();
+        if (fill.isEmpty()) {
+            return new TransparentColor(ColorConstants.WHITE, 0);
+        }
+        System.out.println(fill.get().getFill());
+        String rgbaString = fill.get().getFill().toString().substring(2);
+        return getPdfColorfromRGBA(rgbaString);
     }
 
     private static PDFText convertTextItem(TextItem textItem, PageSize pageSize) {
@@ -97,33 +133,40 @@ public class Converter {
                 converted.get(3)
         );
         pdfText.setText(textItem.getText().get());
-        System.out.println("-- font --");
-        Font font = textItem.getFont().get();
-        if (font != null) {
-            System.out.println(font.getFamily());
-            System.out.println(font.getName());
-            System.out.println(font.getSize());
-            System.out.println(font.getStyle());
-        }
-        System.out.println("----------");
-        System.out.println("-- background --");
-        Background background = textItem.getBackground().get();
-        if (background != null) {
-            background.getFills().forEach(fill -> System.out.println("background fill: " + fill.getFill()));
-            background.getImages().forEach(image -> System.out.println("background image: " + image.getImage().getUrl()));
-            System.out.println("background outsets: " + background.getOutsets());
-        }
-        System.out.println("----------------");
-        System.out.println("-- border --");
-        Border border = textItem.getBorder().get();
-        if (border != null) {
-            border.getImages().forEach(image -> System.out.println("border image: " + image.getImage().getUrl()));
-            border.getStrokes().forEach(stroke -> System.out.println("border stroke: " + stroke));
-            System.out.println("border insets: " + border.getInsets());
-            System.out.println("border outsets: " + border.getOutsets());
-        }
-        System.out.println("------------");
+        // background and border
+        TransparentColor backgroundColor = convertBackgroundColor(textItem.getBackground().get());
+        TransparentColor borderColor = convertBorderColor(textItem.getBorder().get());
+        pdfText.setBackgroundColor(backgroundColor);
+        pdfText.setBorderColor(borderColor);
+
+        // TODO add size, font, color
         return pdfText;
+//        System.out.println("-- font --");
+//        Font font = textItem.getFont().get();
+//        if (font != null) {
+//            System.out.println(font.getFamily());
+//            System.out.println(font.getName());
+//            System.out.println(font.getSize());
+//            System.out.println(font.getStyle());
+//        }
+//        System.out.println("----------");
+//        System.out.println("-- background --");
+//        Background background = textItem.getBackground().get();
+//        if (background != null) {
+//            background.getFills().forEach(fill -> System.out.println("background fill: " + fill.getFill()));
+//            background.getImages().forEach(image -> System.out.println("background image: " + image.getImage().getUrl()));
+//            System.out.println("background outsets: " + background.getOutsets());
+//        }
+//        System.out.println("----------------");
+//        System.out.println("-- border --");
+//        Border border = textItem.getBorder().get();
+//        if (border != null) {
+//            border.getImages().forEach(image -> System.out.println("border image: " + image.getImage().getUrl()));
+//            border.getStrokes().forEach(stroke -> System.out.println("border stroke: " + stroke));
+//            System.out.println("border insets: " + border.getInsets());
+//            System.out.println("border outsets: " + border.getOutsets());
+//        }
+//        System.out.println("------------");
     }
 
     private static PDFImage convertImageItem(ImageItem imageItem, PageSize pageSize) {
